@@ -11,6 +11,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QWheelEvent>
+#include <QPoint>
 #include "ui_board.h"
 
 QT_BEGIN_NAMESPACE
@@ -33,7 +34,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event);
-    void changeScale(QPainter &painter);
+    void updateDimensionAndPosition(QPainter &painter);
     void refresh();
     void zoomPlus();
     void zoomMoins();
@@ -41,6 +42,8 @@ public:
 private:
     Ui::Board *ui;
     float zoomVal;
+    QPoint lastMousePosition;
+    QPointF translateWidget;
 };
 
 #endif // BOARD_H
