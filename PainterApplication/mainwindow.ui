@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>894</width>
-    <height>703</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -445,7 +445,6 @@
    <addaction name="actionEraser"/>
    <addaction name="actionEllipse"/>
    <addaction name="actionRectangle"/>
-   <addaction name="actionStar"/>
    <addaction name="separator"/>
    <addaction name="actionRedo"/>
    <addaction name="actionUndo"/>

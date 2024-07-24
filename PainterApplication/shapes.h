@@ -7,7 +7,6 @@
 class Dessin {
 public:
     virtual void move(const QPoint &delta) = 0;
-    //virtual void select(const QPoint &delta) = 0;
    // virtual void undo() = 0;
    // virtual void redo() = 0;
 };
@@ -21,7 +20,6 @@ public:
     virtual ~Shapes() {}
    // virtual void undo() = 0;
    // virtual void redo() = 0;
-   // virtual void select(const QPoint &delta) = 0;
     virtual bool contains(const QPoint &point) = 0;
 };
 
