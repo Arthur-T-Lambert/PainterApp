@@ -14,6 +14,7 @@
 #include <QPoint>
 #include <QColor>
 #include <QBrush>
+#include <QList>
 #include "ui_board.h"
 
 QT_BEGIN_NAMESPACE
@@ -35,7 +36,9 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
+    int  indexOfShapeSelected(const QPoint &pos);
     void updateDimensionAndPosition(QPainter &painter);
+    void drawGrid(QPainter &painter);
     void setBrush(Qt::BrushStyle style, QColor color);
     void refresh();
     void zoomPlus();
@@ -45,8 +48,10 @@ private:
     Ui::Board *ui;
     float zoomVal;
     QPoint lastMousePosition;
-    QPointF translateWidget;
+    QPoint translateWidget;
     QBrush brush;
+    QList<QRect> shapes;
+    int indexShapeSelected;
 };
 
 #endif // BOARD_H
