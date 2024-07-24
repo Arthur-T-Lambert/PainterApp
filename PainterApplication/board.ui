@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>board</class>
- <widget class="QWidget" name="board">
+ <class>Board</class>
+ <widget class="QWidget" name="Board">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>618</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>board</string>
   </property>
  </widget>
  <resources/>
