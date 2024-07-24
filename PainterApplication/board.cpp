@@ -11,7 +11,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
     zoomVal = 1.0;
     translateWidget = {0,0};
     lastMousePosition = {0,0};
-    backgroundColor = QColor(255,0,0);
+    brush.setColor(QColor(0,255,0));
+    brush.setStyle(Qt::Dense5Pattern);
     ui->setupUi(this);
 }
 
@@ -30,37 +31,30 @@ void Board::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
-    drawBackground(painter);
+    //Affichage du background
+    setBrush(Qt::Dense3Pattern, Qt::blue);
+    painter.setBrush(brush);
+    painter.drawRect(rect());
+
+    //Gestion des dimensions en fonction du zoom et de la translation
     updateDimensionAndPosition(painter);
-    draw(painter);
-}
 
-//------------------------------------------------------------------------------------------
-/** Brief Fonction de dessin
- *  \param painter Pointeur sur le canva painter
- */
-void Board::draw(QPainter &painter)
-{
+    //Affichage d'un rectangle
+    setBrush(Qt::Dense5Pattern, Qt::green);
+    painter.setBrush(brush);
     painter.drawRect(QRect(10,10,50,50));
+
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction d'affichage du background
- *  \param painter Pointeur sur le canva painter
- */
-void Board::drawBackground(QPainter &painter)
-{
-    //painter.setBrush(QBrush(backgroundColor));
-    painter.fillRect(rect(),backgroundColor);
-}
-
-//------------------------------------------------------------------------------------------
-/** Brief Fonction de changement de la couleur de background
- *  \param color Couleur souhaitée
+/** Brief Fonction paramétrage du brush
+ *  \param style style du brush
+ *  \param color Couleur du brush
 */
-void Board::setBackgroundColor(const QColor &color)
+void Board::setBrush(Qt::BrushStyle style, QColor color)
 {
-    backgroundColor = color;
+    brush.setColor(color);
+    brush.setStyle(style);
     refresh();
 }
 
@@ -132,9 +126,9 @@ void Board::refresh()
 /** Brief Fonction de zoom avant du widget */
 void Board::zoomPlus()
 {
-    if(zoomVal * 1.1 < 3)
+    if(zoomVal * 1.02 < 3)
     {
-        zoomVal *= 1.1;
+        zoomVal *= 1.02;
         refresh();
     }
 }
@@ -143,9 +137,9 @@ void Board::zoomPlus()
 /** Brief Fonction de zoom arrière du widget */
 void Board::zoomMoins()
 {
-    if(zoomVal / 1.1 > 0.5)
+    if(zoomVal / 1.02 > 0.5)
     {
-        zoomVal /= 1.1;
+        zoomVal /= 1.02;
         refresh();
     }
 }

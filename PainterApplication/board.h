@@ -13,6 +13,7 @@
 #include <QWheelEvent>
 #include <QPoint>
 #include <QColor>
+#include <QBrush>
 #include "ui_board.h"
 
 QT_BEGIN_NAMESPACE
@@ -29,15 +30,13 @@ public:
     explicit Board(QWidget *parent = nullptr);
     ~Board();
 
-    void draw(QPainter &painter);
-    void drawBackground(QPainter &painter);
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     void updateDimensionAndPosition(QPainter &painter);
-    void setBackgroundColor(const QColor &color);
+    void setBrush(Qt::BrushStyle style, QColor color);
     void refresh();
     void zoomPlus();
     void zoomMoins();
@@ -47,7 +46,7 @@ private:
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
-    QColor backgroundColor;
+    QBrush brush;
 };
 
 #endif // BOARD_H
