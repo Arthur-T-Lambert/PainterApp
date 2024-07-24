@@ -11,7 +11,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
     zoomVal = 1.0;
     translateWidget = {0,0};
     lastMousePosition = {0,0};
-    ui-> setupUi(this);
+    backgroundColor = QColor(255,0,0);
+    ui->setupUi(this);
 }
 
 //------------------------------------------------------------------------------------------
@@ -29,8 +30,38 @@ void Board::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
 
+    drawBackground(painter);
     updateDimensionAndPosition(painter);
     draw(painter);
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction de dessin
+ *  \param painter Pointeur sur le canva painter
+ */
+void Board::draw(QPainter &painter)
+{
+    painter.drawRect(QRect(10,10,50,50));
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction d'affichage du background
+ *  \param painter Pointeur sur le canva painter
+ */
+void Board::drawBackground(QPainter &painter)
+{
+    //painter.setBrush(QBrush(backgroundColor));
+    painter.fillRect(rect(),backgroundColor);
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction de changement de la couleur de background
+ *  \param color Couleur souhaitée
+*/
+void Board::setBackgroundColor(const QColor &color)
+{
+    backgroundColor = color;
+    refresh();
 }
 
 //------------------------------------------------------------------------------------------
@@ -62,7 +93,7 @@ void Board::mousePressEvent(QMouseEvent *event)
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
-        QPoint delta = event->pos() - lastMousePosition;
+        QPoint delta = (event->pos() - lastMousePosition) / zoomVal;
         translateWidget += delta;
         lastMousePosition = event->pos();
         refresh();
@@ -91,15 +122,6 @@ void Board::wheelEvent(QWheelEvent *event)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction de dessin
- *  \param painter Pointeur sur le canva painter
- */
-void Board::draw(QPainter &painter)
-{
-    painter.drawRect(QRect(10,10,50,50));
-}
-
-//------------------------------------------------------------------------------------------
 /** Brief Fonction de rafraichissement du widget */
 void Board::refresh()
 {
@@ -110,14 +132,20 @@ void Board::refresh()
 /** Brief Fonction de zoom avant du widget */
 void Board::zoomPlus()
 {
-    zoomVal *= 1.1;
-    refresh();
+    if(zoomVal * 1.1 < 3)
+    {
+        zoomVal *= 1.1;
+        refresh();
+    }
 }
 
 //------------------------------------------------------------------------------------------
 /** Brief Fonction de zoom arrière du widget */
 void Board::zoomMoins()
 {
-    zoomVal /= 1.1;
-    refresh();
+    if(zoomVal / 1.1 > 0.5)
+    {
+        zoomVal /= 1.1;
+        refresh();
+    }
 }
