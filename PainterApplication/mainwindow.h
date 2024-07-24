@@ -20,11 +20,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+<<<<<<< HEAD
 protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
+=======
+private slots:
+    void on_actionQuit_triggered();
+>>>>>>> 759ef0ea031129d65752f00b560f62678cac4448
 
 private:
     Ui::MainWindow *ui;

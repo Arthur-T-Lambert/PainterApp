@@ -62,3 +62,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     Q_UNUSED(event);
     draggedShape = nullptr;
 }
+
+void MainWindow::on_actionQuit_triggered()
+{
+    QApplication::quit();
+}
+
