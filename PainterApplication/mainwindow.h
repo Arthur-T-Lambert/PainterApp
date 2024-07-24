@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <QList>
+
 #include "Shapes.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,22 +21,25 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-<<<<<<< HEAD
 protected:
+
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-=======
+    // void dragEnterEvent(QDragEnterEvent *event) override;
+    // void dropEvent(QDropEvent *event) override;
+
 private slots:
     void on_actionQuit_triggered();
->>>>>>> 759ef0ea031129d65752f00b560f62678cac4448
 
 private:
     Ui::MainWindow *ui;
     QList<Shapes*> shapes;
     Shapes *draggedShape;
     QPoint lastMousePosition;
+    //bool drawing;
+
 
     void setupShapes();
 };

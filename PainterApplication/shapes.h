@@ -7,7 +7,6 @@
 class Dessin {
 public:
     virtual void move(const QPoint &delta) = 0;
-    //virtual void select(const QPoint &delta) = 0;
    // virtual void undo() = 0;
    // virtual void redo() = 0;
 };
@@ -21,7 +20,6 @@ public:
     virtual ~Shapes() {}
    // virtual void undo() = 0;
    // virtual void redo() = 0;
-   // virtual void select(const QPoint &delta) = 0;
     virtual bool contains(const QPoint &point) = 0;
 };
 
@@ -64,7 +62,7 @@ public:
     void setProperties(const QPen &pen, const QBrush &brush) override;
     void move(const QPoint &delta) override;
     bool contains(const QPoint &point) override {
-        return polygon.containsPoint(point, Qt::OddEvenFill);
+        return polygon.containsPoint(point, Qt::WindingFill);
     }
 
 private:
