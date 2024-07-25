@@ -15,7 +15,9 @@
 #include <QColor>
 #include <QBrush>
 #include <QList>
+#include <QDropEvent>
 #include "ui_board.h"
+//#include "draggablepixmapitem.h"
 
 #include "Shapes.h"
 
@@ -46,13 +48,8 @@ public:
     void zoomMoins();
 
 // protected:
-
-//     void paintEvent(QPaintEvent *event) override;
-//     void mousePressEvent(QMouseEvent *event) override;
-//     void mouseMoveEvent(QMouseEvent *event) override;
-//     void mouseReleaseEvent(QMouseEvent *event) override;
-//     // void dragEnterEvent(QDragEnterEvent *event) override;
-//     // void dropEvent(QDropEvent *event) override;
+        //void dragEnterEvent(QDragEnterEvent *event) override;
+        //void dropEvent(QDropEvent *event) override;
 
 private:
     Ui::Board *ui;
@@ -66,9 +63,9 @@ private:
 
     QList<Shapes*> formes;
     Shapes *draggedShape;
-    //QPoint lastMousePosition;
 
     void setupShapes();
+   // Shapes* createShapeFromType(DraggablePixmapItem::ShapeType type, const QPoint& pos, const QSize& size);
 };
 
 #endif // BOARD_H
