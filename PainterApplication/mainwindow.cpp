@@ -206,7 +206,6 @@ void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
 }
-<<<<<<< HEAD
 
 void MainWindow::on_penColorPB_clicked()
 {
