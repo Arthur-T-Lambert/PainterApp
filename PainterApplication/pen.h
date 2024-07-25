@@ -22,12 +22,16 @@ public:
     Pen(Qt::PenStyle style, QColor color);
 
     void setColor(const Qcolor &color);
+    void setStyle(const Qt::PenStyle &style);
+    void setWidth(int width);
+    QColor getColor();
+    Qt::PenStyle getStyle();
 
 private:
     QColor color;
-    Qt::PenStyle penStyle;
+    Qt::PenStyle style;
+    int width
     QVector<QPoint> points;
-
 };
 
 #endif // PEN_H
