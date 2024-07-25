@@ -6,6 +6,8 @@
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
 //#include <QMimeData>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -308,5 +310,29 @@ void MainWindow::on_actionStar_triggered(bool checked)
     else {
         ui->actionStar->setChecked(true);
     }
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save document"), QString(), "Paintings (*.pa)");
+
+    if ( fileName.isEmpty() ) return;
+
+    QFile file(fileName);
+
+    file.open(QIODevice::WriteOnly);
+    file.write("Le fond de l'air est frais");
+    file.close();
+}
+
+
+void MainWindow::on_actionLoad_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open document"), QString(), "Paintings (*.pa)");
+
+    if ( fileName.isEmpty() ) return;
+
+    qDebug() << __PRETTY_FUNCTION__ << fileName;
+
 }
 

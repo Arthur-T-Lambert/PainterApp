@@ -102,6 +102,10 @@ private slots:
 
     void on_actionStar_triggered(bool checked);
 
+    void on_actionSave_triggered();
+
+    void on_actionLoad_triggered();
+
 private:
     Ui::MainWindow *ui;
 
