@@ -24,6 +24,8 @@ class Board;
 }
 QT_END_NAMESPACE
 
+enum class MODE{DESSIN_LIBRE, DRAG_AND_DROP, EFFACER, SELECT, FORMES};
+
 class Board : public QWidget
 {
     Q_OBJECT
@@ -40,18 +42,21 @@ public:
     void updateDimensionAndPosition(QPainter &painter);
     void drawGrid(QPainter &painter);
     void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
+    void setMode(MODE m);
+    MODE getMode();
     void refresh();
     void zoomPlus();
     void zoomMoins();
+    Pen *pen;
 
 private:
     Ui::Board *ui;
-    Pen *pen;
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
     QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
+    MODE mode;
 };
 
 #endif // BOARD_H

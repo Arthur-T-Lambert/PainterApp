@@ -8,9 +8,7 @@ Pen::Pen(QWidget *parent) : QWidget(parent)
 {
     pen.setColor(Qt::black);
     pen.setStyle(Qt::SolidLine);
-    pen.setWidth(10);
-
-    draw = true; //test
+    pen.setWidth(2);
 }
 
 //------------------------------------------------------------------------------------------
@@ -59,12 +57,26 @@ void Pen::setWidth(int width)
 }
 
 //------------------------------------------------------------------------------------------
+/** Brief Fonction getter de la couleur du pen
+ *  \return Couleur du pen
+ */
+QColor Pen::getColor()
+{
+    return pen.color();
+}
+
+//------------------------------------------------------------------------------------------
 /** Brief Fonction setter de la largeur du pen
  *  \return Return true si la fonction de dessin est activée, et false dans le cas contraire
  */
 bool Pen::isDrawing()
 {
     return this->draw;
+}
+
+void Pen::activateDrawing(bool val)
+{
+    draw = val;
 }
 
 //------------------------------------------------------------------------------------------
@@ -103,7 +115,7 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
         draw = false;
         if (!currentPoints.isEmpty())
         {
-            listPoints.append(currentPoints);  // On ajoute les points courants au conteneur de points
+            listPoints.append({currentPoints, pen});  // On ajoute les points courants au conteneur de points
             currentPoints.clear();
         }
         update();
@@ -118,21 +130,20 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
  */
 void Pen::paintEvent(QPaintEvent *event, QPainter &painter)
 {
-    //QPainter painter(this);
     painter.setPen(pen);
-
-    // Dessiner les points précédents
-    for (const QList<QPoint> &point : listPoints)
-    {
-        for (int i=0; i < point.size()-1; ++i)
-            painter.drawLine(point[i], point[i+1]);
-    }
-
     // Dessiner les points courants si on est entrain de dessiner
     if (draw)
     {
         for (int i=0; i < currentPoints.size()-1; ++i)
             painter.drawLine(currentPoints[i], currentPoints[i+1]);
+    }
+
+    // Dessiner les points précédents
+    for (const DrawPoint &point : listPoints)
+    {
+        painter.setPen(point.pen); // On recharge le pen et ses caractéristiques
+        for (int i=0; i < point.tabPoints.size()-1; ++i)
+            painter.drawLine(point.tabPoints[i], point.tabPoints[i+1]);
     }
 }
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1128</width>
+    <width>936</width>
     <height>737</height>
    </rect>
   </property>
@@ -14,6 +14,16 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>40</y>
+      <width>651</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -38,7 +48,7 @@
            <item>
             <widget class="QPushButton" name="penColorPB">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
@@ -49,87 +59,113 @@
            <property name="topMargin">
             <number>0</number>
            </property>
-           <item row="0" column="3">
-            <widget class="QPushButton" name="penDirectColor4">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="penDirectColor1">
              <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="penDirectColor10">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="penDirectColor3">
-             <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="0" column="4">
             <widget class="QPushButton" name="penDirectColor5">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
-              <string/>
+              <string notr="true"/>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="penDirectColor4">
+             <property name="text">
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
             <widget class="QPushButton" name="penDirectColor2">
              <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="penDirectColor1">
-             <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="0" column="5">
             <widget class="QPushButton" name="penDirectColor6">
              <property name="text">
-              <string/>
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="penDirectColor3">
+             <property name="text">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="6">
+            <widget class="QPushButton" name="penDirectColor7">
+             <property name="text">
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="penDirectColor7">
+            <widget class="QPushButton" name="penDirectColor8">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="penDirectColor8">
+            <widget class="QPushButton" name="penDirectColor9">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="penDirectColor9">
+            <widget class="QPushButton" name="penDirectColor10">
              <property name="text">
-              <string/>
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="penDirectColor11">
+             <property name="text">
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="QPushButton" name="penDirectColor11">
+            <widget class="QPushButton" name="penDirectColor12">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
            <item row="1" column="5">
-            <widget class="QPushButton" name="penDirectColor12">
+            <widget class="QPushButton" name="penDirectColor13">
              <property name="text">
-              <string/>
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="6">
+            <widget class="QPushButton" name="penDirectColor14">
+             <property name="text">
+              <string notr="true"/>
              </property>
             </widget>
            </item>
@@ -232,7 +268,7 @@
            <item>
             <widget class="QPushButton" name="fillColorPB">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
@@ -321,7 +357,7 @@
            <item>
             <widget class="QPushButton" name="sceneColorPB">
              <property name="text">
-              <string/>
+              <string notr="true"/>
              </property>
             </widget>
            </item>
@@ -385,7 +421,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1128</width>
+     <width>936</width>
      <height>22</height>
     </rect>
    </property>
@@ -456,10 +492,9 @@
    <addaction name="actionEraser"/>
    <addaction name="actionEllipse"/>
    <addaction name="actionRectangle"/>
-   <addaction name="actionStar"/>
    <addaction name="separator"/>
-   <addaction name="actionRedo"/>
    <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
   </widget>
   <action name="actionAdd_Image">
    <property name="icon">

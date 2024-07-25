@@ -10,6 +10,12 @@
 #include <QPainter>
 #include <QPoint>
 
+// Structure permettant d'enregistrer les informations de chaques points dessinés
+struct DrawPoint {
+    QList<QPoint> tabPoints;
+    QPen pen;
+};
+
 class Pen : public QWidget
 {
     Q_OBJECT
@@ -21,8 +27,10 @@ public:
     void setStyle(const Qt::PenStyle &style);
     void setColor(const QColor &color);
     void setWidth(int width);
+    QColor getColor();
     void paintEvent(QPaintEvent *event, QPainter &painter);
     bool isDrawing();
+    void activateDrawing(bool val);
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -31,7 +39,7 @@ public:
 private:
     QPen pen;
     QList<QPoint> currentPoints;  // Points du chemin en cours
-    QList<QList<QPoint>> listPoints;  // Liste de tous les chemins dessinés
+    QList<DrawPoint> listPoints;  // Liste de tous les chemins dessinés
     bool draw;
 };
 

@@ -11,6 +11,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
     translateWidget = {0,0};
     lastMousePosition = {0,0};
 
+    mode = MODE::SELECT;
     pen = new Pen(this);
     ui->setupUi(this);
 }
@@ -62,6 +63,24 @@ void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, c
     painter.drawRect(rect());
 }
 
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter du mode courant
+ *  \param m Mode choisi
+*/
+void Board::setMode(MODE m)
+{
+    this->mode = m;
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction getter du mode courant
+ *  \return Retourne le mode courant
+*/
+MODE Board::getMode()
+{
+    return this->mode;
+}
+
 
 //------------------------------------------------------------------------------------------
 /** Brief Fonction d'affichage de la grille en background
@@ -106,8 +125,14 @@ void Board::mousePressEvent(QMouseEvent *event)
     // Récupération de l'event clique gauche
     if (event->button() == Qt::LeftButton)
     {
-        lastMousePosition = event->pos();
-        pen->mousePressEvent(event);
+        if(mode == MODE::SELECT)
+            lastMousePosition = event->pos();
+
+        if(mode == MODE::DESSIN_LIBRE)
+        {
+            pen->activateDrawing(true);
+            pen->mousePressEvent(event);
+        }
     }
 }
 
@@ -119,11 +144,12 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton)
     {
-        if(pen->isDrawing() == true)
+        if(mode == MODE::DESSIN_LIBRE && pen->isDrawing() == true)
         {
             pen->mouseMoveEvent(event);
         }
-        else
+
+        if(mode == MODE::SELECT)
         {
             QPoint delta = (event->pos() - lastMousePosition);
             translateWidget += delta / zoomVal;
@@ -141,7 +167,11 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
     indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
-    pen->mouseReleaseEvent(event);
+
+    if(mode == MODE::DESSIN_LIBRE)
+    {
+        pen->mouseReleaseEvent(event);
+    }
 }
 
 //------------------------------------------------------------------------------------------
