@@ -16,6 +16,7 @@
 #include <QBrush>
 #include <QList>
 #include "ui_board.h"
+#include "pen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -45,6 +46,7 @@ public:
 
 private:
     Ui::Board *ui;
+    Pen *pen;
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;

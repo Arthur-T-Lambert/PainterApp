@@ -11,6 +11,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
     translateWidget = {0,0};
     lastMousePosition = {0,0};
 
+    pen = new Pen(this);
     ui->setupUi(this);
 }
 
@@ -19,6 +20,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
 Board::~Board()
 {
     delete ui;
+    delete pen;
 }
 
 //------------------------------------------------------------------------------------------
@@ -37,6 +39,9 @@ void Board::paintEvent(QPaintEvent *event)
 
     // Affichage de la grille
     drawGrid(painter);
+
+    //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
+    pen->paintEvent(event, painter);
 
     /*
      * Shapes à dessiner ici
@@ -102,7 +107,9 @@ void Board::mousePressEvent(QMouseEvent *event)
     // Récupération de l'event clique gauche
     if (event->button() == Qt::LeftButton)
     {
-        lastMousePosition = event->pos();
+        if(pen->isDrawing() == false)
+            lastMousePosition = event->pos();
+        pen->mousePressEvent(event);
     }
 }
 
@@ -112,26 +119,18 @@ void Board::mousePressEvent(QMouseEvent *event)
 */
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
-    if (event->buttons() & Qt::LeftButton) {
-        QPoint delta = (event->pos() - lastMousePosition);
-/*
-        // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
-        if (indexShapeSelected != -1)
+    if (event->buttons() & Qt::LeftButton)
+    {
+        if(pen->isDrawing() == false)
         {
+            QPoint delta = (event->pos() - lastMousePosition);
 
-            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + delta.x() / zoomVal);
-            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + delta.y() / zoomVal);
-        }
-
-        // Sinon, on déplace le widget en vue panoramique
-        else
-        {
             translateWidget += delta / zoomVal;
+            lastMousePosition = event->pos();
         }
-*/
+        else
+            pen->mouseMoveEvent(event);
 
-        translateWidget += delta / zoomVal;
-        lastMousePosition = event->pos();
         refresh();
     }
 }
@@ -143,6 +142,7 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
     indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
+    pen->mouseReleaseEvent(event);
 }
 
 //------------------------------------------------------------------------------------------
@@ -151,10 +151,12 @@ void Board::mouseReleaseEvent(QMouseEvent *event)
 */
 void Board::wheelEvent(QWheelEvent *event)
 {
+    /*
     if (event->angleDelta().y() > 0)
         zoomPlus();
     else
         zoomMoins();
+    */
 }
 
 //------------------------------------------------------------------------------------------
