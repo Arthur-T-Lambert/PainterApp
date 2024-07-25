@@ -46,7 +46,8 @@ void Board::paintEvent(QPaintEvent *event)
 //------------------------------------------------------------------------------------------
 /** Brief Fonction d'affichage du background
  *  \param painter Pointeur sur le canva painter
- *  \param color Couleur du background
+ *  \param brushStyle Style dy brush
+ *  \param color Couleur du brush
  */
 void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor)
 {
