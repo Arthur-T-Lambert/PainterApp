@@ -10,16 +10,19 @@ CONFIG += c++17
 
 SOURCES += \
     draggablepixmapitem.cpp \
+    board.cpp \
     main.cpp \
     mainwindow.cpp \
     shapes.cpp
 
 HEADERS += \
+    board.h \
     draggablepixmapitem.h \
     mainwindow.h \
     shapes.h
 
 FORMS += \
+    board.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -7,13 +7,23 @@
     <x>0</x>
     <y>0</y>
     <width>894</width>
-    <height>697</height>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>40</y>
+      <width>651</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -368,6 +378,7 @@
      </widget>
     </item>
    </layout>
+>>>>>>> 759ef0ea031129d65752f00b560f62678cac4448
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -445,6 +456,7 @@
    <addaction name="actionEraser"/>
    <addaction name="actionEllipse"/>
    <addaction name="actionRectangle"/>
+   <addaction name="actionStar"/>
    <addaction name="separator"/>
    <addaction name="actionRedo"/>
    <addaction name="actionUndo"/>

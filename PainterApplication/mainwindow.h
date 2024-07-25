@@ -6,6 +6,7 @@
 #include <QList>
 
 #include "Shapes.h"
+#include "board.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,6 +36,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
     QList<Shapes*> shapes;
     Shapes *draggedShape;
     QPoint lastMousePosition;
@@ -42,6 +44,7 @@ private:
 
 
     void setupShapes();
+    Board *board;
 };
 #endif // MAINWINDOW_H
 
