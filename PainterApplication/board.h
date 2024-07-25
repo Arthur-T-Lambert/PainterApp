@@ -48,9 +48,9 @@ private:
     Ui::Board *ui;
     float zoomVal;
     QPoint lastMousePosition;
-    QPoint translateWidget;
+    QPointF translateWidget;
     QBrush brush;
-    QList<QRect> shapes;
+    QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
 };
 

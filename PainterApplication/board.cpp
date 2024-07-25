@@ -3,8 +3,7 @@
 //------------------------------------------------------------------------------------------
 /** Brief Constructeur de la classe Board
  *  \param parent Pointeur sur le widget parent
- *  \param ui Association du user interface
- *  \param zoomVal Valeur par défaut du zoom, définit à 1.0
+ *  \param ui Allocation du user interface associé à la classe
  */
 Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
 {
@@ -49,8 +48,9 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage d'un rectangle
     setBrush(Qt::Dense5Pattern, Qt::green);
     painter.setBrush(brush);
-    for (const QRect &shape : shapes) {
-        painter.drawRect(shape);
+    for (const QRectF &shape : shapes) {
+        // Convertir QRectF à QRect pour le dessin
+        painter.drawRect(shape.toRect());
     }
 }
 
@@ -110,7 +110,7 @@ void Board::updateDimensionAndPosition(QPainter &painter)
 int Board::indexOfShapeSelected(const QPoint &pos)
 {
     // Mise a jour des coordonnées en fonction de la translation et du zoom
-    QPoint transformedPos = (pos - translateWidget) / zoomVal;
+    QPoint transformedPos = (pos - translateWidget.toPoint()) / zoomVal;
 
     for (int i = 0; i < shapes.size(); ++i)
     {
@@ -142,19 +142,17 @@ void Board::mousePressEvent(QMouseEvent *event)
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
-        QPoint delta = (event->pos() - lastMousePosition);
+        QPoint delta = event->pos() - lastMousePosition;
+        QPointF deltaF(delta.x() / zoomVal, delta.y() / zoomVal); // Calcul du delta en prenant en compte le zoom
 
-        // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
-        if (indexShapeSelected != -1)
-        {
-
-            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + delta.x() / zoomVal);
-            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + delta.y() / zoomVal);
+        // Si une forme est sélectionnée, on la déplace
+        if (indexShapeSelected != -1) {
+            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + deltaF.x());
+            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + deltaF.y());
         }
         // Sinon, on déplace le widget en vue panoramique
-        else
-        {
-            translateWidget += delta / zoomVal;
+        else {
+            translateWidget += deltaF;
         }
 
         lastMousePosition = event->pos();
