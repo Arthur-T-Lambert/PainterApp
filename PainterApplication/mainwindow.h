@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QList>
 
-#include "Shapes.h"
 #include "board.h"
 
 QT_BEGIN_NAMESPACE
@@ -46,10 +45,10 @@ public:
 
 protected:
 
-    void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+    // void paintEvent(QPaintEvent *event) override;
+    // void mousePressEvent(QMouseEvent *event) override;
+    // void mouseMoveEvent(QMouseEvent *event) override;
+    // void mouseReleaseEvent(QMouseEvent *event) override;
     // void dragEnterEvent(QDragEnterEvent *event) override;
     // void dropEvent(QDropEvent *event) override;
 
@@ -94,15 +93,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QList<Shapes*> shapes;
-    Shapes *draggedShape;
-    QPoint lastMousePosition;
-    //bool drawing;
-
     QPen _currentPen;
     QBrush _currentBrush;
 
-    void setupShapes();
     Board *board;
 };
 #endif // MAINWINDOW_H

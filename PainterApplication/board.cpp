@@ -5,13 +5,15 @@
  *  \param parent Pointeur sur le widget parent
  *  \param ui Association du user interface
  */
-Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
-{
+Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
+    draggedShape(nullptr){
+
     zoomVal = 1.0;
     translateWidget = {0,0};
     lastMousePosition = {0,0};
 
     ui->setupUi(this);
+    setupShapes();
 }
 
 //------------------------------------------------------------------------------------------
@@ -19,6 +21,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
 Board::~Board()
 {
     delete ui;
+    qDeleteAll(formes);
 }
 
 //------------------------------------------------------------------------------------------
@@ -27,6 +30,7 @@ Board::~Board()
 */
 void Board::paintEvent(QPaintEvent *event)
 {
+    Q_UNUSED(event);
     QPainter painter(this);
 
     // Affichage du background
@@ -38,9 +42,13 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage de la grille
     drawGrid(painter);
 
-    /*
-     * Shapes à dessiner ici
-    */
+
+
+    // Dessin des formes
+    for (Shapes *shape : formes) {
+        shape->draw(&painter);
+    }
+
 }
 
 //------------------------------------------------------------------------------------------
@@ -103,7 +111,23 @@ void Board::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         lastMousePosition = event->pos();
+        // Récupération de l'event clique sur une forme
+        for (Shapes *shape : formes) {
+            if (shape->contains(event->pos())) {
+                draggedShape = shape;
+                break;
+            }
+        }
     }
+
+    // Récupération de l'event clique sur une forme
+    // lastMousePosition = event->pos();
+    // for (Shapes *shape : formes) {
+    //     if (shape->contains(event->pos())) {
+    //         draggedShape = shape;
+    //         break;
+    //     }
+    // }
 }
 
 //------------------------------------------------------------------------------------------
@@ -114,6 +138,13 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
         QPoint delta = (event->pos() - lastMousePosition);
+
+        if (draggedShape) {
+            //QPoint delta = event->pos() - lastMousePosition;
+            draggedShape->move(delta);
+            lastMousePosition = event->pos();
+            update();
+        }
 /*
         // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
         if (indexShapeSelected != -1)
@@ -130,9 +161,9 @@ void Board::mouseMoveEvent(QMouseEvent *event)
         }
 */
 
-        translateWidget += delta / zoomVal;
-        lastMousePosition = event->pos();
-        refresh();
+        // translateWidget += delta / zoomVal;
+        // lastMousePosition = event->pos();
+        // refresh();
     }
 }
 
@@ -142,7 +173,9 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 */
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
-    indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
+    //indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
+    Q_UNUSED(event);
+    draggedShape = nullptr;
 }
 
 //------------------------------------------------------------------------------------------
@@ -184,4 +217,21 @@ void Board::zoomMoins()
         zoomVal /= 1.02;
         refresh();
     }
+}
+
+void Board::setupShapes() {
+    QPen pen(Qt::black, 4, Qt::DotLine);
+    QBrush ellipseBrush(Qt::gray);
+    formes.append(new Ellipse(QRect(450, 450, 100, 50)));
+    formes.last()->setProperties(pen, ellipseBrush);
+
+    QBrush rectBrush(Qt::red);
+    formes.append(new Rectangle(QRect(600, 250, 150, 75)));
+    formes.last()->setProperties(pen, rectBrush);
+
+    QBrush starBrush(Qt::magenta);
+    formes.append(new Star(QPoint(350, 150), 50));
+    formes.last()->setProperties(pen, starBrush);
+
+    formes.append(new ImageQuick(QRect(300, 300, 50, 50), ":/images/quick.png"));
 }

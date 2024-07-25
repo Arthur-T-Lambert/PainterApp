@@ -17,6 +17,8 @@
 #include <QList>
 #include "ui_board.h"
 
+#include "Shapes.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Board;
@@ -43,6 +45,15 @@ public:
     void zoomPlus();
     void zoomMoins();
 
+// protected:
+
+//     void paintEvent(QPaintEvent *event) override;
+//     void mousePressEvent(QMouseEvent *event) override;
+//     void mouseMoveEvent(QMouseEvent *event) override;
+//     void mouseReleaseEvent(QMouseEvent *event) override;
+//     // void dragEnterEvent(QDragEnterEvent *event) override;
+//     // void dropEvent(QDropEvent *event) override;
+
 private:
     Ui::Board *ui;
     float zoomVal;
@@ -50,6 +61,14 @@ private:
     QPointF translateWidget;
     QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
+
+
+
+    QList<Shapes*> formes;
+    Shapes *draggedShape;
+    //QPoint lastMousePosition;
+
+    void setupShapes();
 };
 
 #endif // BOARD_H
