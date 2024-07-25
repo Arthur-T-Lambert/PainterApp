@@ -57,6 +57,15 @@ void Pen::setWidth(int width)
 }
 
 //------------------------------------------------------------------------------------------
+/** Brief Fonction setter de la largeur du pen
+ *  \return Return true si la fonction de dessin est activée, et false dans le cas contraire
+ */
+bool Pen::isDrawing()
+{
+    return this->draw;
+}
+
+//------------------------------------------------------------------------------------------
 /** Brief Fonction getter de la couleur du pen
  *  \return Couleur du pen
  */
@@ -66,14 +75,9 @@ QColor Pen::getColor()
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction setter de la largeur du pen
- *  \return Return true si la fonction de dessin est activée, et false dans le cas contraire
+/** Brief Fonction aui actiive le mode de dessin
+ *  \param val true pour activer et false pour désactiver
  */
-bool Pen::isDrawing()
-{
-    return this->draw;
-}
-
 void Pen::activateDrawing(bool val)
 {
     draw = val;
@@ -131,6 +135,7 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
 void Pen::paintEvent(QPaintEvent *event, QPainter &painter)
 {
     painter.setPen(pen);
+
     // Dessiner les points courants si on est entrain de dessiner
     if (draw)
     {

@@ -1,3 +1,8 @@
+/*!\file board.h
+ *
+ * \brief Classe Pen gérant le widget de dessin libre
+ */
+
 #ifndef PEN_H
 #define PEN_H
 
@@ -10,11 +15,13 @@
 #include <QPainter>
 #include <QPoint>
 
+
 // Structure permettant d'enregistrer les informations de chaques points dessinés
 struct DrawPoint {
     QList<QPoint> tabPoints;
     QPen pen;
 };
+
 
 class Pen : public QWidget
 {
@@ -27,9 +34,9 @@ public:
     void setStyle(const Qt::PenStyle &style);
     void setColor(const QColor &color);
     void setWidth(int width);
+    bool isDrawing();
     QColor getColor();
     void paintEvent(QPaintEvent *event, QPainter &painter);
-    bool isDrawing();
     void activateDrawing(bool val);
 
     void mousePressEvent(QMouseEvent *event) override;

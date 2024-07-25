@@ -41,11 +41,8 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage de la grille
     drawGrid(painter);
 
+    //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
     pen->paintEvent(event, painter);
-
-    /*
-     * Shapes à dessiner ici
-    */
 }
 
 //------------------------------------------------------------------------------------------
@@ -166,8 +163,6 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 */
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
-    indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
-
     if(mode == MODE::DESSIN_LIBRE)
     {
         pen->mouseReleaseEvent(event);
