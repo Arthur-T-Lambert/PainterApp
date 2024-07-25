@@ -224,3 +224,89 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
         break;
     }
 }
+
+void MainWindow::on_actionSelect_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionSelect->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionPen_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionSelect->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionPen->setChecked(true);
+    }
+}
+
+
+void MainWindow::on_actionEraser_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionEraser->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionRectangle_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionRectangle->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionEllipse_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionEllipse->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionStar_triggered(bool checked)
+{
+    if ( checked ) {
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+    }
+    else {
+        ui->actionStar->setChecked(true);
+    }
+}
+

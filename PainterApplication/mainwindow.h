@@ -90,6 +90,18 @@ private slots:
 
     void on_fillStyleCB_currentIndexChanged(int index);
 
+    void on_actionSelect_triggered(bool checked);
+
+    void on_actionRectangle_triggered(bool checked);
+
+    void on_actionPen_triggered(bool checked);
+
+    void on_actionEraser_triggered(bool checked);
+
+    void on_actionEllipse_triggered(bool checked);
+
+    void on_actionStar_triggered(bool checked);
+
 private:
     Ui::MainWindow *ui;
 
