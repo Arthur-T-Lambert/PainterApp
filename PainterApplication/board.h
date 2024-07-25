@@ -36,10 +36,9 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
-    int  indexOfShapeSelected(const QPoint &pos);
     void updateDimensionAndPosition(QPainter &painter);
     void drawGrid(QPainter &painter);
-    void setBrush(Qt::BrushStyle style, QColor color);
+    void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
     void refresh();
     void zoomPlus();
     void zoomMoins();
@@ -49,7 +48,6 @@ private:
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
-    QBrush brush;
     QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
 };

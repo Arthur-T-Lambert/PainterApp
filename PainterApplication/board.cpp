@@ -3,18 +3,13 @@
 //------------------------------------------------------------------------------------------
 /** Brief Constructeur de la classe Board
  *  \param parent Pointeur sur le widget parent
- *  \param ui Allocation du user interface associé à la classe
+ *  \param ui Association du user interface
  */
 Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board)
 {
     zoomVal = 1.0;
     translateWidget = {0,0};
     lastMousePosition = {0,0};
-    brush.setColor(QColor(0,255,0));
-    brush.setStyle(Qt::Dense5Pattern);
-
-    //Test avec un rectangle
-    shapes.append(QRect(10, 10, 50, 50));
 
     ui->setupUi(this);
 }
@@ -35,9 +30,7 @@ void Board::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     // Affichage du background
-    setBrush(Qt::Dense3Pattern, Qt::yellow);
-    painter.setBrush(brush);
-    painter.drawRect(rect());
+    drawBackground(painter, Qt::SolidPattern , Qt::yellow); //Valeur à remplacer dynamiquement
 
     // Gestion des dimensions en fonction du zoom et de la translation
     updateDimensionAndPosition(painter);
@@ -45,13 +38,23 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage de la grille
     drawGrid(painter);
 
-    // Affichage d'un rectangle
-    setBrush(Qt::Dense5Pattern, Qt::green);
+    /*
+     * Shapes à dessiner ici
+    */
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction d'affichage du background
+ *  \param painter Pointeur sur le canva painter
+ *  \param color Couleur du background
+ */
+void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor)
+{
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
     painter.setBrush(brush);
-    for (const QRectF &shape : shapes) {
-        // Convertir QRectF à QRect pour le dessin
-        painter.drawRect(shape.toRect());
-    }
+    painter.drawRect(rect());
 }
 
 
@@ -79,18 +82,6 @@ void Board::drawGrid(QPainter &painter)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction paramétrage du brush
- *  \param style style du brush
- *  \param color Couleur du brush
-*/
-void Board::setBrush(Qt::BrushStyle style, QColor color)
-{
-    brush.setColor(color);
-    brush.setStyle(style);
-    refresh();
-}
-
-//------------------------------------------------------------------------------------------
 /** Brief Fonction dynamique de gestion du zoom et de la translation du widget
  *  \param painter Pointeur sur le canva painter
  */
@@ -98,26 +89,6 @@ void Board::updateDimensionAndPosition(QPainter &painter)
 {
     // Application de la transformation pour la translation et le zoom
     painter.setTransform(QTransform().translate(translateWidget.x(), translateWidget.y()).scale(zoomVal, zoomVal));
-}
-
-
-//------------------------------------------------------------------------------------------
-/** Brief Fonction permettant de checker si la position de la souris est dans une forme.
- *  Si le clique souris est dedans, l'id de la forme est retourné
- *  \param pos Position du clic
- *  \return -1 si le clique n'est pas dans une forme, et l'id de la forme dans le cas contraire
- */
-int Board::indexOfShapeSelected(const QPoint &pos)
-{
-    // Mise a jour des coordonnées en fonction de la translation et du zoom
-    QPoint transformedPos = (pos - translateWidget.toPoint()) / zoomVal;
-
-    for (int i = 0; i < shapes.size(); ++i)
-    {
-        if (shapes[i].contains(transformedPos))
-            return i;
-    }
-    return -1;
 }
 
 
@@ -131,7 +102,6 @@ void Board::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         lastMousePosition = event->pos();
-        indexShapeSelected = indexOfShapeSelected(lastMousePosition); // Check si le clique est fait dans une forme
     }
 }
 
@@ -142,19 +112,24 @@ void Board::mousePressEvent(QMouseEvent *event)
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() & Qt::LeftButton) {
-        QPoint delta = event->pos() - lastMousePosition;
-        QPointF deltaF(delta.x() / zoomVal, delta.y() / zoomVal); // Calcul du delta en prenant en compte le zoom
+        QPoint delta = (event->pos() - lastMousePosition);
+/*
+        // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
+        if (indexShapeSelected != -1)
+        {
 
-        // Si une forme est sélectionnée, on la déplace
-        if (indexShapeSelected != -1) {
-            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + deltaF.x());
-            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + deltaF.y());
+            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + delta.x() / zoomVal);
+            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + delta.y() / zoomVal);
         }
+
         // Sinon, on déplace le widget en vue panoramique
-        else {
-            translateWidget += deltaF;
+        else
+        {
+            translateWidget += delta / zoomVal;
         }
+*/
 
+        translateWidget += delta / zoomVal;
         lastMousePosition = event->pos();
         refresh();
     }
