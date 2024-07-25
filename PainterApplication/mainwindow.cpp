@@ -8,7 +8,12 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     board = new Board(this);
     ui->widget->setLayout(new QVBoxLayout);
-    ui->widget->layout()->addWidget(board);
+
+    //Paramétrage de la ScrollArea
+    ui->scrollArea->setWidget(board);
+    ui->scrollArea->setWidgetResizable(true);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
 
 MainWindow::~MainWindow()
