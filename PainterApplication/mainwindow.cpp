@@ -48,6 +48,11 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(item3);
     scene->addItem(item4);
 
+    //Paramétrage de la ScrollArea
+    ui->scrollArea->setWidget(board);
+    ui->scrollArea->setWidgetResizable(true);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
 
 // MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
