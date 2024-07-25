@@ -19,6 +19,10 @@ void Ellipse::move(const QPoint &delta) {
         rect.translate(delta);
 }
 
+bool Ellipse::contains(const QPoint &point) {
+    return rect.contains(point);
+}
+
 
 
 Rectangle::Rectangle(const QRect &r) : rect(r) {}
@@ -38,6 +42,10 @@ void Rectangle::move(const QPoint &delta) {
         rect.translate(delta);
 }
 
+bool Rectangle::contains(const QPoint &point) {
+    return rect.contains(point);
+}
+
 
 
 Star::Star(const QPoint &c, int r) : center(c), radius(r) {
@@ -47,7 +55,7 @@ Star::Star(const QPoint &c, int r) : center(c), radius(r) {
 void Star::draw(QPainter *painter) {
         painter->setPen(pen);
         painter->setBrush(brush);
-        painter->drawPolygon(polygon);
+        painter->drawPolygon(polygon, Qt::WindingFill);
 }
 
 void Star::setProperties(const QPen &pen, const QBrush &brush) {
@@ -55,9 +63,13 @@ void Star::setProperties(const QPen &pen, const QBrush &brush) {
         this->brush = brush;
 }
 
-void Star:: move(const QPoint &delta) {
+void Star::move(const QPoint &delta) {
         center += delta;
         updatePolygon();
+}
+
+bool Star::contains(const QPoint &point){
+    return polygon.containsPoint(point, Qt::WindingFill);
 }
 
 void Star::updatePolygon() {
@@ -82,5 +94,9 @@ void ImageQuick::setProperties(const QPen &, const QBrush &) {
 }
 void ImageQuick::move(const QPoint &delta) {
         rect.translate(delta);
+}
+
+bool ImageQuick::contains(const QPoint &point) {
+    return rect.contains(point);
 }
 

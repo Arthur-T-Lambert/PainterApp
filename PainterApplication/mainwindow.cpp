@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QVBoxLayout>
 #include <QMouseEvent>
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
@@ -13,8 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
     draggedShape(nullptr)
 { // à deplacer sur class board
     ui->setupUi(this);
-    setAcceptDrops(true);
-    setupShapes();
+
+    board = new Board(this);
+    ui->widget->setLayout(new QVBoxLayout);
+    ui->widget->layout()->addWidget(board);
+
+    // setAcceptDrops(true);
+    // setupShapes();
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
 
@@ -94,13 +100,27 @@ MainWindow::MainWindow(QWidget *parent) :
     item3->setScale(0.15);
     item4->setScale(0.15);
 
-
-    // Add the QGraphicsPixmapItem to the scene with different positions
     scene->addItem(item1);
     scene->addItem(item2);
     scene->addItem(item3);
     scene->addItem(item4);
+
+    //Paramétrage de la ScrollArea
+    ui->scrollArea->setWidget(board);
+    ui->scrollArea->setWidgetResizable(true);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
+
+// MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
+// {
+//     ui->setupUi(this);
+
+//     board = new Board(this);
+//     ui->widget->setLayout(new QVBoxLayout);
+//     ui->widget->layout()->addWidget(board);
+// >>>>>>> origin/boardClass
+// }
 
 MainWindow::~MainWindow() {
     delete ui;
@@ -186,6 +206,7 @@ void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
 }
+<<<<<<< HEAD
 
 void MainWindow::on_penColorPB_clicked()
 {
@@ -263,4 +284,3 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
         break;
     }
 }
-

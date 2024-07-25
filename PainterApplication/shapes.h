@@ -29,9 +29,7 @@ public:
     void draw(QPainter *painter) override;
     void setProperties(const QPen &pen, const QBrush &brush) override;
     void move(const QPoint &delta) override;
-    bool contains(const QPoint &point) override {
-        return rect.contains(point);
-    }
+    bool contains(const QPoint &point) override;
 
 private:
     QRect rect;
@@ -45,9 +43,7 @@ public:
     void draw(QPainter *painter) override;
     void setProperties(const QPen &pen, const QBrush &brush) override;
     void move(const QPoint &delta) override;
-    bool contains(const QPoint &point) override {
-        return rect.contains(point);
-    }
+    bool contains(const QPoint &point) override;
 
 private:
     QRect rect;
@@ -61,9 +57,7 @@ public:
     void draw(QPainter *painter) override;
     void setProperties(const QPen &pen, const QBrush &brush) override;
     void move(const QPoint &delta) override;
-    bool contains(const QPoint &point) override {
-        return polygon.containsPoint(point, Qt::OddEvenFill);
-    }
+    bool contains(const QPoint &point) override;
 
 private:
     void updatePolygon();
@@ -81,10 +75,7 @@ public:
     void draw(QPainter *painter) override;
     void setProperties(const QPen &, const QBrush &) override;
     void move(const QPoint &delta) override;
-    bool contains(const QPoint &point) override {
-        return rect.contains(point);
-    }
-
+    bool contains(const QPoint &point) override;
 
 private:
     QRect rect;
