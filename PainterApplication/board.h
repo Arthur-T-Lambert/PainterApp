@@ -17,15 +17,21 @@
 #include <QList>
 #include <QDropEvent>
 #include "ui_board.h"
+<<<<<<< HEAD
 //#include "draggablepixmapitem.h"
 
 #include "Shapes.h"
+=======
+#include "pen.h"
+>>>>>>> penClass
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Board;
 }
 QT_END_NAMESPACE
+
+enum class MODE{DESSIN_LIBRE, DRAG_AND_DROP, EFFACER, SELECT, FORMES};
 
 class Board : public QWidget
 {
@@ -43,9 +49,12 @@ public:
     void updateDimensionAndPosition(QPainter &painter);
     void drawGrid(QPainter &painter);
     void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
+    void setMode(MODE m);
+    MODE getMode();
     void refresh();
     void zoomPlus();
     void zoomMoins();
+    Pen *pen;
 
 // protected:
         //void dragEnterEvent(QDragEnterEvent *event) override;
@@ -58,6 +67,7 @@ private:
     QPointF translateWidget;
     QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
+<<<<<<< HEAD
 
 
 
@@ -66,6 +76,9 @@ private:
 
     void setupShapes();
    // Shapes* createShapeFromType(DraggablePixmapItem::ShapeType type, const QPoint& pos, const QSize& size);
+=======
+    MODE mode;
+>>>>>>> penClass
 };
 
 #endif // BOARD_H

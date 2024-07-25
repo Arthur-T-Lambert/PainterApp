@@ -14,6 +14,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
     translateWidget = {0,0};
     lastMousePosition = {0,0};
 
+    mode = MODE::SELECT;
+    pen = new Pen(this);
     ui->setupUi(this);
     setupShapes();
 }
@@ -23,7 +25,11 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
 Board::~Board()
 {
     delete ui;
+<<<<<<< HEAD
     qDeleteAll(formes);
+=======
+    delete pen;
+>>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------
@@ -44,6 +50,7 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage de la grille
     drawGrid(painter);
 
+<<<<<<< HEAD
 
 
     // Dessin des formes
@@ -51,6 +58,10 @@ void Board::paintEvent(QPaintEvent *event)
         shape->draw(&painter);
     }
 
+=======
+    //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
+    pen->paintEvent(event, painter);
+>>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------
@@ -66,6 +77,24 @@ void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, c
     brush.setStyle(brushStyle);
     painter.setBrush(brush);
     painter.drawRect(rect());
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter du mode courant
+ *  \param m Mode choisi
+*/
+void Board::setMode(MODE m)
+{
+    this->mode = m;
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction getter du mode courant
+ *  \return Retourne le mode courant
+*/
+MODE Board::getMode()
+{
+    return this->mode;
 }
 
 
@@ -112,6 +141,7 @@ void Board::mousePressEvent(QMouseEvent *event)
     // Récupération de l'event clique gauche
     if (event->button() == Qt::LeftButton)
     {
+<<<<<<< HEAD
         lastMousePosition = event->pos();
         // Récupération de l'event clique sur une forme
         for (Shapes *shape : formes) {
@@ -119,6 +149,15 @@ void Board::mousePressEvent(QMouseEvent *event)
                 draggedShape = shape;
                 break;
             }
+=======
+        if(mode == MODE::SELECT)
+            lastMousePosition = event->pos();
+
+        if(mode == MODE::DESSIN_LIBRE)
+        {
+            pen->activateDrawing(true);
+            pen->mousePressEvent(event);
+>>>>>>> penClass
         }
     }
 
@@ -130,6 +169,7 @@ void Board::mousePressEvent(QMouseEvent *event)
 */
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
+<<<<<<< HEAD
     if (event->buttons() & Qt::LeftButton) {
         QPoint delta = (event->pos() - lastMousePosition);
 
@@ -142,22 +182,29 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 /*
         // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
         if (indexShapeSelected != -1)
+=======
+    if (event->buttons() & Qt::LeftButton)
+    {
+        if(mode == MODE::DESSIN_LIBRE && pen->isDrawing() == true)
+>>>>>>> penClass
         {
-
-            shapes[indexShapeSelected].moveLeft(shapes[indexShapeSelected].left() + delta.x() / zoomVal);
-            shapes[indexShapeSelected].moveTop(shapes[indexShapeSelected].top() + delta.y() / zoomVal);
+            pen->mouseMoveEvent(event);
         }
 
-        // Sinon, on déplace le widget en vue panoramique
-        else
+        if(mode == MODE::SELECT)
         {
+            QPoint delta = (event->pos() - lastMousePosition);
             translateWidget += delta / zoomVal;
+            lastMousePosition = event->pos();
         }
-*/
 
+<<<<<<< HEAD
         // translateWidget += delta / zoomVal;
         // lastMousePosition = event->pos();
         // refresh();
+=======
+        refresh();
+>>>>>>> penClass
     }
 }
 
@@ -167,9 +214,16 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 */
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
+<<<<<<< HEAD
     //indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
     Q_UNUSED(event);
     draggedShape = nullptr;
+=======
+    if(mode == MODE::DESSIN_LIBRE)
+    {
+        pen->mouseReleaseEvent(event);
+    }
+>>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------
@@ -178,10 +232,12 @@ void Board::mouseReleaseEvent(QMouseEvent *event)
 */
 void Board::wheelEvent(QWheelEvent *event)
 {
+    /*
     if (event->angleDelta().y() > 0)
         zoomPlus();
     else
         zoomMoins();
+    */
 }
 
 //------------------------------------------------------------------------------------------

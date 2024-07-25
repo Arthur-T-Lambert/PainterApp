@@ -13,6 +13,7 @@ SOURCES += \
     board.cpp \
     main.cpp \
     mainwindow.cpp \
+<<<<<<< HEAD
     shapes.cpp
 
 HEADERS += \
@@ -20,6 +21,14 @@ HEADERS += \
     draggablepixmapitem.h \
     mainwindow.h \
     shapes.h
+=======
+    pen.cpp
+
+HEADERS += \
+    board.h \
+    mainwindow.h \
+    pen.h
+>>>>>>> penClass
 
 FORMS += \
     board.ui \
