@@ -2,22 +2,14 @@
 #include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QMouseEvent>
-<<<<<<< HEAD
-// #include <QGraphicsPixmapItem>
-#include <QPixmap>
-// #include <QGraphicsScene>
-// #include "draggablepixmapitem.h"
 #include <QDragEnterEvent>
 #include <QMimeData>
 #include <QMessageBox>
 #include <QDrag>
-=======
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QColorDialog>
-//#include <QMimeData>
->>>>>>> penClass
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget->layout()->addWidget(board);
 
     setAcceptDrops(true);
-<<<<<<< HEAD
     ui->Ellipse->setAcceptDrops(true);
     ui->Rectangle->setAcceptDrops(true);
 
@@ -49,9 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // ui->Rectangle->move(10, 10);
     ui->Rectangle->show();
    // ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
-
-
-=======
 
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
@@ -136,7 +124,6 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(item2);
     scene->addItem(item3);
     scene->addItem(item4);
->>>>>>> penClass
 
     //Paramétrage de la ScrollArea
     ui->scrollArea->setWidget(board);
@@ -244,7 +231,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     }
 }
 
-=======
 // void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 // {
 //     if (event->mimeData()->hasImage()) {
@@ -270,14 +256,12 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 //         event->acceptProposedAction();
 //     }
 // }
->>>>>>> penClass
+
 
 void MainWindow::on_actionQuit_triggered()
 {
     QApplication::quit();
 }
-<<<<<<< HEAD
-=======
 
 void MainWindow::on_penColorPB_clicked()
 {
@@ -373,5 +357,3 @@ void MainWindow::on_actionSelect_triggered()
 {
     board->setMode(MODE::SELECT);
 }
-
->>>>>>> penClass

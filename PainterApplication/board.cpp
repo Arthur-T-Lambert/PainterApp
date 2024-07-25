@@ -25,11 +25,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
 Board::~Board()
 {
     delete ui;
-<<<<<<< HEAD
     qDeleteAll(formes);
-=======
     delete pen;
->>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------
@@ -50,18 +47,13 @@ void Board::paintEvent(QPaintEvent *event)
     // Affichage de la grille
     drawGrid(painter);
 
-<<<<<<< HEAD
-
-
     // Dessin des formes
     for (Shapes *shape : formes) {
         shape->draw(&painter);
     }
 
-=======
     //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
     pen->paintEvent(event, painter);
->>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------
@@ -141,15 +133,19 @@ void Board::mousePressEvent(QMouseEvent *event)
     // Récupération de l'event clique gauche
     if (event->button() == Qt::LeftButton)
     {
-<<<<<<< HEAD
-        lastMousePosition = event->pos();
-        // Récupération de l'event clique sur une forme
-        for (Shapes *shape : formes) {
-            if (shape->contains(event->pos())) {
-                draggedShape = shape;
-                break;
+        if(mode ==MODE::FORMES)
+        {
+            lastMousePosition = event->pos();
+            // Récupération de l'event clique sur une forme
+            for (Shapes *shape : formes)
+            {
+                if (shape->contains(event->pos()))
+                {
+                    draggedShape = shape;
+                    break;
+                }
             }
-=======
+        }
         if(mode == MODE::SELECT)
             lastMousePosition = event->pos();
 
@@ -157,10 +153,8 @@ void Board::mousePressEvent(QMouseEvent *event)
         {
             pen->activateDrawing(true);
             pen->mousePressEvent(event);
->>>>>>> penClass
         }
     }
-
 }
 
 //------------------------------------------------------------------------------------------
@@ -169,24 +163,22 @@ void Board::mousePressEvent(QMouseEvent *event)
 */
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
-<<<<<<< HEAD
-    if (event->buttons() & Qt::LeftButton) {
-        QPoint delta = (event->pos() - lastMousePosition);
-
-        if (draggedShape) {
-            //QPoint delta = event->pos() - lastMousePosition;
-            draggedShape->move(delta);
-            lastMousePosition = event->pos();
-            update();
-        }
-/*
-        // Si une forme est séléctionnée, on la déplace en tenant compte du zoom
-        if (indexShapeSelected != -1)
-=======
     if (event->buttons() & Qt::LeftButton)
     {
+
+        if(mode ==MODE::FORMES)
+        {
+            QPoint delta = (event->pos() - lastMousePosition);
+            if (draggedShape)
+            {
+                //QPoint delta = event->pos() - lastMousePosition;
+                draggedShape->move(delta);
+                lastMousePosition = event->pos();
+                update();
+            }
+        }
+
         if(mode == MODE::DESSIN_LIBRE && pen->isDrawing() == true)
->>>>>>> penClass
         {
             pen->mouseMoveEvent(event);
         }
@@ -198,13 +190,7 @@ void Board::mouseMoveEvent(QMouseEvent *event)
             lastMousePosition = event->pos();
         }
 
-<<<<<<< HEAD
-        // translateWidget += delta / zoomVal;
-        // lastMousePosition = event->pos();
-        // refresh();
-=======
         refresh();
->>>>>>> penClass
     }
 }
 
@@ -214,16 +200,15 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 */
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
-<<<<<<< HEAD
-    //indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
     Q_UNUSED(event);
-    draggedShape = nullptr;
-=======
+    if(mode ==MODE::FORMES)
+    {
+        draggedShape = nullptr;
+    }
     if(mode == MODE::DESSIN_LIBRE)
     {
         pen->mouseReleaseEvent(event);
     }
->>>>>>> penClass
 }
 
 //------------------------------------------------------------------------------------------

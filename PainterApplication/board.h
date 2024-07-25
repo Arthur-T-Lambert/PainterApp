@@ -17,13 +17,9 @@
 #include <QList>
 #include <QDropEvent>
 #include "ui_board.h"
-<<<<<<< HEAD
 //#include "draggablepixmapitem.h"
-
 #include "Shapes.h"
-=======
 #include "pen.h"
->>>>>>> penClass
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -65,20 +61,12 @@ private:
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
-    QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
-    int indexShapeSelected;
-<<<<<<< HEAD
-
-
-
     QList<Shapes*> formes;
     Shapes *draggedShape;
 
     void setupShapes();
    // Shapes* createShapeFromType(DraggablePixmapItem::ShapeType type, const QPoint& pos, const QSize& size);
-=======
     MODE mode;
->>>>>>> penClass
 };
 
 #endif // BOARD_H

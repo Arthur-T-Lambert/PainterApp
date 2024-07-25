@@ -63,8 +63,6 @@ private slots:
      */
     void on_actionQuit_triggered();
 
-<<<<<<< HEAD
-
 
 protected:
         //void dragEnterEvent(QDragEnterEvent *event) override;
@@ -77,10 +75,7 @@ protected:
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
-private:
-    Ui::MainWindow *ui;
 
-=======
     /**
      * @brief on_penColorPB_clicked
      * slot triggered when pressing on the pen color button
@@ -120,8 +115,6 @@ private:
 
     QPen _currentPen;
     QBrush _currentBrush;
-
->>>>>>> penClass
     Board *board;
 };
 #endif // MAINWINDOW_H
