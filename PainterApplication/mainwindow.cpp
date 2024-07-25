@@ -9,16 +9,16 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    draggedShape(nullptr){ // à deplacer sur class board
+    ui(new Ui::MainWindow){
+
     ui->setupUi(this);
 
     board = new Board(this);
     ui->widget->setLayout(new QVBoxLayout);
     ui->widget->layout()->addWidget(board);
 
-    // setAcceptDrops(true);
-    // setupShapes();
+    setAcceptDrops(true);
+
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
 
@@ -48,71 +48,18 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(item3);
     scene->addItem(item4);
 
+    //Paramétrage de la ScrollArea
+    ui->scrollArea->setWidget(board);
+    ui->scrollArea->setWidgetResizable(true);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
 
-// MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
-// {
-//     ui->setupUi(this);
-
-//     board = new Board(this);
-//     ui->widget->setLayout(new QVBoxLayout);
-//     ui->widget->layout()->addWidget(board);
-// >>>>>>> origin/boardClass
-// }
 
 MainWindow::~MainWindow() {
     delete ui;
-    qDeleteAll(shapes);
 }
 
-void MainWindow::setupShapes() {
-    QPen pen(Qt::black, 4, Qt::DotLine);
-    QBrush ellipseBrush(Qt::gray);
-    shapes.append(new Ellipse(QRect(450, 450, 100, 50)));
-    shapes.last()->setProperties(pen, ellipseBrush);
-
-    QBrush rectBrush(Qt::red);
-    shapes.append(new Rectangle(QRect(600, 250, 150, 75)));
-    shapes.last()->setProperties(pen, rectBrush);
-
-    QBrush starBrush(Qt::magenta);
-    shapes.append(new Star(QPoint(350, 150), 50));
-    shapes.last()->setProperties(pen, starBrush);
-
-    shapes.append(new ImageQuick(QRect(300, 300, 50, 50), ":/images/quick.png"));
-}
-
-void MainWindow::paintEvent(QPaintEvent *event) {
-    Q_UNUSED(event);
-    QPainter painter(this); // to replace this
-    for (Shapes *shape : shapes) {
-        shape->draw(&painter);
-    }
-}
-
-void MainWindow::mousePressEvent(QMouseEvent *event) {
-    lastMousePosition = event->pos();
-    for (Shapes *shape : shapes) {
-        if (shape->contains(event->pos())) {
-            draggedShape = shape;
-            break;
-        }
-    }
-}
-
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
-    if (draggedShape) {
-        QPoint delta = event->pos() - lastMousePosition;
-        draggedShape->move(delta);
-        lastMousePosition = event->pos();
-        update();
-    }
-}
-
-void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
-    Q_UNUSED(event);
-    draggedShape = nullptr;
-}
 
 // void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 // {
