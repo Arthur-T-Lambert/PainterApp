@@ -46,6 +46,9 @@ public:
         return _currentBrush;
     }
 
+    void resetIconToolBar();
+
+
 protected:
 
     // void paintEvent(QPaintEvent *event) override;
@@ -76,28 +79,6 @@ protected:
     void dropEvent(QDropEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
 
-    /**
-     * @brief on_penColorPB_clicked
-     * slot triggered when pressing on the pen color button
-     */
-    void on_penColorPB_clicked();
-
-    /**
-     * @brief on_penWidthSB_valueChanged
-     * slot triggered when using the pen width spinbox
-     * @param width
-     * the width value selected
-     */
-    void on_penWidthSB_valueChanged(int width);
-
-    /**
-     * @brief on_penStyleCB_currentIndexChanged
-     * slot triggered when changing the pen style combobox
-     * @param index
-     * index of the style selected (0 to 3)
-     */
-    void on_penStyleCB_currentIndexChanged(int index);
-
 private:
     void on_directColor_clicked(const QColor&);
 
@@ -109,6 +90,39 @@ private slots:
     void on_actionPen_triggered();
 
     void on_actionSelect_triggered();
+
+    /**
+     * @brief on_penWidthSB_valueChanged
+     * slot triggered when using the pen width spinbox
+     * @param width
+     * the width value selected
+     */
+    void on_penWidthSB_valueChanged(int width);
+
+    /**
+     * @brief on_penColorPB_clicked
+     * slot triggered when pressing on the pen color button
+     */
+    void on_penColorPB_clicked();
+
+    void on_actionEraser_triggered();
+
+    /**
+     * @brief on_penStyleCB_currentIndexChanged
+     * slot triggered when changing the pen style combobox
+     * @param index
+     * index of the style selected (0 to 3)
+     */
+    void on_penStyleCB_currentIndexChanged(int index);
+
+    void on_actionEllipse_triggered();
+
+    void on_actionRectangle_triggered();
+
+    void on_actionStar_triggered();
+
+
+    void on_showGrid_SpinBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

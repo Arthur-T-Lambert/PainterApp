@@ -27,7 +27,8 @@ class Board;
 }
 QT_END_NAMESPACE
 
-enum class MODE{DESSIN_LIBRE, DRAG_AND_DROP, EFFACER, SELECT, FORMES};
+enum class MODE{DESSIN_LIBRE, DRAG_AND_DROP, GOMME, SELECT, FORMES};
+enum class FORME{ELLIPSE, RECTANGLE, STAR};
 
 class Board : public QWidget
 {
@@ -46,6 +47,10 @@ public:
     void drawGrid(QPainter &painter);
     void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
     void setMode(MODE m);
+    void setForme(FORME m);
+    void showGrid(bool print);
+    void setBrushStyle(const Qt::BrushStyle &brush);
+    void setBrushColor(const QColor &color);
     MODE getMode();
     void refresh();
     void zoomPlus();
@@ -63,10 +68,13 @@ private:
     QPointF translateWidget;
     QList<Shapes*> formes;
     Shapes *draggedShape;
+    QBrush brush;
+    bool printGrid = true;
 
     void setupShapes();
-   // Shapes* createShapeFromType(DraggablePixmapItem::ShapeType type, const QPoint& pos, const QSize& size);
+
     MODE mode;
+    FORME forme;
 };
 
 #endif // BOARD_H

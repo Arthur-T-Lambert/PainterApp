@@ -30,6 +30,7 @@ Pen::Pen(Qt::PenStyle style, QColor color, int width)
 void Pen::setColor(const QColor &color)
 {
     pen.setColor(color);
+    this->color = color;
     update();
 }
 
@@ -49,11 +50,8 @@ void Pen::setStyle(const Qt::PenStyle &style)
  */
 void Pen::setWidth(int width)
 {
-    if(width >=1 && width <= 15)
-    {
-        pen.setWidth(width);
-        update();
-    }
+    pen.setWidth(width);
+    update();
 }
 
 //------------------------------------------------------------------------------------------
@@ -78,9 +76,23 @@ QColor Pen::getColor()
 /** Brief Fonction aui actiive le mode de dessin
  *  \param val true pour activer et false pour désactiver
  */
-void Pen::activateDrawing(bool val)
+void Pen::setDrawingMode(bool val)
 {
     draw = val;
+    if(draw)
+    {
+        pen.setColor(color);
+        currentPoints.clear();
+    }
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction aui actiive le mode gomme
+ *  \param val true pour activer et false pour désactiver
+ */
+void Pen::setEraseMode(bool val)
+{
+    erase = val;
 }
 
 //------------------------------------------------------------------------------------------
@@ -91,6 +103,7 @@ void Pen::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
+        clickLeft = true;
         currentPoints.append(event->pos());
     }
 }
@@ -101,9 +114,45 @@ void Pen::mousePressEvent(QMouseEvent *event)
  */
 void Pen::mouseMoveEvent(QMouseEvent *event)
 {
-    if (draw)
+    if (event->button() == Qt::LeftButton)
+        clickLeft = true;
+
+
+    if (erase)
     {
-        currentPoints.append(event->pos());  // On ajoute tout les points au conteneur de points courants
+        // Efface les points sous le curseur
+        QList<DrawPoint>::iterator it = listPoints.begin();
+
+        while (it != listPoints.end())
+        {
+            QList<QPoint>::iterator pointIt = it->tabPoints.begin();
+
+            while (pointIt != it->tabPoints.end())
+            {
+                if (std::hypot(event->pos().x() - pointIt->x(), event->pos().y() - pointIt->y()) < 25)
+                {
+                    pointIt = it->tabPoints.erase(pointIt);
+                }
+                else
+                {
+                    pointIt++;
+                }
+            }
+            if (it->tabPoints.isEmpty())
+            {
+                it = listPoints.erase(it);
+            }
+            else
+            {
+                it++;
+            }
+        }
+        update();
+    }
+    else if (draw)
+    {
+        // Mode dessin
+        currentPoints.append(event->pos());
         update();
     }
 }
@@ -114,15 +163,40 @@ void Pen::mouseMoveEvent(QMouseEvent *event)
  */
 void Pen::mouseReleaseEvent(QMouseEvent *event)
 {
+
     if (event->button() == Qt::LeftButton && draw)
     {
         draw = false;
+        clickLeft = false;
         if (!currentPoints.isEmpty())
         {
             listPoints.append({currentPoints, pen});  // On ajoute les points courants au conteneur de points
             currentPoints.clear();
         }
+    }
+
+    if (event->button() == Qt::LeftButton && erase)
+        clickLeft = false;
+
+    update();
+}
+
+void Pen::undo()
+{
+    if (!undoStack.isEmpty())
+    {
+        redoStack.push(listPoints);
+        listPoints = undoStack.pop();
         update();
+    }
+}
+
+void Pen::redo()
+{
+    if (!redoStack.isEmpty()) {
+        undoStack.push(listPoints); // Enregistrer l'état actuel dans la pile Undo
+        listPoints = redoStack.pop(); // Restaurer l'état suivant
+        update(); // Demande de redessiner le widget
     }
 }
 
@@ -134,15 +208,6 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
  */
 void Pen::paintEvent(QPaintEvent *event, QPainter &painter)
 {
-    painter.setPen(pen);
-
-    // Dessiner les points courants si on est entrain de dessiner
-    if (draw)
-    {
-        for (int i=0; i < currentPoints.size()-1; ++i)
-            painter.drawLine(currentPoints[i], currentPoints[i+1]);
-    }
-
     // Dessiner les points précédents
     for (const DrawPoint &point : listPoints)
     {
@@ -150,5 +215,25 @@ void Pen::paintEvent(QPaintEvent *event, QPainter &painter)
         for (int i=0; i < point.tabPoints.size()-1; ++i)
             painter.drawLine(point.tabPoints[i], point.tabPoints[i+1]);
     }
+
+    // Si gomme, ajouter un cercle a la position du curseur de la souris
+    if(erase )
+    {
+        painter.setPen(QPen(Qt::gray, 2, Qt::SolidLine));
+        painter.setBrush(Qt::NoBrush);
+        QPoint cursorPos = mapFromGlobal(QCursor::pos());
+        int rayon = 25;
+        painter.drawEllipse(cursorPos , rayon, rayon);
+    }
+
+    // Dessiner les points courants si on est entrain de dessiner
+    if (draw)
+    {
+        painter.setPen(pen);
+        for (int i=0; i < currentPoints.size()-1; ++i)
+            painter.drawLine(currentPoints[i], currentPoints[i+1]);
+    }
+
+
 }
 

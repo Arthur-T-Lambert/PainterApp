@@ -17,7 +17,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
     mode = MODE::SELECT;
     pen = new Pen(this);
     ui->setupUi(this);
-    setupShapes();
+    //setupShapes();
 }
 
 //------------------------------------------------------------------------------------------
@@ -45,7 +45,8 @@ void Board::paintEvent(QPaintEvent *event)
     updateDimensionAndPosition(painter);
 
     // Affichage de la grille
-    drawGrid(painter);
+    if(printGrid)
+        drawGrid(painter);
 
     // Dessin des formes
     for (Shapes *shape : formes) {
@@ -78,6 +79,43 @@ void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, c
 void Board::setMode(MODE m)
 {
     this->mode = m;
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter de la forme à dessiner
+ *  \param m Forme choisie
+*/
+void Board::setForme(FORME m)
+{
+    this->forme = m;
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter de l'affichage de la grille
+ *  \param bool true pour l'afficher, et false pour la désactiver
+*/
+void Board::showGrid(bool print)
+{
+    this->printGrid = print;
+    refresh();
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter du brush
+ *  \param brush Type de brush
+ */
+void Board::setBrushStyle(const Qt::BrushStyle &brush)
+{
+    this->brush.setStyle(brush);
+}
+
+//------------------------------------------------------------------------------------------
+/** Brief Fonction setter de la couleur du brush
+ *  \param color Couleur du brush
+ */
+void Board::setBrushColor(const QColor &color)
+{
+    brush.setColor(color);
 }
 
 //------------------------------------------------------------------------------------------
@@ -133,7 +171,27 @@ void Board::mousePressEvent(QMouseEvent *event)
     // Récupération de l'event clique gauche
     if (event->button() == Qt::LeftButton)
     {
-        if(mode ==MODE::FORMES)
+        if(mode == MODE::FORMES)
+        {
+            if(forme == FORME::ELLIPSE)
+            {
+                formes.append(new Ellipse(QRect(event->pos().x(), event->pos().y(), 100, 50)));
+            }
+            if(forme == FORME::RECTANGLE)
+            {
+                formes.append(new Rectangle(QRect(event->pos().x(), event->pos().y(), 150, 75)));
+            }
+            if(forme == FORME::STAR)
+            {
+                formes.append(new Star(QPoint(event->pos().x(), event->pos().y()), 50));
+            }
+
+            formes.last()->setProperties(pen->pen, brush);
+            pen->setEraseMode((false));
+            pen->setDrawingMode(false);
+            refresh();
+        }
+        if(mode == MODE::SELECT)
         {
             lastMousePosition = event->pos();
             // Récupération de l'event clique sur une forme
@@ -146,12 +204,18 @@ void Board::mousePressEvent(QMouseEvent *event)
                 }
             }
         }
-        if(mode == MODE::SELECT)
-            lastMousePosition = event->pos();
 
         if(mode == MODE::DESSIN_LIBRE)
         {
-            pen->activateDrawing(true);
+            pen->setDrawingMode(true);
+            pen->setEraseMode((false));
+            pen->mousePressEvent(event);
+        }
+
+        if(mode == MODE::GOMME)
+        {
+            pen->setEraseMode((true));
+            pen->setDrawingMode(false);
             pen->mousePressEvent(event);
         }
     }
@@ -168,14 +232,7 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 
         if(mode ==MODE::FORMES)
         {
-            QPoint delta = (event->pos() - lastMousePosition);
-            if (draggedShape)
-            {
-                //QPoint delta = event->pos() - lastMousePosition;
-                draggedShape->move(delta);
-                lastMousePosition = event->pos();
-                update();
-            }
+
         }
 
         if(mode == MODE::DESSIN_LIBRE && pen->isDrawing() == true)
@@ -186,8 +243,27 @@ void Board::mouseMoveEvent(QMouseEvent *event)
         if(mode == MODE::SELECT)
         {
             QPoint delta = (event->pos() - lastMousePosition);
-            translateWidget += delta / zoomVal;
-            lastMousePosition = event->pos();
+            if (draggedShape)
+            {
+                //QPoint delta = event->pos() - lastMousePosition;
+                draggedShape->move(delta);
+                lastMousePosition = event->pos();
+                update();
+            }
+            else
+            {
+                /*
+                // Translation du board
+                QPoint delta = (event->pos() - lastMousePosition);
+                translateWidget += delta / zoomVal;
+                lastMousePosition = event->pos();
+                */
+            }
+        }
+
+        if (mode == MODE::GOMME)
+        {
+            pen->mouseMoveEvent(event);
         }
 
         refresh();
@@ -201,7 +277,11 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
-    if(mode ==MODE::FORMES)
+    if(mode == MODE::SELECT)
+    {
+        draggedShape = nullptr;
+    }
+    if(mode == MODE::FORMES)
     {
         draggedShape = nullptr;
     }

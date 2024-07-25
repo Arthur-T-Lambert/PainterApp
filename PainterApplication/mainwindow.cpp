@@ -9,6 +9,7 @@
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include <QGraphicsScene>
+#include <QDebug>
 #include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,8 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Rectangle->show();
    // ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
 
-    QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
-    ui->libraryView->setScene(scene);
+    //QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
+    //ui->libraryView->setScene(scene);
 
     //_currentPen.setColor(Qt::black);
     //_currentPen.setWidth(2);
@@ -120,10 +121,10 @@ MainWindow::MainWindow(QWidget *parent) :
     item3->setScale(0.15);
     item4->setScale(0.15);
 
-    scene->addItem(item1);
-    scene->addItem(item2);
-    scene->addItem(item3);
-    scene->addItem(item4);
+    //scene->addItem(item1);
+    //scene->addItem(item2);
+    //scene->addItem(item3);
+    //scene->addItem(item4);
 
     //Paramétrage de la ScrollArea
     ui->scrollArea->setWidget(board);
@@ -138,7 +139,6 @@ MainWindow::~MainWindow() {
 }
 
 
-<<<<<<< HEAD
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
@@ -276,12 +276,12 @@ void MainWindow::on_penColorPB_clicked()
 
 void MainWindow::on_penWidthSB_valueChanged(int value)
 {
-    //_currentPen.setWidth(value);
     board->pen->setWidth(value);
 }
 
 void MainWindow::on_penStyleCB_currentIndexChanged(int index)
 {
+    qDebug() << index;
     switch(index) {
     case 0:
         //_currentPen.setStyle(Qt::SolidLine);
@@ -316,7 +316,9 @@ void MainWindow::on_fillColorPB_clicked()
     QColor color = QColorDialog::getColor(_currentBrush.color(), this);
 
     if ( color.isValid() ) {
-        _currentBrush.setColor(color);
+        qDebug() << "couleur";
+        //_currentBrush.setColor(color);
+        board->setBrushColor(color);
         ui->fillColorPB->setStyleSheet(QString("background-color : %1").arg(color.name()));
     }
 }
@@ -325,35 +327,105 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
 {
     switch(index) {
     case 0: // Solid
-        _currentBrush.setStyle(Qt::SolidPattern);
+        //_currentBrush.setStyle(Qt::SolidPattern);
+        board->setBrushStyle(Qt::SolidPattern);
         break;
     case 1: // Dense
         _currentBrush.setStyle(Qt::Dense4Pattern);
+        board->setBrushStyle(Qt::Dense4Pattern);
         break;
     case 2:
-        _currentBrush.setStyle(Qt::HorPattern);
+        //_currentBrush.setStyle(Qt::HorPattern);
+        board->setBrushStyle(Qt::HorPattern);
         break;
     case 3:
-        _currentBrush.setStyle(Qt::VerPattern);
+        //_currentBrush.setStyle(Qt::VerPattern);
+        board->setBrushStyle(Qt::VerPattern);
         break;
     case 4:
-        _currentBrush.setStyle(Qt::CrossPattern);
+        //_currentBrush.setStyle(Qt::CrossPattern);
+        board->setBrushStyle(Qt::CrossPattern);
         break;
     case 5:
-        _currentBrush.setStyle(Qt::NoBrush);
+        //_currentBrush.setStyle(Qt::NoBrush);
+        board->setBrushStyle(Qt::NoBrush);
         break;
     default:
         break;
     }
 }
 
+void MainWindow::resetIconToolBar()
+{
+    ui->actionSelect->setIcon(QIcon(":images/cursor.png"));
+    ui->actionPen->setIcon(QIcon(":images/pen_cursor.png"));
+    ui->actionEllipse->setIcon(QIcon(":images/circle.png"));
+    ui->actionRectangle->setIcon(QIcon(":images/rectangle1.png"));
+    ui->actionEraser->setIcon(QIcon(":images/eraser.png"));
+    ui->actionStar->setIcon(QIcon(":images/star_cursor.png"));
+}
+
+/** Brief Fonction slot, lié au bouton dessiner
+*/
 void MainWindow::on_actionPen_triggered()
 {
     board->setMode(MODE::DESSIN_LIBRE);
+    resetIconToolBar();
+    ui->actionPen->setIcon(QIcon(":images/pen_active.png"));
 }
 
-
+/** Brief Fonction slot, lié au bouton sélection
+*/
 void MainWindow::on_actionSelect_triggered()
 {
     board->setMode(MODE::SELECT);
+    resetIconToolBar();
+    ui->actionSelect->setIcon(QIcon(":images/cursor_active.png"));
 }
+
+/** Brief Fonction slot, lié au bouton effacer
+*/
+void MainWindow::on_actionEraser_triggered()
+{
+    board->setMode(MODE::GOMME);
+    resetIconToolBar();
+    ui->actionEraser->setIcon(QIcon(":images/eraser_active.png"));
+}
+
+/** Brief Fonction slot, lié au bouton Ellipse
+*/
+void MainWindow::on_actionEllipse_triggered()
+{
+    board->setMode(MODE::FORMES);
+    board->setForme(FORME::ELLIPSE);
+    resetIconToolBar();
+    ui->actionEllipse->setIcon(QIcon(":images/circle_active.png"));
+}
+
+/** Brief Fonction slot, lié au bouton Rectangle
+*/
+void MainWindow::on_actionRectangle_triggered()
+{
+    board->setMode(MODE::FORMES);
+    board->setForme(FORME::RECTANGLE);
+    resetIconToolBar();
+    ui->actionRectangle->setIcon(QIcon(":images/rectangle1_active.png"));
+}
+
+/** Brief Fonction slot, lié au bouton Etoile
+*/
+void MainWindow::on_actionStar_triggered()
+{
+    board->setMode(MODE::FORMES);
+    board->setForme(FORME::STAR);
+    resetIconToolBar();
+    ui->actionStar->setIcon(QIcon(":images/star_active.png"));
+}
+
+/** Brief Fonction slot, lié au spinBox d'affichage de la grille
+*/
+void MainWindow::on_showGrid_SpinBox_stateChanged(int arg1)
+{
+    board->showGrid(ui->showGrid_SpinBox->isChecked());
+}
+
