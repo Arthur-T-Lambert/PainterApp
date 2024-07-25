@@ -1,11 +1,16 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QMouseEvent>
-#include <QGraphicsPixmapItem>
+// #include <QGraphicsPixmapItem>
 #include <QPixmap>
-#include <QGraphicsScene>
-//#include <QMimeData>
+// #include <QGraphicsScene>
+// #include "draggablepixmapitem.h"
+#include <QDragEnterEvent>
+#include <QMimeData>
+#include <QMessageBox>
+#include <QDrag>
+#include <memory>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,42 +23,55 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->widget->layout()->addWidget(board);
 
     setAcceptDrops(true);
+    ui->Ellipse->setAcceptDrops(true);
+    ui->Rectangle->setAcceptDrops(true);
 
-    QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
-    ui->libraryView->setScene(scene);
+    QPixmap ellipsePixmap(":/images/ellipse.png");
+    QPixmap scaledEllipsePixmap = ellipsePixmap.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->Ellipse->setPixmap(scaledEllipsePixmap);
+    ui->Ellipse->setFixedSize(100, 50) ;
+    ui->Ellipse->move(10, 10);
+    ui->Ellipse->show();
+    ui->Ellipse->setAttribute(Qt::WA_DeleteOnClose);
+    ui->Ellipse->setObjectName("Ellipse"); // Ajouter un nom d'objet
 
-    QPixmap pixmap1(":/images/ellipse.png");
-    QPixmap pixmap2(":/images/rectangle.png");
-    QPixmap pixmap3(":/images/quick.png");
-    QPixmap pixmap4(":/images/star.png");
+    QPixmap rectanglePixmap(":/images/rectangle.png");
+    QPixmap scaledRectanglePixmap = rectanglePixmap.scaled(50, 50);
+    ui->Rectangle->setPixmap(scaledRectanglePixmap);
+    ui->Rectangle->setFixedSize(50, 50);
+    // ui->Rectangle->move(10, 10);
+    ui->Rectangle->show();
+    ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
 
-    QGraphicsPixmapItem *item1 = new QGraphicsPixmapItem(pixmap1);// use smart pointer
-    QGraphicsPixmapItem *item2 = new QGraphicsPixmapItem(pixmap2);// use smart pointer
-    QGraphicsPixmapItem *item3 = new QGraphicsPixmapItem(pixmap3);// use smart pointer
-    QGraphicsPixmapItem *item4 = new QGraphicsPixmapItem(pixmap4);// use smart pointer
+    QPixmap starPixmap(":/images/star.png");
+    QPixmap scaledStarPixmap = starPixmap.scaled(50, 50);
+    ui->Star->setPixmap(scaledStarPixmap);
+    ui->Star->setFixedSize(50, 50);
+    // ui->Rectangle->move(10, 10);
+    ui->Star->show();
+    ui->Star->setAttribute(Qt::WA_DeleteOnClose);
 
-    // Optionally, set the position of each item
-    item1->setPos(0, 0);    // Position of the first item (Ellipse)
-    item2->setPos(80, 0);   // Position of the second item (Rectangle)
-    item3->setPos(0, 80);  // Position of the third item (Quick)
-    item4->setPos(80, 80);  // Position of the fourth item (Star)
-
-    item1->setScale(0.15);
-    item2->setScale(0.15);
-    item3->setScale(0.15);
-    item4->setScale(0.15);
-
-    scene->addItem(item1);
-    scene->addItem(item2);
-    scene->addItem(item3);
-    scene->addItem(item4);
+    QPixmap quickPixmap(":/images/quick.png");
+    QPixmap scaledQuickPixmap = quickPixmap.scaled(50, 50);
+    ui->Quick->setPixmap(scaledQuickPixmap);
+    ui->Quick->setFixedSize(50, 50);
+    // ui->Rectangle->move(10, 10);
+    ui->Quick->show();
+    ui->Quick->setAttribute(Qt::WA_DeleteOnClose);
 
     //Paramétrage de la ScrollArea
     ui->scrollArea->setWidget(board);
     ui->scrollArea->setWidgetResizable(true);
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+
+    connect(ui->actionSelect, &QAction::triggered, this, [this]() { board->setCurrentTool(Board::Cursor);});
+    connect(ui->actionRectangle, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::RectangleTool); });
+    connect(ui->actionEllipse, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::EllipseTool); });
+    connect(ui->actionStar, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::StarTool); });
 }
+
 
 
 MainWindow::~MainWindow() {
@@ -61,31 +79,195 @@ MainWindow::~MainWindow() {
 }
 
 
-// void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-// {
-//     if (event->mimeData()->hasImage()) {
-//         event->acceptProposedAction();
-//     }
-// }
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
+        if (event->source() == this) {
+            event->setDropAction(Qt::CopyAction);
+            event->accept();
+        } else {
+            event->acceptProposedAction();
+        }
+    } else {
+        event->ignore();
+    }
+}
 
-// void MainWindow::dropEvent(QDropEvent *event)
-// {
-//     QGraphicsScene * scene(new QGraphicsScene(this));
-//     QGraphicsView * view(new QGraphicsView(this));
-//     if (event->mimeData()->hasImage()) {
-//         QPixmap pixmap = qvariant_cast<QPixmap>(event->mimeData()->imageData());
-//         QGraphicsPixmapItem *item = new QGraphicsPixmapItem(pixmap);
+void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+    if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
+        if (event->source() == this) {
+            event->setDropAction(Qt::CopyAction);
+            event->accept();
+        } else {
+            event->acceptProposedAction();
+        }
+    } else {
+        event->ignore();
+    }
+}
 
-//        // Convertir les coordonnées du drop en coordonnées de la scène
-//         QPoint viewPos = view->mapFrom(this, event->pos());
-//         QPointF scenePos = view->mapToScene(viewPos);
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    // if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
+    //     QByteArray itemData = event->mimeData()->data("application/x-dnditemdata");
+    //     QDataStream dataStream(&itemData, QIODevice::ReadOnly);
 
-//         item->setPos(scenePos);
-//         item->setScale(0.15);  // Ajustez l'échelle si nécessaire
-//         scene->addItem(item);
-//         event->acceptProposedAction();
-//     }
-// }
+    //     QPixmap pixmap;
+    //     QPoint offset;
+    //     dataStream >> pixmap >> offset;
+
+    //     QPen pen(Qt::black, 4, Qt::DotLine);
+    //     QBrush ellipseBrush(Qt::gray);
+
+    //     QPainter painter(this);
+    //     maForme->draw(&painter);
+
+    //     QLabel *newIcon = new QLabel(this);
+    //     newIcon->setPixmap(pixmap);
+    //     newIcon->move(event->position().toPoint()/* - offset*/);
+    //     newIcon->show();
+    //     newIcon->setAttribute(Qt::WA_DeleteOnClose);
+
+
+
+    //     if (event->source() == this) {
+    //         event->setDropAction(Qt::CopyAction);
+    //         event->accept();
+    //     } else {
+    //         event->acceptProposedAction();
+    //     }
+    // } else {
+    //     event->ignore();
+    // }
+    if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
+        QByteArray itemData = event->mimeData()->data("application/x-dnditemdata");
+        QDataStream dataStream(&itemData, QIODevice::ReadOnly);
+
+        QPixmap pixmap;
+        QPoint offset;
+        dataStream >> pixmap >> offset;
+        qDebug()<<"ofsset: "<<offset<<"\n";
+        QPoint dropPos = event->position().toPoint() ;
+
+        Shapes *shape = nullptr;
+        QString shapeType = event->mimeData()->text();
+        if (shapeType == "Ellipse") {
+            shape = new Ellipse(QRect(dropPos, QSize(100, 50)));
+        } else if (shapeType == "Rectangle") {
+            shape = new Rectangle(QRect(dropPos, QSize(100, 50)));
+        }
+        if (shapeType == "Star") {
+            shape = new Star(dropPos, 50);
+        } else if (shapeType == "Quick") {
+            // QLabel *newIcon = new QLabel(this);
+            // newIcon->setPixmap(pixmap);
+            // newIcon->move(event->position().toPoint() - offset);
+            // newIcon->show();
+            // newIcon->setAttribute(Qt::WA_DeleteOnClose);
+            shape = new ImageQuick(QRect(dropPos, QSize(100, 100)), ":/images/quick.png");
+        }
+
+
+        if (shape) {
+            QPen pen(Qt::black, 4, Qt::DotLine);
+            QBrush brush(Qt::gray);
+            shape->setProperties(pen, brush);
+            board->addShape(shape); // Ajoutez la forme au tableau
+        }
+
+        if (event->source() == this) {
+            event->setDropAction(Qt::CopyAction);
+            event->accept();
+        } else {
+            event->acceptProposedAction();
+        }
+    } else {
+        event->ignore();
+    }
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    // QLabel *child = static_cast<QLabel*>(childAt(event->position().toPoint()));
+    // if (!child)
+    //     return;
+
+    // QPixmap pixmap = child->pixmap();
+
+    // QByteArray itemData;
+    // QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+    // dataStream << pixmap << QPoint(event->position().toPoint() - child->pos());
+
+    // QMimeData *mimeData = new QMimeData;
+    // mimeData->setData("application/x-dnditemdata", itemData);
+
+    // QDrag *drag = new QDrag(this);
+    // drag->setMimeData(mimeData);
+    // drag->setPixmap(pixmap);
+    // drag->setHotSpot(/*event->position().toPoint() - */child->pos());
+
+
+    // QPixmap tempPixmap = pixmap;
+    // QPainter painter;
+    // painter.begin(&tempPixmap);
+    // painter.fillRect(pixmap.rect(), QColor(127, 127, 127, 127));
+    // painter.end();
+
+    // child->setPixmap(tempPixmap);
+
+    // if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
+    //     child->close();
+    // } else {
+    //     child->show();
+    //     child->setPixmap(pixmap);
+    // }
+    QLabel *child = static_cast<QLabel*>(childAt(event->position().toPoint()));
+    if (!child)
+        return;
+
+    QPixmap pixmap = child->pixmap();
+
+    QByteArray itemData;
+    QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+    dataStream << pixmap << QPoint(event->position().toPoint() - child->pos());
+
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setData("application/x-dnditemdata", itemData);
+
+    if (child == ui->Ellipse) {
+        mimeData->setText("Ellipse");
+    }
+    if (child == ui->Rectangle) {
+        mimeData->setText("Rectangle");
+    }
+    if(child == ui->Star) {
+        mimeData->setText("Star");
+    } else if (child == ui->Quick) {
+        mimeData->setText("Quick");
+    }
+
+    QDrag *drag = new QDrag(this);
+    drag->setMimeData(mimeData);
+    drag->setPixmap(pixmap);
+    drag->setHotSpot(/*event->position().toPoint() -*/ child->pos());
+
+    QPixmap tempPixmap = pixmap;
+    QPainter painter;
+    painter.begin(&tempPixmap);
+    painter.fillRect(pixmap.rect(), QColor(127, 127, 127, 127));//couleur par defaut
+    painter.end();
+
+    child->setPixmap(tempPixmap);
+
+    if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
+        child->close();
+    } else {
+        child->show();
+        child->setPixmap(pixmap);
+    }
+}
+
 
 void MainWindow::on_actionQuit_triggered()
 {
