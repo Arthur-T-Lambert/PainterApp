@@ -107,6 +107,8 @@ private slots:
 
     void on_showGrid_SpinBox_stateChanged(int arg1);
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
 

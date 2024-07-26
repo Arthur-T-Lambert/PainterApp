@@ -450,3 +450,9 @@ void MainWindow::on_showGrid_SpinBox_stateChanged(int arg1)
     board->showGrid(ui->showGrid_SpinBox->isChecked());
 }
 
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::information(this, "À Propos", "Application Paint \n\n Dévelopé par : \n\n François Roudier \n Arthur Lambert \n Yasmine Fatnassi \n Nehari Mohamed");
+}
+
