@@ -25,17 +25,31 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
 
+    /**
+     * The six "drawing mode" buttons have a radio-button behavior : this is
+     * to ensure one of them is selected.
+     */
     ui->actionSelect->setChecked(true);
 
+    /**
+     * Sets the default values for the pen attributes
+     */
     _currentPen.setColor(Qt::black);
     _currentPen.setWidth(2);
     _currentPen.setStyle(Qt::SolidLine);
     ui->penColorPB->setStyleSheet(QString("background-color : %1").arg(_currentPen.color().name()));
 
+    /**
+     * Sets the default values for the brush attributes
+     */
     _currentBrush.setColor(Qt::black);
     _currentBrush.setStyle(Qt::SolidPattern);
     ui->fillColorPB->setStyleSheet(QString("background-color : %1").arg(_currentBrush.color().name()));
 
+    /**
+     * Redimension the direct pen coolor buttons to be square
+     * (impossible to do in QtDesigner)
+     */
     ui->penDirectColor1->setFixedSize(QSize(24, 24));
     ui->penDirectColor2->setFixedSize(QSize(24, 24));
     ui->penDirectColor3->setFixedSize(QSize(24, 24));
@@ -50,6 +64,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->penDirectColor12->setFixedSize(QSize(24, 24));
     ui->penDirectColor13->setFixedSize(QSize(24, 24));
     ui->penDirectColor14->setFixedSize(QSize(24, 24));
+
+    /**
+     * Setting of the colors and connections of all the direct color buttons
+     * (All the connections redirect to the same slot, only the color change).
+     */
     /* First row */
     ui->penDirectColor1->setStyleSheet(QString("background-color : %1").arg("#ffffff"));
     connect(ui->penDirectColor1, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#ffffff"));});
@@ -118,33 +137,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow() {
     delete ui;
 }
-
-
-// void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-// {
-//     if (event->mimeData()->hasImage()) {
-//         event->acceptProposedAction();
-//     }
-// }
-
-// void MainWindow::dropEvent(QDropEvent *event)
-// {
-//     QGraphicsScene * scene(new QGraphicsScene(this));
-//     QGraphicsView * view(new QGraphicsView(this));
-//     if (event->mimeData()->hasImage()) {
-//         QPixmap pixmap = qvariant_cast<QPixmap>(event->mimeData()->imageData());
-//         QGraphicsPixmapItem *item = new QGraphicsPixmapItem(pixmap);
-
-//        // Convertir les coordonnées du drop en coordonnées de la scène
-//         QPoint viewPos = view->mapFrom(this, event->pos());
-//         QPointF scenePos = view->mapToScene(viewPos);
-
-//         item->setPos(scenePos);
-//         item->setScale(0.15);  // Ajustez l'échelle si nécessaire
-//         scene->addItem(item);
-//         event->acceptProposedAction();
-//     }
-// }
 
 void MainWindow::on_actionQuit_triggered()
 {
@@ -230,6 +222,10 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
 
 void MainWindow::on_actionSelect_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionPen->setChecked(false);
         ui->actionEraser->setChecked(false);
@@ -244,6 +240,10 @@ void MainWindow::on_actionSelect_triggered(bool checked)
 
 void MainWindow::on_actionPen_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionSelect->setChecked(false);
         ui->actionEraser->setChecked(false);
@@ -256,9 +256,12 @@ void MainWindow::on_actionPen_triggered(bool checked)
     }
 }
 
-
 void MainWindow::on_actionEraser_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionSelect->setChecked(false);
         ui->actionPen->setChecked(false);
@@ -273,6 +276,10 @@ void MainWindow::on_actionEraser_triggered(bool checked)
 
 void MainWindow::on_actionRectangle_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionSelect->setChecked(false);
         ui->actionPen->setChecked(false);
@@ -287,6 +294,10 @@ void MainWindow::on_actionRectangle_triggered(bool checked)
 
 void MainWindow::on_actionEllipse_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionSelect->setChecked(false);
         ui->actionPen->setChecked(false);
@@ -301,6 +312,10 @@ void MainWindow::on_actionEllipse_triggered(bool checked)
 
 void MainWindow::on_actionStar_triggered(bool checked)
 {
+    /**
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
     if ( checked ) {
         ui->actionSelect->setChecked(false);
         ui->actionPen->setChecked(false);
@@ -326,6 +341,9 @@ void MainWindow::on_actionSave_triggered()
     QDataStream stream(&file);
     stream << QString("PA");
 
+    /**
+     * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
+     */
     Ellipse ellipse(QRect(10, 10, 20, 20));
     ellipse.setProperties(_currentPen, _currentBrush);
     ellipse.save(stream);
@@ -356,6 +374,9 @@ void MainWindow::on_actionLoad_triggered()
     QString magic;
     stream >> magic;
     while ( !stream.atEnd() ) {
+        /**
+         * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
+         */
         QString shape;
         stream >> shape;
         qDebug() << shape;

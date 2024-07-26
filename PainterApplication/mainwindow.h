@@ -18,6 +18,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
+    /**
+     * @brief MainWindow
+     * MainWindow is the main widget of the application. It has a unique instance,
+     * which is the first to appear and the last to disappear. It is the uppermost
+     * container of all the widgets, as well as a lot of code.
+     * @param parent
+     */
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -42,15 +50,6 @@ public:
     {
         return _currentBrush;
     }
-
-protected:
-
-    // void paintEvent(QPaintEvent *event) override;
-    // void mousePressEvent(QMouseEvent *event) override;
-    // void mouseMoveEvent(QMouseEvent *event) override;
-    // void mouseReleaseEvent(QMouseEvent *event) override;
-    // void dragEnterEvent(QDragEnterEvent *event) override;
-    // void dropEvent(QDropEvent *event) override;
 
 private slots:
 
@@ -83,27 +82,87 @@ private slots:
     void on_penStyleCB_currentIndexChanged(int index);
 
 private:
+    /**
+     * @brief on_directColor_clicked
+     * slot called when one of the direct pen color button
+     * is clicked. As this can be called by numerous buttons,
+     * it is not actually a slot and connected through a lambda.
+     */
     void on_directColor_clicked(const QColor&);
 
 private slots:
+    /**
+     * @brief on_fillColorPB_clicked
+     * slot triggered when clicking on the fill color button
+     */
     void on_fillColorPB_clicked();
 
+    /**
+     * @brief on_fillStyleCB_currentIndexChanged
+     * slot triggered when changing the pen style combobox
+     * @param index
+     * index of the style selected (0 to 6)
+     */
     void on_fillStyleCB_currentIndexChanged(int index);
 
+    /**
+     * @brief on_actionSelect_triggered
+     * slot triggered when choosing the "Select" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionSelect_triggered(bool checked);
 
+    /**
+     * @brief on_actionRectangle_triggered
+     * slot triggered when choosing the "Rectangle" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionRectangle_triggered(bool checked);
 
+    /**
+     * @brief on_actionPen_triggered
+     * slot triggered when choosing the "Pen" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionPen_triggered(bool checked);
 
+    /**
+     * @brief on_actionEraser_triggered
+     * slot triggered when choosing the "Eraser" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionEraser_triggered(bool checked);
 
+    /**
+     * @brief on_actionEllipse_triggered
+     * slot triggered when choosing the "Ellipse" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionEllipse_triggered(bool checked);
 
+    /**
+     * @brief on_actionStar_triggered
+     * slot triggered when choosing the "Star" mode
+     * @param checked
+     * is the action checked or not (useful for radiobutton behavior) ?
+     */
     void on_actionStar_triggered(bool checked);
 
+    /**
+     * @brief on_actionSave_triggered
+     * slot triggered when clicking on "Save"
+     */
     void on_actionSave_triggered();
 
+    /**
+     * @brief on_actionLoad_triggered
+     * slot triggered when clicking on "Load"
+     */
     void on_actionLoad_triggered();
 
 private:
@@ -112,6 +171,10 @@ private:
     QPen _currentPen;
     QBrush _currentBrush;
 
+    /**
+     * @brief board
+     * Pointer to the board, the cutsom widget wher the actual drawing takes place.
+     */
     Board *board;
 };
 #endif // MAINWINDOW_H
