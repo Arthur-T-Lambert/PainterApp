@@ -18,6 +18,7 @@
 
 #include "ui_board.h"
 #include "Shapes.h"
+#include "dessin.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -67,7 +68,7 @@ private:
     QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
 
-
+    QList<Dessin*> dessins;
 
     QList<Shapes*> formes;
     Shapes *draggedShape;

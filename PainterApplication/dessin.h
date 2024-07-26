@@ -23,6 +23,11 @@ public:
     Dessin();
 
     /**
+     * \brief Dessin destructor.
+     */
+    virtual ~Dessin() {}
+
+    /**
      * \brief Move method.
      * \param delta Move vector from the old position to the new position.
      */

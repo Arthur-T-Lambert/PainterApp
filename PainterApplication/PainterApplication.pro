@@ -12,12 +12,16 @@ SOURCES += \
     board.cpp \
     main.cpp \
     mainwindow.cpp \
-    shapes.cpp
+    shapes.cpp \
+    undoCommand.cpp \
+    dessin.cpp
 
 HEADERS += \
     board.h \
     mainwindow.h \
-    shapes.h
+    shapes.h \
+    undoCommand.h \
+    dessin.h
 
 FORMS += \
     board.ui \
