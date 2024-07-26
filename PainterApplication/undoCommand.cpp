@@ -19,6 +19,7 @@ void UndoAddCommand::redo()
     _drawing_list.append(_dessin);
 }
 
+//-----------------------------------------------------------------------------
 
 UndoRemoveCommand::UndoRemoveCommand(QList<Dessin*> &drawing_list, Dessin* dessin) : _drawing_list(drawing_list), _dessin(dessin)
 {
@@ -37,6 +38,7 @@ void UndoRemoveCommand::redo()
     _drawing_list.removeOne(_dessin);
 }
 
+//-----------------------------------------------------------------------------
 
 UndoMoveCommand::UndoMoveCommand(Dessin* dessin, QPoint old_pos) : _dessin(dessin), _old_pos(old_pos), _new_pos(dessin->getPosition())
 {
@@ -56,6 +58,7 @@ void UndoMoveCommand::redo()
     _dessin->SetPosition(_new_pos);
 }
 
+//-----------------------------------------------------------------------------
 
 UndoResizeCommand::UndoResizeCommand(Dessin* dessin, float size_factor) : _dessin(dessin), _size_factor(size_factor)
 {
