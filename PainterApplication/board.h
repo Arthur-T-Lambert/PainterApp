@@ -16,11 +16,14 @@
 #include <QBrush>
 #include <QList>
 #include <QDropEvent>
+#include <QUndoStack>
+
 #include "ui_board.h"
 #include "ui_board.h"
 #include "Shapes.h"
 #include "dessin.h"
 #include "pen.h"
+#include "undoCommand.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -59,32 +62,36 @@ public:
     Pen *pen;
     QBrush brush;
 
+    void undo() { undo_stack->undo(); this->refresh(); }
+    void redo() { undo_stack->redo(); this->refresh(); }
+
     void drawShape(const QPoint &start, const QPoint &end);
-    Shapes* createShape(const QPoint &start, const QPoint &end);
     void updateCursor();
+
+    void addShape(Shapes *shape);
 
     enum Tool { None,Cursor, RectangleTool, EllipseTool, StarTool };
     Tool currentTool= None;
 
+private:
+    Shapes* createShape(const QPoint &start, const QPoint &end);
 
 public slots:
     void setCurrentTool(Tool tool);
-
-public:
-      void addShape(Shapes *shape);
 
 private:
     Ui::Board *ui;
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
-    QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
+    // QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
 
-    QList<Dessin*> dessins;
+    QList<Dessin*> list_dessins;
+    QUndoStack* undo_stack = nullptr;
 
-    QList<Shapes*> formes;
-    Shapes *draggedShape;
+    // QList<Shapes*> formes;
+    Dessin *draggedShape;
     bool printGrid = true;
 
     void setupShapes();

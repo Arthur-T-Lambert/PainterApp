@@ -16,12 +16,15 @@ QT_END_NAMESPACE
 
 /*
  * Each time a action is executed, it should add a corresponding command to a QUndoStack (stack->push(command);).
+ * /!\ Note that the redo() method is called when the QUndoAction is pushed in the QUndoStack /!\
  * Then, it can be undone/redone by calling QUndoStack undo/redo slot (this does not trigger a redraw).
  */
 
 /**
  * \class UndoAddCommand
  * \brief QUndoCommand for undoing Dessin being added to the board.
+ *
+ * /!\ Note that the redo() method is called when the QUndoAction is pushed in the QUndoStack /!\
  */
 class UndoAddCommand : public QUndoCommand
 {
@@ -50,6 +53,8 @@ private:
 /**
  * \class UndoRemoveCommand
  * \brief QUndoCommand for undoing Dessin being removed from the board.
+ *
+ * /!\ Note that the redo() method is called when the QUndoAction is pushed in the QUndoStack /!\
  */
 class UndoRemoveCommand : public QUndoCommand
 {
@@ -78,6 +83,8 @@ private:
 /**
  * \class UndoMoveCommand
  * \brief QUndoCommand for undoing Dessin being moved on the board.
+ *
+ * /!\ Note that the redo() method is called when the QUndoAction is pushed in the QUndoStack /!\
  */
 class UndoMoveCommand : public QUndoCommand
 {
@@ -107,6 +114,8 @@ private:
 /**
  * \class UndoResizeCommand
  * \brief QUndoCommand for undoing Dessin being resized.
+ *
+ * /!\ Note that the redo() method is called when the QUndoAction is pushed in the QUndoStack /!\
  */
 class UndoResizeCommand : public QUndoCommand
 {

@@ -16,6 +16,7 @@
 #include <QPoint>
 #include <QStack>
 
+#include "dessin.h"
 
 // Structure permettant d'enregistrer les informations de chaques points dessinés
 struct DrawPoint {
@@ -24,7 +25,7 @@ struct DrawPoint {
 };
 
 
-class Pen : public QWidget
+class Pen : public QWidget, public Dessin
 {
     Q_OBJECT
 
@@ -40,9 +41,12 @@ public:
     void setWidth(int width);
     bool isDrawing();
     QColor getColor();
-    void paintEvent(QPaintEvent *event, QPainter &painter);
+    void draw(QPainter *painter) override;
     void setDrawingMode(bool val);
     void setEraseMode(bool val);
+
+    void move(const QPoint &delta) override { Q_UNUSED(delta); }
+    bool contains(const QPoint &point) override { Q_UNUSED(point); return false; }
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -54,15 +58,11 @@ public:
 private:
     QList<QPoint> currentPoints;  // Points du chemin en cours
     QList<DrawPoint> listPoints;  // Liste de tous les chemins dessinés
-    bool draw = false;
+    bool _bdraw = false;
     bool erase = false;
     QPoint cursorPos;
     QColor color;
     bool clickLeft = false;
-
-    QStack<QList<DrawPoint>> undoStack;  // Pile pour les états Undo
-    QStack<QList<DrawPoint>> redoStack;  // Pile pour les états Redo
-
 };
 
 #endif // PEN_H

@@ -16,6 +16,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
     pen = new Pen(this);
     ui->setupUi(this);
     //setupShapes();
+
+    undo_stack = new QUndoStack(this);
 }
 
 //------------------------------------------------------------------------------------------
@@ -23,7 +25,7 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
 Board::~Board()
 {
     delete ui;
-    qDeleteAll(formes);
+    qDeleteAll(list_dessins);
     delete pen;
 }
 
@@ -48,12 +50,12 @@ void Board::paintEvent(QPaintEvent *event)
         drawGrid(painter);
 
     // Dessin des formes drag and drop
-    for (Shapes *shape : formes) {
+    for (Dessin *shape : list_dessins) {
         shape->draw(&painter);
     }
 
     //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
-    pen->paintEvent(event, painter);
+    // pen->paintEvent(event, painter);
 
     // Dessiner la forme temporaire si on est en train de dessiner
     if (isDrawing) {
@@ -87,6 +89,8 @@ void Board::paintEvent(QPaintEvent *event)
             break;
         }
     }
+
+    qDebug() << "PaintEvent";
 }
 
 //------------------------------------------------------------------------------------------
@@ -211,7 +215,7 @@ void Board::mousePressEvent(QMouseEvent *event)
                 isDrawing = true;
             } else if (currentTool == Cursor) {
                 // Logique pour sélectionner/déplacer des formes existantes
-                for (Shapes *shape : formes) {
+                for (Dessin *shape : list_dessins) {
                     if (shape->contains(event->pos())) {
                         draggedShape = shape;
                         break;
@@ -332,7 +336,7 @@ void Board::mouseReleaseEvent(QMouseEvent *event)
                 // Finaliser le dessin de la forme
                 Shapes* newShape = createShape(lastMousePosition, event->pos());
                 if (newShape) {
-                    formes.append(newShape);
+                    undo_stack->push(new UndoAddCommand(list_dessins, newShape));
                 }
                 isDrawing = false;
             }
@@ -426,7 +430,7 @@ void Board::zoomMoins()
 
 void Board::addShape(Shapes *shape)
 {
-    formes.append(shape);
+    undo_stack->push(new UndoAddCommand(list_dessins, shape));
     update(); // Demande la redessination du tableau
 }
 

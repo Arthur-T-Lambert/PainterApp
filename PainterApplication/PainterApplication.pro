@@ -14,7 +14,7 @@ SOURCES += \
     mainwindow.cpp \
     shapes.cpp \
     undoCommand.cpp \
-    dessin.cpp
+    dessin.cpp \
     pen.cpp
 
 HEADERS += \
@@ -22,7 +22,7 @@ HEADERS += \
     mainwindow.h \
     shapes.h \
     undoCommand.h \
-    dessin.h
+    dessin.h \
     pen.h
 
 FORMS += \

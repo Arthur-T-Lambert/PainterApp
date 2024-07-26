@@ -456,3 +456,15 @@ void MainWindow::on_actionAbout_triggered()
     QMessageBox::information(this, "À Propos", "Application Paint \n\n Dévelopé par : \n\n François Roudier \n Arthur Lambert \n Yasmine Fatnassi \n Nehari Mohamed");
 }
 
+
+void MainWindow::on_actionUndo_triggered()
+{
+    board->undo();
+}
+
+
+void MainWindow::on_actionRedo_triggered()
+{
+    board->redo();
+}
+

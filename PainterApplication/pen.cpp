@@ -60,7 +60,7 @@ void Pen::setWidth(int width)
  */
 bool Pen::isDrawing()
 {
-    return this->draw;
+    return this->_bdraw;
 }
 
 //------------------------------------------------------------------------------------------
@@ -78,8 +78,8 @@ QColor Pen::getColor()
  */
 void Pen::setDrawingMode(bool val)
 {
-    draw = val;
-    if(draw)
+    _bdraw = val;
+    if(_bdraw)
     {
         pen.setColor(color);
         currentPoints.clear();
@@ -149,7 +149,7 @@ void Pen::mouseMoveEvent(QMouseEvent *event)
         }
         update();
     }
-    else if (draw)
+    else if (_bdraw)
     {
         // Mode dessin
         currentPoints.append(event->pos());
@@ -164,9 +164,9 @@ void Pen::mouseMoveEvent(QMouseEvent *event)
 void Pen::mouseReleaseEvent(QMouseEvent *event)
 {
 
-    if (event->button() == Qt::LeftButton && draw)
+    if (event->button() == Qt::LeftButton && _bdraw)
     {
-        draw = false;
+        _bdraw = false;
         clickLeft = false;
         if (!currentPoints.isEmpty())
         {
@@ -181,24 +181,24 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
     update();
 }
 
-void Pen::undo()
-{
-    if (!undoStack.isEmpty())
-    {
-        redoStack.push(listPoints);
-        listPoints = undoStack.pop();
-        update();
-    }
-}
+// void Pen::undo()
+// {
+//     if (!undoStack.isEmpty())
+//     {
+//         redoStack.push(listPoints);
+//         listPoints = undoStack.pop();
+//         update();
+//     }
+// }
 
-void Pen::redo()
-{
-    if (!redoStack.isEmpty()) {
-        undoStack.push(listPoints); // Enregistrer l'état actuel dans la pile Undo
-        listPoints = redoStack.pop(); // Restaurer l'état suivant
-        update(); // Demande de redessiner le widget
-    }
-}
+// void Pen::redo()
+// {
+//     if (!redoStack.isEmpty()) {
+//         undoStack.push(listPoints); // Enregistrer l'état actuel dans la pile Undo
+//         listPoints = redoStack.pop(); // Restaurer l'état suivant
+//         update(); // Demande de redessiner le widget
+//     }
+// }
 
 //------------------------------------------------------------------------------------------
 /** \brief Fonction mainLoop de la classe Pen gérant l'affichage des points courants et précédement
@@ -206,32 +206,32 @@ void Pen::redo()
  *  \param event Pointeur sur les évenements QPaintEvent
  *  \param painter Pointeur sur les évenements QPaintEvent
  */
-void Pen::paintEvent(QPaintEvent *event, QPainter &painter)
+void Pen::draw(QPainter *painter)
 {
     // Dessiner les points précédents
     for (const DrawPoint &point : listPoints)
     {
-        painter.setPen(point.pen); // On recharge le pen et ses caractéristiques
+        painter->setPen(point.pen); // On recharge le pen et ses caractéristiques
         for (int i=0; i < point.tabPoints.size()-1; ++i)
-            painter.drawLine(point.tabPoints[i], point.tabPoints[i+1]);
+            painter->drawLine(point.tabPoints[i], point.tabPoints[i+1]);
     }
 
     // Si gomme, ajouter un cercle a la position du curseur de la souris
     if(erase )
     {
-        painter.setPen(QPen(Qt::gray, 2, Qt::SolidLine));
-        painter.setBrush(Qt::NoBrush);
+        painter->setPen(QPen(Qt::gray, 2, Qt::SolidLine));
+        painter->setBrush(Qt::NoBrush);
         QPoint cursorPos = mapFromGlobal(QCursor::pos());
         int rayon = 25;
-        painter.drawEllipse(cursorPos , rayon, rayon);
+        painter->drawEllipse(cursorPos , rayon, rayon);
     }
 
     // Dessiner les points courants si on est entrain de dessiner
-    if (draw)
+    if (_bdraw)
     {
-        painter.setPen(pen);
+        painter->setPen(pen);
         for (int i=0; i < currentPoints.size()-1; ++i)
-            painter.drawLine(currentPoints[i], currentPoints[i+1]);
+            painter->drawLine(currentPoints[i], currentPoints[i+1]);
     }
 
 

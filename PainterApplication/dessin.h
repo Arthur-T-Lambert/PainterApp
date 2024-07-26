@@ -39,17 +39,17 @@ public:
      */
     virtual void draw(QPainter *painter) = 0;
 
+    virtual bool contains(const QPoint &point) = 0;
+
     /**
      * \brief Getter fot the position of a Dessin.
      * \return The position of the Dessin.
      */
-    // virtual QPoint getPosition() const = 0;
     virtual QPoint getPosition() const { return QPoint(); }
     /**
      * \brief Setter fot the position of a Dessin.
      * \param The new position of the Dessin.
      */
-    // virtual void SetPosition(const QPoint& point) = 0;
     virtual void SetPosition(const QPoint& point) { Q_UNUSED(point);}
 };
 
