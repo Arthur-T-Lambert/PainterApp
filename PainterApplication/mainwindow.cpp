@@ -620,3 +620,15 @@ void MainWindow::on_actionLoad_triggered()
     file.close();
 }
 
+
+void MainWindow::on_sceneColorPB_clicked()
+{
+    QColor color = QColorDialog::getColor(_currentBrush.color(), this);
+
+    if ( color.isValid() ) {
+        qDebug() << "couleur";
+        board->setBackgroundColor(color);
+        ui->sceneColorPB->setStyleSheet(QString("background-color : %1").arg(color.name()));
+    }
+}
+

@@ -186,6 +186,8 @@ private slots:
      */
     void on_actionLoad_triggered();
 
+    void on_sceneColorPB_clicked();
+
 private:
     Ui::MainWindow *ui;
 

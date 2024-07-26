@@ -49,12 +49,13 @@ public:
     void wheelEvent(QWheelEvent *event) override;
     void updateDimensionAndPosition(QPainter &painter);
     void drawGrid(QPainter &painter);
-    void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
+    void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const QColor &brushColor);
     void setMode(MODE m);
     void setForme(FORME m);
     void showGrid(bool print);
     void setBrushStyle(const Qt::BrushStyle &brush);
     void setBrushColor(const QColor &color);
+    void setBackgroundColor(const QColor color);
     MODE getMode();
     void refresh();
     void zoomPlus();
@@ -86,6 +87,7 @@ private:
     QPointF translateWidget;
     // QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
     int indexShapeSelected;
+    QColor backgroundColor;
 
     QList<Dessin*> list_dessins;
     QUndoStack* undo_stack = nullptr;
