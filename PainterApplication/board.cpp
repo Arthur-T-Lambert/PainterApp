@@ -15,7 +15,8 @@ Board::Board(QWidget *parent) : QWidget(parent), ui(new Ui::Board),
     mode = MODE::SELECT;
     pen = new Pen(this);
     ui->setupUi(this);
-    //setupShapes();
+    const QColor color(0,255,0);
+    backgroundColor = color;
 
     undo_stack = new QUndoStack(this);
 }
@@ -40,7 +41,7 @@ void Board::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     // Affichage du background
-    drawBackground(painter, Qt::SolidPattern , Qt::yellow); //Valeur à remplacer dynamiquement
+    drawBackground(painter, Qt::SolidPattern , backgroundColor); //Valeur à remplacer dynamiquement
 
     // Gestion des dimensions en fonction du zoom et de la translation
     updateDimensionAndPosition(painter);
@@ -55,10 +56,10 @@ void Board::paintEvent(QPaintEvent *event)
     }
 
     //Appel de la fonction de dessin du pen, en lui donnant en argument le painter du board
-    // pen->paintEvent(event, painter);
+    pen->draw(&painter);
 
     // Dessiner la forme temporaire si on est en train de dessiner
-    if (isDrawing) {
+    if (isDrawing && mode == MODE::FORMES) {
         QPainter tempPainter(this);
         tempPainter.setPen(QPen(Qt::red, 2, Qt::DashLine));
         QRect rect = QRect(lastMousePosition, this->mapFromGlobal(QCursor::pos())).normalized();
@@ -99,7 +100,7 @@ void Board::paintEvent(QPaintEvent *event)
  *  \param brushStyle Style dy brush
  *  \param color Couleur du brush
  */
-void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor)
+void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const QColor &brushColor)
 {
     QBrush brush;
     brush.setColor(brushColor);
@@ -115,6 +116,8 @@ void Board::drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, c
 void Board::setMode(MODE m)
 {
     this->mode = m;
+    if(m == MODE::DESSIN_LIBRE)
+        setCurrentTool(Cursor);
 }
 
 //------------------------------------------------------------------------------------------
@@ -152,6 +155,12 @@ void Board::setBrushStyle(const Qt::BrushStyle &brush)
 void Board::setBrushColor(const QColor &color)
 {
     brush.setColor(color);
+}
+
+void Board::setBackgroundColor(const QColor color)
+{
+    this->backgroundColor = color;
+    refresh();
 }
 
 //------------------------------------------------------------------------------------------

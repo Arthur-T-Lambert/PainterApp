@@ -190,6 +190,8 @@ private slots:
 
     void on_actionFrancais_triggered();
 
+    void on_sceneColorPB_clicked();
+
 private:
     Ui::MainWindow *ui;
 
