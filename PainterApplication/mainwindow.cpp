@@ -25,13 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
 
-    /**
+    /*
      * The six "drawing mode" buttons have a radio-button behavior : this is
      * to ensure one of them is selected.
      */
     ui->actionSelect->setChecked(true);
 
-    /**
+    /*
      * Sets the default values for the pen attributes
      */
     _currentPen.setColor(Qt::black);
@@ -39,14 +39,14 @@ MainWindow::MainWindow(QWidget *parent) :
     _currentPen.setStyle(Qt::SolidLine);
     ui->penColorPB->setStyleSheet(QString("background-color : %1").arg(_currentPen.color().name()));
 
-    /**
+    /*
      * Sets the default values for the brush attributes
      */
     _currentBrush.setColor(Qt::black);
     _currentBrush.setStyle(Qt::SolidPattern);
     ui->fillColorPB->setStyleSheet(QString("background-color : %1").arg(_currentBrush.color().name()));
 
-    /**
+    /*
      * Redimension the direct pen coolor buttons to be square
      * (impossible to do in QtDesigner)
      */
@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->penDirectColor13->setFixedSize(QSize(24, 24));
     ui->penDirectColor14->setFixedSize(QSize(24, 24));
 
-    /**
+    /*
      * Setting of the colors and connections of all the direct color buttons
      * (All the connections redirect to the same slot, only the color change).
      */
@@ -222,7 +222,7 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
 
 void MainWindow::on_actionSelect_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -240,7 +240,7 @@ void MainWindow::on_actionSelect_triggered(bool checked)
 
 void MainWindow::on_actionPen_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -258,7 +258,7 @@ void MainWindow::on_actionPen_triggered(bool checked)
 
 void MainWindow::on_actionEraser_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -276,7 +276,7 @@ void MainWindow::on_actionEraser_triggered(bool checked)
 
 void MainWindow::on_actionRectangle_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -294,7 +294,7 @@ void MainWindow::on_actionRectangle_triggered(bool checked)
 
 void MainWindow::on_actionEllipse_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -312,7 +312,7 @@ void MainWindow::on_actionEllipse_triggered(bool checked)
 
 void MainWindow::on_actionStar_triggered(bool checked)
 {
-    /**
+    /*
      * Radio button : if pressed, all the other buttons are unpressed
      * if unpressed, press it again.
      */
@@ -341,7 +341,7 @@ void MainWindow::on_actionSave_triggered()
     QDataStream stream(&file);
     stream << QString("PA");
 
-    /**
+    /*
      * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
      */
     Ellipse ellipse(QRect(10, 10, 20, 20));
@@ -374,7 +374,7 @@ void MainWindow::on_actionLoad_triggered()
     QString magic;
     stream >> magic;
     while ( !stream.atEnd() ) {
-        /**
+        /*
          * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
          */
         QString shape;
