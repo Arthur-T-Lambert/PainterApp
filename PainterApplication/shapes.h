@@ -8,7 +8,7 @@
 
 class Shapes : public Dessin {
 public:
-    virtual void draw(QPainter *painter) = 0;
+    // virtual void draw(QPainter *painter) = 0;
     virtual void setProperties(const QPen &pen, const QBrush &brush) = 0;
     virtual void move(const QPoint &delta) = 0;
     virtual ~Shapes() {}
