@@ -90,8 +90,6 @@ void Board::paintEvent(QPaintEvent *event)
             break;
         }
     }
-
-    qDebug() << "PaintEvent";
 }
 
 //------------------------------------------------------------------------------------------
