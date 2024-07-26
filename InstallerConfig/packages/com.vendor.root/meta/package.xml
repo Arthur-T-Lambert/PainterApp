@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Core app</DisplayName>
+	<Default>true</Default>
+	<ForcedInstallation>true</ForcedInstallation>
+    <Description>The core of the application</Description>
+    <Version>1.0.0-1</Version>
+    <ReleaseDate>2024-07-26</ReleaseDate>
+</Package>
