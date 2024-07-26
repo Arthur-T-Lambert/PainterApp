@@ -181,6 +181,11 @@ void Pen::mouseReleaseEvent(QMouseEvent *event)
     update();
 }
 
+void Pen::save(QDataStream &)
+{
+    /* NOT IMPLEMENTED YET */
+}
+
 // void Pen::undo()
 // {
 //     if (!undoStack.isEmpty())

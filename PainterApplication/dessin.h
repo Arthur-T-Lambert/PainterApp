@@ -51,6 +51,9 @@ public:
      * \param The new position of the Dessin.
      */
     virtual void SetPosition(const QPoint& point) { Q_UNUSED(point);}
+
+    virtual void save(QDataStream&) = 0;
+
 };
 
 #endif // DESSIN_H

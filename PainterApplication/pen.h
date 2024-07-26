@@ -55,6 +55,8 @@ public:
     void undo();
     void redo();
 
+    void save(QDataStream& ) override;
+
 private:
     QList<QPoint> currentPoints;  // Points du chemin en cours
     QList<DrawPoint> listPoints;  // Liste de tous les chemins dessinés
