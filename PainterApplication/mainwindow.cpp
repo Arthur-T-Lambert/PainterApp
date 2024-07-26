@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QMouseEvent>
@@ -11,6 +11,8 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <QColorDialog>
+#include <QPixmap>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Ellipse->move(10, 10);
     ui->Ellipse->show();
     ui->Ellipse->setAttribute(Qt::WA_DeleteOnClose);
+    ui->Ellipse->setObjectName("Ellipse"); // Ajouter un nom d'objet
 
     QPixmap rectanglePixmap(":/images/rectangle.png");
     QPixmap scaledRectanglePixmap = rectanglePixmap.scaled(50, 50);
@@ -66,8 +69,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->penDirectColor10->setFixedSize(QSize(24, 24));
     ui->penDirectColor11->setFixedSize(QSize(24, 24));
     ui->penDirectColor12->setFixedSize(QSize(24, 24));
-    ui->penDirectColor13->setFixedSize(QSize(24, 24));
-    ui->penDirectColor14->setFixedSize(QSize(24, 24));
+    //ui->penDirectColor13->setFixedSize(QSize(24, 24));
+    //ui->penDirectColor14->setFixedSize(QSize(24, 24));
     /* First row */
     ui->penDirectColor1->setStyleSheet(QString("background-color : %1").arg("#ffffff"));
     connect(ui->penDirectColor1, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#ffffff"));});
@@ -94,44 +97,65 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->penDirectColor11, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#00c0c0"));});
     ui->penDirectColor12->setStyleSheet(QString("background-color : %1").arg("#0000c0"));
     connect(ui->penDirectColor12, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#0000c0"));});
-    ui->penDirectColor13->setStyleSheet(QString("background-color : %1").arg("#c000c0"));
+    /*ui->penDirectColor13->setStyleSheet(QString("background-color : %1").arg("#c000c0"));
     connect(ui->penDirectColor13, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#c000c0"));});
     ui->penDirectColor14->setStyleSheet(QString("background-color : %1").arg("#c00000"));
     connect(ui->penDirectColor14, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#c00000"));});
+    */
 
     // Load icons from resources and create QGraphicsPixmapItem for each icon
-    QPixmap pixmap1(":/images/ellipse.png");
-    QPixmap pixmap2(":/images/rectangle.png");
-    QPixmap pixmap3(":/images/quick.png");
-    QPixmap pixmap4(":/images/star.png");
+    // QPixmap pixmap1(":/images/ellipse.png");
+    // QPixmap pixmap2(":/images/rectangle.png");
+    // QPixmap pixmap3(":/images/quick.png");
+    // QPixmap pixmap4(":/images/star.png");
 
-    QGraphicsPixmapItem *item1 = new QGraphicsPixmapItem(pixmap1);// use smart pointer
-    QGraphicsPixmapItem *item2 = new QGraphicsPixmapItem(pixmap2);// use smart pointer
-    QGraphicsPixmapItem *item3 = new QGraphicsPixmapItem(pixmap3);// use smart pointer
-    QGraphicsPixmapItem *item4 = new QGraphicsPixmapItem(pixmap4);// use smart pointer
+    // QGraphicsPixmapItem *item1 = new QGraphicsPixmapItem(pixmap1);// use smart pointer
+    // QGraphicsPixmapItem *item2 = new QGraphicsPixmapItem(pixmap2);// use smart pointer
+    // QGraphicsPixmapItem *item3 = new QGraphicsPixmapItem(pixmap3);// use smart pointer
+    // QGraphicsPixmapItem *item4 = new QGraphicsPixmapItem(pixmap4);// use smart pointer
 
     // Optionally, set the position of each item
-    item1->setPos(0, 0);    // Position of the first item (Ellipse)
-    item2->setPos(80, 0);   // Position of the second item (Rectangle)
-    item3->setPos(0, 80);  // Position of the third item (Quick)
-    item4->setPos(80, 80);  // Position of the fourth item (Star)
+    // item1->setPos(0, 0);    // Position of the first item (Ellipse)
+    // item2->setPos(80, 0);   // Position of the second item (Rectangle)
+    // item3->setPos(0, 80);  // Position of the third item (Quick)
+    // item4->setPos(80, 80);  // Position of the fourth item (Star)
 
-    item1->setScale(0.15);
-    item2->setScale(0.15);
-    item3->setScale(0.15);
-    item4->setScale(0.15);
+    // item1->setScale(0.15);
+    // item2->setScale(0.15);
+    // item3->setScale(0.15);
+    // item4->setScale(0.15);
 
-    //scene->addItem(item1);
-    //scene->addItem(item2);
-    //scene->addItem(item3);
-    //scene->addItem(item4);
+    ui->Rectangle->setFixedSize(50, 50);
+    ui->Rectangle->show();
+    ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
+
+    QPixmap starPixmap(":/images/star.png");
+    QPixmap scaledStarPixmap = starPixmap.scaled(50, 50);
+    ui->Star->setPixmap(scaledStarPixmap);
+    ui->Star->setFixedSize(50, 50);
+    ui->Star->show();
+    ui->Star->setAttribute(Qt::WA_DeleteOnClose);
+
+    QPixmap quickPixmap(":/images/quick.png");
+    QPixmap scaledQuickPixmap = quickPixmap.scaled(50, 50);
+    ui->Quick->setPixmap(scaledQuickPixmap);
+    ui->Quick->setFixedSize(50, 50);
+    ui->Quick->show();
+    ui->Quick->setAttribute(Qt::WA_DeleteOnClose);
 
     //Paramétrage de la ScrollArea
     ui->scrollArea->setWidget(board);
     ui->scrollArea->setWidgetResizable(true);
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+
+    connect(ui->actionSelect, &QAction::triggered, this, [this]() { board->setCurrentTool(Board::Cursor);});
+    connect(ui->actionRectangle, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::RectangleTool); });
+    connect(ui->actionEllipse, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::EllipseTool); });
+    connect(ui->actionStar, &QAction::triggered, this, [this](){ board->setCurrentTool(Board::StarTool); });
 }
+
 
 
 MainWindow::~MainWindow() {
@@ -176,12 +200,29 @@ void MainWindow::dropEvent(QDropEvent *event)
         QPixmap pixmap;
         QPoint offset;
         dataStream >> pixmap >> offset;
+        qDebug()<<"ofsset: "<<offset<<"\n";
+        QPoint dropPos = QPoint(event->position().x()-ui->scrollArea->x()-50, event->position().y()-ui->scrollArea->y()-60);
 
-        QLabel *newIcon = new QLabel(this);
-        newIcon->setPixmap(pixmap);
-        newIcon->move(event->position().toPoint() - offset);
-        newIcon->show();
-        newIcon->setAttribute(Qt::WA_DeleteOnClose);
+        Shapes *shape = nullptr;
+        QString shapeType = event->mimeData()->text();
+        if (shapeType == "Ellipse") {
+            shape = new Ellipse(QRect(dropPos, QSize(100, 50)));
+        } else if (shapeType == "Rectangle") {
+            shape = new Rectangle(QRect(dropPos, QSize(100, 50)));
+        }
+        if (shapeType == "Star") {
+            shape = new Star(dropPos, 50);
+        } else if (shapeType == "Quick") {
+
+            shape = new ImageQuick(QRect(dropPos, QSize(100, 100)), ":/images/quick.png");
+        }
+
+        if (shape) {
+            //QPen pen(Qt::black, 4, Qt::DotLine);
+            //QBrush brush(Qt::gray);
+            shape->setProperties(board->pen->pen, board->brush);
+            board->addShape(shape); // Ajoutez la forme au tableau
+        }
 
         if (event->source() == this) {
             event->setDropAction(Qt::CopyAction);
@@ -193,6 +234,7 @@ void MainWindow::dropEvent(QDropEvent *event)
         event->ignore();
     }
 }
+
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
@@ -214,11 +256,22 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     drag->setPixmap(pixmap);
     drag->setHotSpot(/*event->position().toPoint() - */child->pos());
 
+    if (child == ui->Ellipse) {
+        mimeData->setText("Ellipse");
+    }
+    if (child == ui->Rectangle) {
+        mimeData->setText("Rectangle");
+    }
+    if(child == ui->Star) {
+        mimeData->setText("Star");
+    } else if (child == ui->Quick) {
+        mimeData->setText("Quick");
+    }
 
     QPixmap tempPixmap = pixmap;
     QPainter painter;
     painter.begin(&tempPixmap);
-    painter.fillRect(pixmap.rect(), QColor(127, 127, 127, 127));
+    painter.fillRect(pixmap.rect(), board->brush.color());
     painter.end();
 
     child->setPixmap(tempPixmap);
@@ -230,32 +283,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         child->setPixmap(pixmap);
     }
 }
-
-// void MainWindow::dragEnterEvent(QDragEnterEvent *event)
-// {
-//     if (event->mimeData()->hasImage()) {
-//         event->acceptProposedAction();
-//     }
-// }
-
-// void MainWindow::dropEvent(QDropEvent *event)
-// {
-//     QGraphicsScene * scene(new QGraphicsScene(this));
-//     QGraphicsView * view(new QGraphicsView(this));
-//     if (event->mimeData()->hasImage()) {
-//         QPixmap pixmap = qvariant_cast<QPixmap>(event->mimeData()->imageData());
-//         QGraphicsPixmapItem *item = new QGraphicsPixmapItem(pixmap);
-
-//        // Convertir les coordonnées du drop en coordonnées de la scène
-//         QPoint viewPos = view->mapFrom(this, event->pos());
-//         QPointF scenePos = view->mapToScene(viewPos);
-
-//         item->setPos(scenePos);
-//         item->setScale(0.15);  // Ajustez l'échelle si nécessaire
-//         scene->addItem(item);
-//         event->acceptProposedAction();
-//     }
-// }
 
 
 void MainWindow::on_actionQuit_triggered()
@@ -327,27 +354,21 @@ void MainWindow::on_fillStyleCB_currentIndexChanged(int index)
 {
     switch(index) {
     case 0: // Solid
-        //_currentBrush.setStyle(Qt::SolidPattern);
         board->setBrushStyle(Qt::SolidPattern);
         break;
     case 1: // Dense
-        _currentBrush.setStyle(Qt::Dense4Pattern);
         board->setBrushStyle(Qt::Dense4Pattern);
         break;
     case 2:
-        //_currentBrush.setStyle(Qt::HorPattern);
         board->setBrushStyle(Qt::HorPattern);
         break;
     case 3:
-        //_currentBrush.setStyle(Qt::VerPattern);
         board->setBrushStyle(Qt::VerPattern);
         break;
     case 4:
-        //_currentBrush.setStyle(Qt::CrossPattern);
         board->setBrushStyle(Qt::CrossPattern);
         break;
     case 5:
-        //_currentBrush.setStyle(Qt::NoBrush);
         board->setBrushStyle(Qt::NoBrush);
         break;
     default:

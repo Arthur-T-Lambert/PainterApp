@@ -17,7 +17,7 @@
 #include <QList>
 #include <QDropEvent>
 #include "ui_board.h"
-//#include "draggablepixmapitem.h"
+#include "ui_board.h"
 #include "Shapes.h"
 #include "pen.h"
 
@@ -56,10 +56,21 @@ public:
     void zoomPlus();
     void zoomMoins();
     Pen *pen;
+    QBrush brush;
 
-// protected:
-        //void dragEnterEvent(QDragEnterEvent *event) override;
-        //void dropEvent(QDropEvent *event) override;
+    void drawShape(const QPoint &start, const QPoint &end);
+    Shapes* createShape(const QPoint &start, const QPoint &end);
+    void updateCursor();
+
+    enum Tool { None,Cursor, RectangleTool, EllipseTool, StarTool };
+    Tool currentTool= None;
+
+
+public slots:
+    void setCurrentTool(Tool tool);
+
+public:
+      void addShape(Shapes *shape);
 
 private:
     Ui::Board *ui;
@@ -68,13 +79,14 @@ private:
     QPointF translateWidget;
     QList<Shapes*> formes;
     Shapes *draggedShape;
-    QBrush brush;
     bool printGrid = true;
 
     void setupShapes();
 
     MODE mode;
     FORME forme;
+
+    bool isDrawing =false;
 };
 
 #endif // BOARD_H

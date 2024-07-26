@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1011</width>
-    <height>835</height>
+    <width>1128</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
            <item>
             <widget class="QPushButton" name="penColorPB">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
@@ -49,113 +49,87 @@
            <property name="topMargin">
             <number>0</number>
            </property>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="penDirectColor1">
-             <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="penDirectColor5">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string notr="true"/>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="3">
             <widget class="QPushButton" name="penDirectColor4">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="penDirectColor2">
+           <item row="1" column="3">
+            <widget class="QPushButton" name="penDirectColor10">
              <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="5">
-            <widget class="QPushButton" name="penDirectColor6">
-             <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="0" column="2">
             <widget class="QPushButton" name="penDirectColor3">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
-           <item row="0" column="6">
-            <widget class="QPushButton" name="penDirectColor7">
+           <item row="0" column="4">
+            <widget class="QPushButton" name="penDirectColor5">
              <property name="text">
-              <string notr="true"/>
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="penDirectColor2">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="penDirectColor1">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QPushButton" name="penDirectColor6">
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="penDirectColor8">
+            <widget class="QPushButton" name="penDirectColor7">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="penDirectColor9">
+            <widget class="QPushButton" name="penDirectColor8">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="penDirectColor10">
+            <widget class="QPushButton" name="penDirectColor9">
              <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="penDirectColor11">
-             <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="QPushButton" name="penDirectColor12">
+            <widget class="QPushButton" name="penDirectColor11">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
            <item row="1" column="5">
-            <widget class="QPushButton" name="penDirectColor13">
+            <widget class="QPushButton" name="penDirectColor12">
              <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="6">
-            <widget class="QPushButton" name="penDirectColor14">
-             <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
@@ -258,7 +232,7 @@
            <item>
             <widget class="QPushButton" name="fillColorPB">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
@@ -347,7 +321,7 @@
            <item>
             <widget class="QPushButton" name="sceneColorPB">
              <property name="text">
-              <string notr="true"/>
+              <string/>
              </property>
             </widget>
            </item>
@@ -361,32 +335,32 @@
         <property name="title">
          <string>Library</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
-          <widget class="QLabel" name="Ellipse">
+          <widget class="QLabel" name="Quick">
            <property name="text">
-            <string>TextLabel</string>
+            <string>Quick</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="Star">
+           <property name="text">
+            <string>Star</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="Rectangle">
            <property name="text">
-            <string>TextLabel</string>
+            <string>Rectangle</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="Circle">
+          <widget class="QLabel" name="Ellipse">
            <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="Quick">
-           <property name="text">
-            <string>TextLabel</string>
+            <string>Ellipse</string>
            </property>
           </widget>
          </item>
@@ -405,8 +379,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>402</width>
-         <height>714</height>
+         <width>832</width>
+         <height>640</height>
         </rect>
        </property>
       </widget>
@@ -439,8 +413,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1011</width>
-     <height>24</height>
+     <width>1128</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -509,11 +483,11 @@
    <addaction name="actionPen"/>
    <addaction name="actionEraser"/>
    <addaction name="actionEllipse"/>
-   <addaction name="actionStar"/>
    <addaction name="actionRectangle"/>
+   <addaction name="actionStar"/>
    <addaction name="separator"/>
-   <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
+   <addaction name="actionUndo"/>
   </widget>
   <action name="actionAdd_Image">
    <property name="icon">

@@ -2,7 +2,7 @@
 
 
 //------------------------------------------------------------------------------------------
-/** Brief Constructeur par défaut de la classe Pen
+/** \brief Constructeur par défaut de la classe Pen
  */
 Pen::Pen(QWidget *parent) : QWidget(parent)
 {
@@ -12,7 +12,7 @@ Pen::Pen(QWidget *parent) : QWidget(parent)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Constructeur avec initialisation du style et de la couleur
+/** \brief Constructeur avec initialisation du style et de la couleur
  *  \param style Style du pen
  *  \param color Couleur du pen
  */
@@ -24,7 +24,7 @@ Pen::Pen(Qt::PenStyle style, QColor color, int width)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction setter de la couleur du pen
+/** \brief Fonction setter de la couleur du pen
  *  \param color Couleur du pen
  */
 void Pen::setColor(const QColor &color)
@@ -35,7 +35,7 @@ void Pen::setColor(const QColor &color)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction setter du style du pen
+/** \brief Fonction setter du style du pen
  *  \param style Style du pen
  */
 void Pen::setStyle(const Qt::PenStyle &style)
@@ -45,7 +45,7 @@ void Pen::setStyle(const Qt::PenStyle &style)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction setter de la largeur du pen
+/** \brief Fonction setter de la largeur du pen
  *  \param width Largeur du pen
  */
 void Pen::setWidth(int width)
@@ -64,7 +64,7 @@ bool Pen::isDrawing()
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction getter de la couleur du pen
+/** \brief Fonction getter de la couleur du pen
  *  \return Couleur du pen
  */
 QColor Pen::getColor()
@@ -73,7 +73,7 @@ QColor Pen::getColor()
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction aui actiive le mode de dessin
+/** \brief Fonction aui actiive le mode de dessin
  *  \param val true pour activer et false pour désactiver
  */
 void Pen::setDrawingMode(bool val)
@@ -87,7 +87,7 @@ void Pen::setDrawingMode(bool val)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction aui actiive le mode gomme
+/** \brief Fonction aui actiive le mode gomme
  *  \param val true pour activer et false pour désactiver
  */
 void Pen::setEraseMode(bool val)
@@ -96,7 +96,7 @@ void Pen::setEraseMode(bool val)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction de gestion des cliques de la souris
+/** \brief Fonction de gestion des cliques de la souris
  *  \param event Pointeur sur les évenemets souris
  */
 void Pen::mousePressEvent(QMouseEvent *event)
@@ -109,7 +109,7 @@ void Pen::mousePressEvent(QMouseEvent *event)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction de gestion des mouvements de la souris
+/** \brief Fonction de gestion des mouvements de la souris
  *  \param event Pointeur sur les évenemets souris
  */
 void Pen::mouseMoveEvent(QMouseEvent *event)
@@ -158,7 +158,7 @@ void Pen::mouseMoveEvent(QMouseEvent *event)
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction de gestion des relachements de clique souris
+/** \brief Fonction de gestion des relachements de clique souris
  *  \param event Pointeur sur les évenemets souris
  */
 void Pen::mouseReleaseEvent(QMouseEvent *event)
@@ -201,7 +201,7 @@ void Pen::redo()
 }
 
 //------------------------------------------------------------------------------------------
-/** Brief Fonction mainLoop de la classe Pen gérant l'affichage des points courants et précédement
+/** \brief Fonction mainLoop de la classe Pen gérant l'affichage des points courants et précédement
  *  déssinés sur le painter du board passé en paramètre
  *  \param event Pointeur sur les évenements QPaintEvent
  *  \param painter Pointeur sur les évenements QPaintEvent

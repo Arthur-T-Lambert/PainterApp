@@ -48,16 +48,6 @@ public:
 
     void resetIconToolBar();
 
-
-protected:
-
-    // void paintEvent(QPaintEvent *event) override;
-    // void mousePressEvent(QMouseEvent *event) override;
-    // void mouseMoveEvent(QMouseEvent *event) override;
-    // void mouseReleaseEvent(QMouseEvent *event) override;
-    // void dragEnterEvent(QDragEnterEvent *event) override;
-    // void dropEvent(QDropEvent *event) override;
-
 private slots:
 
     /**
@@ -66,13 +56,6 @@ private slots:
      */
     void on_actionQuit_triggered();
 
-
-protected:
-        //void dragEnterEvent(QDragEnterEvent *event) override;
-        //void dropEvent(QDropEvent *event) override;
-    // void mousePressEvent(QMouseEvent*);
-    // void dragEnterEvent(QDragEnterEvent*);
-    // void dropEvent(QDropEvent*);
 protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
