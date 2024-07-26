@@ -9,21 +9,25 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dessin.cpp \
     draggablepixmapitem.cpp \
     board.cpp \
     main.cpp \
     mainwindow.cpp \
     shapes.cpp \
     pen.cpp \
-    undoCommand.h
+    undoCommand.cpp
+
 
 HEADERS += \
     board.h \
+    dessin.h \
     draggablepixmapitem.h \
     mainwindow.h \
     shapes.h \
-    pen.h
-    undoCommand.cpp
+    pen.h \
+    undoCommand.h
+
 
 FORMS += \
     board.ui \

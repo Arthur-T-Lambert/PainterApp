@@ -4,13 +4,7 @@
 #include <QPainter>
 #include <QPoint>
 
-class Dessin {
-public:
-    virtual void move(const QPoint &delta) = 0;
-   // virtual void undo() = 0;
-   // virtual void redo() = 0;
-};
-
+#include "dessin.h"
 
 class Shapes : public Dessin {
 public:
