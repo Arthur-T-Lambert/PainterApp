@@ -15,10 +15,8 @@
 #include <QColor>
 #include <QBrush>
 #include <QList>
-#include <QDropEvent>
-#include "ui_board.h"
-//#include "draggablepixmapitem.h"
 
+#include "ui_board.h"
 #include "Shapes.h"
 
 QT_BEGIN_NAMESPACE
@@ -35,10 +33,6 @@ public:
     explicit Board(QWidget *parent = nullptr);
     ~Board();
 
-    enum Tool { None,Cursor, RectangleTool, EllipseTool, StarTool };
-
-
-
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
@@ -51,23 +45,20 @@ public:
     void zoomPlus();
     void zoomMoins();
 
-    void drawShape(const QPoint &start, const QPoint &end);// pas sure
+    void drawShape(const QPoint &start, const QPoint &end);
     Shapes* createShape(const QPoint &start, const QPoint &end);
-    //void drawStar(QPainter &painter, const QRect &rect);//pas sure
-
-    Tool currentTool= None;//private
     void updateCursor();
+
+    enum Tool { None,Cursor, RectangleTool, EllipseTool, StarTool };
+    Tool currentTool= None;
+
+
 public slots:
     void setCurrentTool(Tool tool);
-    // void setPenColor(const QColor &color);//pas sure
-    // void setPenWidth(int width);//pas sure
 
-
-// protected:
-        //void dragEnterEvent(QDragEnterEvent *event) override;
-        //void dropEvent(QDropEvent *event) override;
 public:
       void addShape(Shapes *shape);
+
 private:
     Ui::Board *ui;
     float zoomVal;
@@ -81,7 +72,6 @@ private:
     QList<Shapes*> formes;
     Shapes *draggedShape;
 
-    void setupShapes();
     bool isDrawing =false;
 };
 

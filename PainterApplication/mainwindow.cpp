@@ -2,15 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QMouseEvent>
-// #include <QGraphicsPixmapItem>
 #include <QPixmap>
-// #include <QGraphicsScene>
-// #include "draggablepixmapitem.h"
 #include <QDragEnterEvent>
 #include <QMimeData>
-#include <QMessageBox>
 #include <QDrag>
-#include <memory>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap scaledRectanglePixmap = rectanglePixmap.scaled(50, 50);
     ui->Rectangle->setPixmap(scaledRectanglePixmap);
     ui->Rectangle->setFixedSize(50, 50);
-    // ui->Rectangle->move(10, 10);
     ui->Rectangle->show();
     ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -47,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap scaledStarPixmap = starPixmap.scaled(50, 50);
     ui->Star->setPixmap(scaledStarPixmap);
     ui->Star->setFixedSize(50, 50);
-    // ui->Rectangle->move(10, 10);
     ui->Star->show();
     ui->Star->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -55,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap scaledQuickPixmap = quickPixmap.scaled(50, 50);
     ui->Quick->setPixmap(scaledQuickPixmap);
     ui->Quick->setFixedSize(50, 50);
-    // ui->Rectangle->move(10, 10);
     ui->Quick->show();
     ui->Quick->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -109,37 +101,6 @@ void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 
 void MainWindow::dropEvent(QDropEvent *event)
 {
-    // if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
-    //     QByteArray itemData = event->mimeData()->data("application/x-dnditemdata");
-    //     QDataStream dataStream(&itemData, QIODevice::ReadOnly);
-
-    //     QPixmap pixmap;
-    //     QPoint offset;
-    //     dataStream >> pixmap >> offset;
-
-    //     QPen pen(Qt::black, 4, Qt::DotLine);
-    //     QBrush ellipseBrush(Qt::gray);
-
-    //     QPainter painter(this);
-    //     maForme->draw(&painter);
-
-    //     QLabel *newIcon = new QLabel(this);
-    //     newIcon->setPixmap(pixmap);
-    //     newIcon->move(event->position().toPoint()/* - offset*/);
-    //     newIcon->show();
-    //     newIcon->setAttribute(Qt::WA_DeleteOnClose);
-
-
-
-    //     if (event->source() == this) {
-    //         event->setDropAction(Qt::CopyAction);
-    //         event->accept();
-    //     } else {
-    //         event->acceptProposedAction();
-    //     }
-    // } else {
-    //     event->ignore();
-    // }
     if (event->mimeData()->hasFormat("application/x-dnditemdata")) {
         QByteArray itemData = event->mimeData()->data("application/x-dnditemdata");
         QDataStream dataStream(&itemData, QIODevice::ReadOnly);
@@ -160,11 +121,7 @@ void MainWindow::dropEvent(QDropEvent *event)
         if (shapeType == "Star") {
             shape = new Star(dropPos, 50);
         } else if (shapeType == "Quick") {
-            // QLabel *newIcon = new QLabel(this);
-            // newIcon->setPixmap(pixmap);
-            // newIcon->move(event->position().toPoint() - offset);
-            // newIcon->show();
-            // newIcon->setAttribute(Qt::WA_DeleteOnClose);
+
             shape = new ImageQuick(QRect(dropPos, QSize(100, 100)), ":/images/quick.png");
         }
 
@@ -189,39 +146,6 @@ void MainWindow::dropEvent(QDropEvent *event)
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    // QLabel *child = static_cast<QLabel*>(childAt(event->position().toPoint()));
-    // if (!child)
-    //     return;
-
-    // QPixmap pixmap = child->pixmap();
-
-    // QByteArray itemData;
-    // QDataStream dataStream(&itemData, QIODevice::WriteOnly);
-    // dataStream << pixmap << QPoint(event->position().toPoint() - child->pos());
-
-    // QMimeData *mimeData = new QMimeData;
-    // mimeData->setData("application/x-dnditemdata", itemData);
-
-    // QDrag *drag = new QDrag(this);
-    // drag->setMimeData(mimeData);
-    // drag->setPixmap(pixmap);
-    // drag->setHotSpot(/*event->position().toPoint() - */child->pos());
-
-
-    // QPixmap tempPixmap = pixmap;
-    // QPainter painter;
-    // painter.begin(&tempPixmap);
-    // painter.fillRect(pixmap.rect(), QColor(127, 127, 127, 127));
-    // painter.end();
-
-    // child->setPixmap(tempPixmap);
-
-    // if (drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction) == Qt::MoveAction) {
-    //     child->close();
-    // } else {
-    //     child->show();
-    //     child->setPixmap(pixmap);
-    // }
     QLabel *child = static_cast<QLabel*>(childAt(event->position().toPoint()));
     if (!child)
         return;

@@ -1,7 +1,4 @@
 #include "board.h"
-
-
-#include <QMimeData>
 //------------------------------------------------------------------------------------------
 /** Brief Constructeur de la classe Board
  *  \param parent Pointeur sur le widget parent
@@ -143,18 +140,6 @@ void Board::updateDimensionAndPosition(QPainter &painter)
 */
 void Board::mousePressEvent(QMouseEvent *event)
 {
-    // // Récupération de l'event clique gauche
-    // if (event->button() == Qt::LeftButton)
-    // {
-    //     lastMousePosition = event->pos();
-    //     // Récupération de l'event clique sur une forme
-    //     for (Shapes *shape : formes) {
-    //         if (shape->contains(event->pos())) {
-    //             draggedShape = shape;
-    //             break;
-    //         }
-    //     }
-    // }
 
     if (event->button() == Qt::LeftButton)
     {
@@ -179,19 +164,6 @@ void Board::mousePressEvent(QMouseEvent *event)
 */
 void Board::mouseMoveEvent(QMouseEvent *event)
 {
-    // if (event->buttons() & Qt::LeftButton) {
-    //     QPoint delta = (event->pos() - lastMousePosition);
-
-    //     drawShape(lastMousePosition, event->pos());
-
-    //     if (draggedShape) {
-    //         //QPoint delta = event->pos() - lastMousePosition;
-    //         draggedShape->move(delta);
-    //         lastMousePosition = event->pos();
-    //         update();
-    //     }
-
-
     if (event->buttons() & Qt::LeftButton) {
         if (isDrawing) {
             drawShape(lastMousePosition, event->pos());
@@ -231,13 +203,6 @@ void Board::mouseMoveEvent(QMouseEvent *event)
 */
 void Board::mouseReleaseEvent(QMouseEvent *event)
 {
-   //  //indexShapeSelected = -1; // Reset de l'index de la forme séléctionné
-   // // Q_UNUSED(event);
-   //  draggedShape = nullptr;
-   //  if (event->button() == Qt::LeftButton) {
-   //      drawShape(lastMousePosition, event->pos());
-   //  }
-
     if (event->button() == Qt::LeftButton) {
         if (isDrawing) {
             // Finaliser le dessin de la forme
@@ -319,90 +284,6 @@ void Board::zoomMoins()
     }
 }
 
-void Board::setupShapes() {
-    // QPen pen(Qt::black, 4, Qt::DotLine);
-    // QBrush ellipseBrush(Qt::gray);
-    // formes.append(new Ellipse(QRect(10, 10, 100, 50)));
-    // formes.last()->setProperties(pen, ellipseBrush);
-
-    // QBrush rectBrush(Qt::red);
-    // formes.append(new Rectangle(QRect(600, 250, 150, 75)));
-    // formes.last()->setProperties(pen, rectBrush);
-
-    // QBrush starBrush(Qt::magenta);
-    // formes.append(new Star(QPoint(350, 150), 50));
-    // formes.last()->setProperties(pen, starBrush);
-
-    // formes.append(new ImageQuick(QRect(300, 300, 50, 50), ":/images/quick.png"));
-}
-
-// void Board::dropEvent(QDropEvent *event) {
-//     if (event->mimeData()->hasFormat("application/x-shape") && event->mimeData()->hasImage()) {
-//         QByteArray itemData = event->mimeData()->data("application/x-shape");
-//         QDataStream dataStream(&itemData, QIODevice::ReadOnly);
-//         int shapeTypeInt;
-//         dataStream >> shapeTypeInt;
-//         DraggablePixmapItem::ShapeType shapeType = static_cast<DraggablePixmapItem::ShapeType>(shapeTypeInt);
-
-//         QPixmap pixmap = qvariant_cast<QPixmap>(event->mimeData()->imageData());
-//         QPoint dropPos = event->pos();
-
-//         Shapes* newShape = createShapeFromType(shapeType, dropPos, pixmap.size());
-
-//         if (newShape) {
-//             formes.append(newShape);
-//             update();
-//         }
-
-//         event->acceptProposedAction();
-//     }
-// }
-
-// void Board::dropEvent(QDropEvent *event)
-// {
-//     if (event->mimeData()->hasFormat("application/x-shape") && event->mimeData()->hasImage()) {
-//         QByteArray itemData = event->mimeData()->data("application/x-shape");
-//         QDataStream dataStream(&itemData, QIODevice::ReadOnly);
-//         int shapeTypeInt;
-//         dataStream >> shapeTypeInt;
-//         DraggablePixmapItem::ShapeType shapeType = static_cast<DraggablePixmapItem::ShapeType>(shapeTypeInt);
-
-//         QPixmap pixmap = qvariant_cast<QPixmap>(event->mimeData()->imageData());
-//         QPoint dropPos = event->pos();
-
-//         Shapes* newShape = createShapeFromType(shapeType, dropPos, pixmap.size());
-
-//         if (newShape) {
-//             formes.append(newShape);
-//             update();
-//         }
-
-//         event->acceptProposedAction();
-//     }
-// }
-
-// Shapes* Board::createShapeFromType(DraggablePixmapItem::ShapeType type, const QPoint& pos, const QSize& size)
-// {
-//     QPen pen(Qt::black, 4, Qt::DotLine);
-//     QBrush brush;
-
-//     switch(type) {
-//     case DraggablePixmapItem::Ellipse:
-//         brush = QBrush(Qt::gray);
-//         return new Ellipse(QRect(pos, size));
-//     case DraggablePixmapItem::Rectangle:
-//         brush = QBrush(Qt::red);
-//         return new Rectangle(QRect(pos, size));
-//     case DraggablePixmapItem::Star:
-//         brush = QBrush(Qt::magenta);
-//         return new Star(pos, std::min(size.width(), size.height()) / 2);
-//     case DraggablePixmapItem::Quick:
-//         return new ImageQuick(QRect(pos, size), ":/images/quick.png");
-//     default:
-//         return nullptr;
-//     }
-// }
-
 void Board::addShape(Shapes *shape)
 {
     formes.append(shape);
@@ -411,7 +292,6 @@ void Board::addShape(Shapes *shape)
 
 void Board::drawShape(const QPoint &start, const QPoint &end)
 {
-
     update();
 }
 void Board::setCurrentTool(Tool tool)
