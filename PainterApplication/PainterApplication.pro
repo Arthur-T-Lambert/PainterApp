@@ -12,12 +12,14 @@ SOURCES += \
     board.cpp \
     main.cpp \
     mainwindow.cpp \
-    shapes.cpp
+    shapes.cpp \
+    pen.cpp
 
 HEADERS += \
     board.h \
     mainwindow.h \
-    shapes.h
+    shapes.h \
+    pen.h
 
 FORMS += \
     board.ui \

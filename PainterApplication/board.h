@@ -15,15 +15,19 @@
 #include <QColor>
 #include <QBrush>
 #include <QList>
-
+//#include <QDropEvent>
 #include "ui_board.h"
 #include "Shapes.h"
+#include "pen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Board;
 }
 QT_END_NAMESPACE
+
+enum class MODE{DESSIN_LIBRE, DRAG_AND_DROP, GOMME, SELECT, FORMES};
+enum class FORME{ELLIPSE, RECTANGLE, STAR};
 
 class Board : public QWidget
 {
@@ -41,9 +45,17 @@ public:
     void updateDimensionAndPosition(QPainter &painter);
     void drawGrid(QPainter &painter);
     void drawBackground(QPainter &painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &brushColor);
+    void setMode(MODE m);
+    void setForme(FORME m);
+    void showGrid(bool print);
+    void setBrushStyle(const Qt::BrushStyle &brush);
+    void setBrushColor(const QColor &color);
+    MODE getMode();
     void refresh();
     void zoomPlus();
     void zoomMoins();
+    Pen *pen;
+    QBrush brush;
 
     void drawShape(const QPoint &start, const QPoint &end);
     Shapes* createShape(const QPoint &start, const QPoint &end);
@@ -64,13 +76,14 @@ private:
     float zoomVal;
     QPoint lastMousePosition;
     QPointF translateWidget;
-    QList<QRectF> shapes; //Utilisation de QRectF car le déplacement des formes doit se faire en flottant et non en int
-    int indexShapeSelected;
-
-
-
     QList<Shapes*> formes;
     Shapes *draggedShape;
+    bool printGrid = true;
+
+
+    MODE mode;
+    FORME forme;
+
 
     bool isDrawing =false;
 };
