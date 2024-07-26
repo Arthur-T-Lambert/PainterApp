@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['dessin_0',['Dessin',['../class_dessin.html',1,'']]],
-  ['draggablepixmapitem_1',['DraggablePixmapItem',['../class_draggable_pixmap_item.html',1,'']]],
-  ['drawbackground_2',['drawBackground',['../class_board.html#a7fa5f6d2a5b43276a50d82cddcbddf19',1,'Board']]],
-  ['drawgrid_3',['drawGrid',['../class_board.html#a854da8919bfd22ca47a5c9e8f8cec27a',1,'Board']]]
+  ['board_0',['Board',['../class_board.html',1,'Board'],['../class_ui_1_1_board.html',1,'Ui::Board'],['../class_board.html#ad94f044a14025dc1c3fede4e3828898b',1,'Board::Board()']]],
+  ['board_2eh_1',['board.h',['../board_8h.html',1,'']]]
 ];

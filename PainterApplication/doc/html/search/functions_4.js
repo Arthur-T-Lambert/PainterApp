@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['paintevent_0',['paintEvent',['../class_board.html#a2957913242c313e9de7eeb5fb0d012f9',1,'Board']]]
+  ['ellipse_0',['Ellipse',['../class_ellipse.html#a27bdc530e30acc20d9d1ac7317f15cfb',1,'Ellipse']]]
 ];

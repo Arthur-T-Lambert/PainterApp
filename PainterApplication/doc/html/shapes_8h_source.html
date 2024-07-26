@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">PainterApplication<span id="projectnumber">&#160;0.1</span>
    </div>
-   <div id="projectbrief">A small &quot;paint&quot; application in the contex of a training</div>
+   <div id="projectbrief">A small &quot;paint&quot; application in the context of a training</div>
   </td>
  </tr>
  </tbody>
@@ -88,120 +88,135 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">shapes.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SHAPE_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SHAPE_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;QPainter&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;QPoint&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_dessin.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="class_dessin.html">Dessin</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) = 0;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>   <span class="comment">// virtual void undo() = 0;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>   <span class="comment">// virtual void redo() = 0;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> save(QDataStream&amp;) = 0;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef SHAPE_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define SHAPE_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QPainter&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QPoint&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_dessin.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_dessin.html">Dessin</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) = 0;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>   <span class="comment">// virtual void undo() = 0;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>   <span class="comment">// virtual void redo() = 0;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>};</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_shapes.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="class_shapes.html">Shapes</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_dessin.html">Dessin</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw(QPainter *painter) = 0;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setProperties(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) = 0;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) = 0;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="class_shapes.html">~Shapes</a>() {}</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>   <span class="comment">// virtual void undo() = 0;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>   <span class="comment">// virtual void redo() = 0;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> contains(<span class="keyword">const</span> QPoint &amp;point) = 0;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_shapes.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="class_shapes.html">Shapes</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_dessin.html">Dessin</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_shapes.html#a0a8b5333747328b56bd73db7d395ebda">   29</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shapes.html#a0a8b5333747328b56bd73db7d395ebda">draw</a>(QPainter *painter) = 0;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_shapes.html#a8a8ac8c633c5bb63e0ac5c11ebb3ee45">   35</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shapes.html#a8a8ac8c633c5bb63e0ac5c11ebb3ee45">setProperties</a>(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) = 0;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_shapes.html#a36bffe5bf2f352082bfa9d159ffde2a8">   40</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_shapes.html#a36bffe5bf2f352082bfa9d159ffde2a8">move</a>(<span class="keyword">const</span> QPoint &amp;delta) = 0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_shapes.html#a037e5c859777ac3ea8a7c56f3ec5d31e">   44</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_shapes.html#a037e5c859777ac3ea8a7c56f3ec5d31e">~Shapes</a>() {}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>   <span class="comment">// virtual void undo() = 0;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>   <span class="comment">// virtual void redo() = 0;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_shapes.html#a2486d6e1fa43e7ac199ef3671ae7c50a">   52</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_shapes.html#a2486d6e1fa43e7ac199ef3671ae7c50a">contains</a>(<span class="keyword">const</span> QPoint &amp;point) = 0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_ellipse.html">   28</a></span><span class="keyword">class </span><a class="code hl_class" href="class_ellipse.html">Ellipse</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_class" href="class_ellipse.html">Ellipse</a>(<span class="keyword">const</span> QRect &amp;r);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> draw(QPainter *painter) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> setProperties(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">bool</span> contains(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> save(QDataStream&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    QRect rect;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    QPen pen;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    QBrush brush;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_ellipse.html">   59</a></span><span class="keyword">class </span><a class="code hl_class" href="class_ellipse.html">Ellipse</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_function" href="class_ellipse.html#a27bdc530e30acc20d9d1ac7317f15cfb">Ellipse</a>(<span class="keyword">const</span> QRect &amp;r);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_ellipse.html#adf45b0ca2fcd9900156b4c6004b55377">draw</a>(QPainter *painter) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_ellipse.html#a476e9f606b7ab1653f3db6d95dbe5600">setProperties</a>(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_ellipse.html#a02fe6d68c9c8eb3444aa71c2f7a8b7f8">move</a>(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_ellipse.html#a874b99bf56c37a40ff6b82f48da46ba8">contains</a>(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    QRect rect;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    QPen pen;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    QBrush brush;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
 </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_rectangle.html">   44</a></span><span class="keyword">class </span><a class="code hl_class" href="class_rectangle.html">Rectangle</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="class_rectangle.html">Rectangle</a>(<span class="keyword">const</span> QRect &amp;r);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> draw(QPainter *painter) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> setProperties(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">bool</span> contains(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> save(QDataStream&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    QRect rect;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    QPen pen;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    QBrush brush;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="};">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_rectangle.html">   98</a></span><span class="keyword">class </span><a class="code hl_class" href="class_rectangle.html">Rectangle</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="class_rectangle.html#ad6f1dd13b271051263c239a0e890674b">Rectangle</a>(<span class="keyword">const</span> QRect &amp;r);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_rectangle.html#aadeb9f1ff8398bead1c997904a80edca">draw</a>(QPainter *painter) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_rectangle.html#a89ee164b0e00095c0298dae5028db42b">setProperties</a>(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_rectangle.html#a8cc34fc6a48c28bb3b2fecacab81ab71">move</a>(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_rectangle.html#a59510a97eff9d4a9d073f8f0e9e1cf7b">contains</a>(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    QRect rect;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    QPen pen;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    QBrush brush;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>};</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_star.html">   60</a></span><span class="keyword">class </span><a class="code hl_class" href="class_star.html">Star</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_class" href="class_star.html">Star</a>(<span class="keyword">const</span> QPoint &amp;c, <span class="keywordtype">int</span> r);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> draw(QPainter *painter) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> setProperties(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">bool</span> contains(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> save(QDataStream&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> updatePolygon();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    QPoint center;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">int</span> radius;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    QPen pen;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    QBrush brush;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    QPolygon polygon;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="};">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="class_star.html">  137</a></span><span class="keyword">class </span><a class="code hl_class" href="class_star.html">Star</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <a class="code hl_function" href="class_star.html#ac062dd8c5ae16ef21d48b750e64d915f">Star</a>(<span class="keyword">const</span> QPoint &amp;c, <span class="keywordtype">int</span> r);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_star.html#ada1f93d5bdedd051735da2afacbf0c64">draw</a>(QPainter *painter) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_star.html#ad15031a359c58c4cccde3c292fe1ccc2">setProperties</a>(<span class="keyword">const</span> QPen &amp;pen, <span class="keyword">const</span> QBrush &amp;brush) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_star.html#af0e9a097cca1b9603a1829b150145120">move</a>(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_star.html#a319fca9681d1d0f6c73cdbfe5a59547b">contains</a>(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span> updatePolygon();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    QPoint center;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">int</span> radius;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    QPen pen;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    QBrush brush;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    QPolygon polygon;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
 </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="class_image_quick.html">   80</a></span><span class="keyword">class </span><a class="code hl_class" href="class_image_quick.html">ImageQuick</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_class" href="class_image_quick.html">ImageQuick</a>(<span class="keyword">const</span> QRect &amp;r, <span class="keyword">const</span> QString &amp;path);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span> draw(QPainter *painter) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> setProperties(<span class="keyword">const</span> QPen &amp;, <span class="keyword">const</span> QBrush &amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> move(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">bool</span> contains(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> save(QDataStream&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    QRect rect;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    QString imagePath;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    QImage image;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="};">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="class_image_quick.html">  184</a></span><span class="keyword">class </span><a class="code hl_class" href="class_image_quick.html">ImageQuick</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shapes.html">Shapes</a> {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <a class="code hl_function" href="class_image_quick.html#aff1614df7e34771919dbc60ea0b9a44d">ImageQuick</a>(<span class="keyword">const</span> QRect &amp;r, <span class="keyword">const</span> QString &amp;path);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_image_quick.html#a4978634bee9fbc002f9a5fd7dab6ca3c">draw</a>(QPainter *painter) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_image_quick.html#a1d223f621c26706f19208a670e9cf6e0">setProperties</a>(<span class="keyword">const</span> QPen &amp;, <span class="keyword">const</span> QBrush &amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_image_quick.html#a0740c2eab1bb177415a506de3819a8e7">move</a>(<span class="keyword">const</span> QPoint &amp;delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_image_quick.html#a630e364d9223fc390cc30bbe7a334e2b">contains</a>(<span class="keyword">const</span> QPoint &amp;point) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    QRect rect;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    QString imagePath;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    QImage image;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>};</div>
 </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif </span><span class="comment">// SHAPE_H</span></div>
-<div class="ttc" id="aclass_dessin_html"><div class="ttname"><a href="class_dessin.html">Dessin</a></div><div class="ttdef"><b>Definition</b> shapes.h:7</div></div>
-<div class="ttc" id="aclass_ellipse_html"><div class="ttname"><a href="class_ellipse.html">Ellipse</a></div><div class="ttdef"><b>Definition</b> shapes.h:28</div></div>
-<div class="ttc" id="aclass_image_quick_html"><div class="ttname"><a href="class_image_quick.html">ImageQuick</a></div><div class="ttdef"><b>Definition</b> shapes.h:80</div></div>
-<div class="ttc" id="aclass_rectangle_html"><div class="ttname"><a href="class_rectangle.html">Rectangle</a></div><div class="ttdef"><b>Definition</b> shapes.h:44</div></div>
-<div class="ttc" id="aclass_shapes_html"><div class="ttname"><a href="class_shapes.html">Shapes</a></div><div class="ttdef"><b>Definition</b> shapes.h:17</div></div>
-<div class="ttc" id="aclass_star_html"><div class="ttname"><a href="class_star.html">Star</a></div><div class="ttdef"><b>Definition</b> shapes.h:60</div></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="preprocessor">#endif </span><span class="comment">// SHAPE_H</span></div>
+<div class="ttc" id="aclass_dessin_html"><div class="ttname"><a href="class_dessin.html">Dessin</a></div><div class="ttdef"><b>Definition</b> shapes.h:12</div></div>
+<div class="ttc" id="aclass_ellipse_html"><div class="ttname"><a href="class_ellipse.html">Ellipse</a></div><div class="ttdef"><b>Definition</b> shapes.h:59</div></div>
+<div class="ttc" id="aclass_ellipse_html_a02fe6d68c9c8eb3444aa71c2f7a8b7f8"><div class="ttname"><a href="class_ellipse.html#a02fe6d68c9c8eb3444aa71c2f7a8b7f8">Ellipse::move</a></div><div class="ttdeci">void move(const QPoint &amp;delta) override</div><div class="ttdoc">Moves the ellipse.</div><div class="ttdef"><b>Definition</b> shapes.cpp:18</div></div>
+<div class="ttc" id="aclass_ellipse_html_a27bdc530e30acc20d9d1ac7317f15cfb"><div class="ttname"><a href="class_ellipse.html#a27bdc530e30acc20d9d1ac7317f15cfb">Ellipse::Ellipse</a></div><div class="ttdeci">Ellipse(const QRect &amp;r)</div><div class="ttdoc">Constructor for the ellipse.</div><div class="ttdef"><b>Definition</b> shapes.cpp:5</div></div>
+<div class="ttc" id="aclass_ellipse_html_a476e9f606b7ab1653f3db6d95dbe5600"><div class="ttname"><a href="class_ellipse.html#a476e9f606b7ab1653f3db6d95dbe5600">Ellipse::setProperties</a></div><div class="ttdeci">void setProperties(const QPen &amp;pen, const QBrush &amp;brush) override</div><div class="ttdoc">Sets the properties of the ellipse.</div><div class="ttdef"><b>Definition</b> shapes.cpp:13</div></div>
+<div class="ttc" id="aclass_ellipse_html_a874b99bf56c37a40ff6b82f48da46ba8"><div class="ttname"><a href="class_ellipse.html#a874b99bf56c37a40ff6b82f48da46ba8">Ellipse::contains</a></div><div class="ttdeci">bool contains(const QPoint &amp;point) override</div><div class="ttdoc">Checks if a point is contained within the ellipse.</div><div class="ttdef"><b>Definition</b> shapes.cpp:22</div></div>
+<div class="ttc" id="aclass_ellipse_html_adf45b0ca2fcd9900156b4c6004b55377"><div class="ttname"><a href="class_ellipse.html#adf45b0ca2fcd9900156b4c6004b55377">Ellipse::draw</a></div><div class="ttdeci">void draw(QPainter *painter) override</div><div class="ttdoc">Draws the ellipse.</div><div class="ttdef"><b>Definition</b> shapes.cpp:7</div></div>
+<div class="ttc" id="aclass_image_quick_html"><div class="ttname"><a href="class_image_quick.html">ImageQuick</a></div><div class="ttdef"><b>Definition</b> shapes.h:184</div></div>
+<div class="ttc" id="aclass_image_quick_html_a0740c2eab1bb177415a506de3819a8e7"><div class="ttname"><a href="class_image_quick.html#a0740c2eab1bb177415a506de3819a8e7">ImageQuick::move</a></div><div class="ttdeci">void move(const QPoint &amp;delta) override</div><div class="ttdoc">Moves the image.</div><div class="ttdef"><b>Definition</b> shapes.cpp:93</div></div>
+<div class="ttc" id="aclass_image_quick_html_a1d223f621c26706f19208a670e9cf6e0"><div class="ttname"><a href="class_image_quick.html#a1d223f621c26706f19208a670e9cf6e0">ImageQuick::setProperties</a></div><div class="ttdeci">void setProperties(const QPen &amp;, const QBrush &amp;) override</div><div class="ttdoc">Sets the properties of the image.</div><div class="ttdef"><b>Definition</b> shapes.cpp:90</div></div>
+<div class="ttc" id="aclass_image_quick_html_a4978634bee9fbc002f9a5fd7dab6ca3c"><div class="ttname"><a href="class_image_quick.html#a4978634bee9fbc002f9a5fd7dab6ca3c">ImageQuick::draw</a></div><div class="ttdeci">void draw(QPainter *painter) override</div><div class="ttdoc">Draws the image.</div><div class="ttdef"><b>Definition</b> shapes.cpp:86</div></div>
+<div class="ttc" id="aclass_image_quick_html_a630e364d9223fc390cc30bbe7a334e2b"><div class="ttname"><a href="class_image_quick.html#a630e364d9223fc390cc30bbe7a334e2b">ImageQuick::contains</a></div><div class="ttdeci">bool contains(const QPoint &amp;point) override</div><div class="ttdoc">Checks if a point is contained within the image.</div><div class="ttdef"><b>Definition</b> shapes.cpp:97</div></div>
+<div class="ttc" id="aclass_image_quick_html_aff1614df7e34771919dbc60ea0b9a44d"><div class="ttname"><a href="class_image_quick.html#aff1614df7e34771919dbc60ea0b9a44d">ImageQuick::ImageQuick</a></div><div class="ttdeci">ImageQuick(const QRect &amp;r, const QString &amp;path)</div><div class="ttdoc">Constructor for the image.</div><div class="ttdef"><b>Definition</b> shapes.cpp:82</div></div>
+<div class="ttc" id="aclass_rectangle_html"><div class="ttname"><a href="class_rectangle.html">Rectangle</a></div><div class="ttdef"><b>Definition</b> shapes.h:98</div></div>
+<div class="ttc" id="aclass_rectangle_html_a59510a97eff9d4a9d073f8f0e9e1cf7b"><div class="ttname"><a href="class_rectangle.html#a59510a97eff9d4a9d073f8f0e9e1cf7b">Rectangle::contains</a></div><div class="ttdeci">bool contains(const QPoint &amp;point) override</div><div class="ttdoc">Checks if a point is contained within the rectangle.</div><div class="ttdef"><b>Definition</b> shapes.cpp:44</div></div>
+<div class="ttc" id="aclass_rectangle_html_a89ee164b0e00095c0298dae5028db42b"><div class="ttname"><a href="class_rectangle.html#a89ee164b0e00095c0298dae5028db42b">Rectangle::setProperties</a></div><div class="ttdeci">void setProperties(const QPen &amp;pen, const QBrush &amp;brush) override</div><div class="ttdoc">Sets the properties of the rectangle.</div><div class="ttdef"><b>Definition</b> shapes.cpp:35</div></div>
+<div class="ttc" id="aclass_rectangle_html_a8cc34fc6a48c28bb3b2fecacab81ab71"><div class="ttname"><a href="class_rectangle.html#a8cc34fc6a48c28bb3b2fecacab81ab71">Rectangle::move</a></div><div class="ttdeci">void move(const QPoint &amp;delta) override</div><div class="ttdoc">Moves the rectangle.</div><div class="ttdef"><b>Definition</b> shapes.cpp:40</div></div>
+<div class="ttc" id="aclass_rectangle_html_aadeb9f1ff8398bead1c997904a80edca"><div class="ttname"><a href="class_rectangle.html#aadeb9f1ff8398bead1c997904a80edca">Rectangle::draw</a></div><div class="ttdeci">void draw(QPainter *painter) override</div><div class="ttdoc">Draws the rectangle.</div><div class="ttdef"><b>Definition</b> shapes.cpp:29</div></div>
+<div class="ttc" id="aclass_rectangle_html_ad6f1dd13b271051263c239a0e890674b"><div class="ttname"><a href="class_rectangle.html#ad6f1dd13b271051263c239a0e890674b">Rectangle::Rectangle</a></div><div class="ttdeci">Rectangle(const QRect &amp;r)</div><div class="ttdoc">Constructor for the rectangle.</div><div class="ttdef"><b>Definition</b> shapes.cpp:27</div></div>
+<div class="ttc" id="aclass_shapes_html"><div class="ttname"><a href="class_shapes.html">Shapes</a></div><div class="ttdef"><b>Definition</b> shapes.h:23</div></div>
+<div class="ttc" id="aclass_shapes_html_a037e5c859777ac3ea8a7c56f3ec5d31e"><div class="ttname"><a href="class_shapes.html#a037e5c859777ac3ea8a7c56f3ec5d31e">Shapes::~Shapes</a></div><div class="ttdeci">virtual ~Shapes()</div><div class="ttdoc">Destroys the shape.</div><div class="ttdef"><b>Definition</b> shapes.h:44</div></div>
+<div class="ttc" id="aclass_shapes_html_a0a8b5333747328b56bd73db7d395ebda"><div class="ttname"><a href="class_shapes.html#a0a8b5333747328b56bd73db7d395ebda">Shapes::draw</a></div><div class="ttdeci">virtual void draw(QPainter *painter)=0</div><div class="ttdoc">Draws the shape.</div></div>
+<div class="ttc" id="aclass_shapes_html_a2486d6e1fa43e7ac199ef3671ae7c50a"><div class="ttname"><a href="class_shapes.html#a2486d6e1fa43e7ac199ef3671ae7c50a">Shapes::contains</a></div><div class="ttdeci">virtual bool contains(const QPoint &amp;point)=0</div><div class="ttdoc">Checks if a point is contained within the shape.</div></div>
+<div class="ttc" id="aclass_shapes_html_a36bffe5bf2f352082bfa9d159ffde2a8"><div class="ttname"><a href="class_shapes.html#a36bffe5bf2f352082bfa9d159ffde2a8">Shapes::move</a></div><div class="ttdeci">virtual void move(const QPoint &amp;delta)=0</div><div class="ttdoc">Moves the shape.</div></div>
+<div class="ttc" id="aclass_shapes_html_a8a8ac8c633c5bb63e0ac5c11ebb3ee45"><div class="ttname"><a href="class_shapes.html#a8a8ac8c633c5bb63e0ac5c11ebb3ee45">Shapes::setProperties</a></div><div class="ttdeci">virtual void setProperties(const QPen &amp;pen, const QBrush &amp;brush)=0</div><div class="ttdoc">Sets the properties of the shape.</div></div>
+<div class="ttc" id="aclass_star_html"><div class="ttname"><a href="class_star.html">Star</a></div><div class="ttdef"><b>Definition</b> shapes.h:137</div></div>
+<div class="ttc" id="aclass_star_html_a319fca9681d1d0f6c73cdbfe5a59547b"><div class="ttname"><a href="class_star.html#a319fca9681d1d0f6c73cdbfe5a59547b">Star::contains</a></div><div class="ttdeci">bool contains(const QPoint &amp;point) override</div><div class="ttdoc">Checks if a point is contained within the star.</div><div class="ttdef"><b>Definition</b> shapes.cpp:69</div></div>
+<div class="ttc" id="aclass_star_html_ac062dd8c5ae16ef21d48b750e64d915f"><div class="ttname"><a href="class_star.html#ac062dd8c5ae16ef21d48b750e64d915f">Star::Star</a></div><div class="ttdeci">Star(const QPoint &amp;c, int r)</div><div class="ttdoc">Constructor for the star.</div><div class="ttdef"><b>Definition</b> shapes.cpp:49</div></div>
+<div class="ttc" id="aclass_star_html_ad15031a359c58c4cccde3c292fe1ccc2"><div class="ttname"><a href="class_star.html#ad15031a359c58c4cccde3c292fe1ccc2">Star::setProperties</a></div><div class="ttdeci">void setProperties(const QPen &amp;pen, const QBrush &amp;brush) override</div><div class="ttdoc">Sets the properties of the star.</div><div class="ttdef"><b>Definition</b> shapes.cpp:59</div></div>
+<div class="ttc" id="aclass_star_html_ada1f93d5bdedd051735da2afacbf0c64"><div class="ttname"><a href="class_star.html#ada1f93d5bdedd051735da2afacbf0c64">Star::draw</a></div><div class="ttdeci">void draw(QPainter *painter) override</div><div class="ttdoc">Draws the star.</div><div class="ttdef"><b>Definition</b> shapes.cpp:53</div></div>
+<div class="ttc" id="aclass_star_html_af0e9a097cca1b9603a1829b150145120"><div class="ttname"><a href="class_star.html#af0e9a097cca1b9603a1829b150145120">Star::move</a></div><div class="ttdeci">void move(const QPoint &amp;delta) override</div><div class="ttdoc">Moves the star.</div><div class="ttdef"><b>Definition</b> shapes.cpp:64</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
