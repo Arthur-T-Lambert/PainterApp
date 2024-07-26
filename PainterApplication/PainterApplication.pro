@@ -15,6 +15,7 @@ SOURCES += \
     shapes.cpp \
     undoCommand.cpp \
     dessin.cpp
+    pen.cpp
 
 HEADERS += \
     board.h \
@@ -22,6 +23,7 @@ HEADERS += \
     shapes.h \
     undoCommand.h \
     dessin.h
+    pen.h
 
 FORMS += \
     board.ui \
