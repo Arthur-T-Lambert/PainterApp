@@ -3,7 +3,6 @@
 
 #include <QUndoCommand>
 
-<<<<<<< HEAD
 #include "board.h"
 #include "dessin.h"
 
@@ -19,11 +18,6 @@ QT_END_NAMESPACE
 /*
  * Each time a action is executed, it should add a corresponding command to a QUndoStack (stack->push(command);).
  * Then, it can be undone/redone by calling QUndoStack undo/redo slot (this does not trigger a redraw).
-=======
-/*
- * Each time a action is executed, it should add a corresponding command to a QUndoStack (stack->push(command);).
- * Then, it can be undone/redone by calling QUndoStack undo/redo slot
->>>>>>> 633c5b2c29f358312d18f2a3a217d718fa84b5af
  */
 
 class UndoAddCommand : public QUndoCommand
