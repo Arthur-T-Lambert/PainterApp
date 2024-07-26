@@ -9,6 +9,8 @@ public:
     virtual void move(const QPoint &delta) = 0;
    // virtual void undo() = 0;
    // virtual void redo() = 0;
+
+    virtual void save(QDataStream&) = 0;
 };
 
 
@@ -31,6 +33,8 @@ public:
     void move(const QPoint &delta) override;
     bool contains(const QPoint &point) override;
 
+    void save(QDataStream&) override;
+
 private:
     QRect rect;
     QPen pen;
@@ -45,6 +49,8 @@ public:
     void move(const QPoint &delta) override;
     bool contains(const QPoint &point) override;
 
+    void save(QDataStream&) override;
+
 private:
     QRect rect;
     QPen pen;
@@ -58,6 +64,8 @@ public:
     void setProperties(const QPen &pen, const QBrush &brush) override;
     void move(const QPoint &delta) override;
     bool contains(const QPoint &point) override;
+
+    void save(QDataStream&) override;
 
 private:
     void updatePolygon();
@@ -76,6 +84,8 @@ public:
     void setProperties(const QPen &, const QBrush &) override;
     void move(const QPoint &delta) override;
     bool contains(const QPoint &point) override;
+
+    void save(QDataStream&) override;
 
 private:
     QRect rect;

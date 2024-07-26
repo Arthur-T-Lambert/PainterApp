@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
     ui->libraryView->setScene(scene);
 
+    ui->actionSelect->setChecked(true);
+
     _currentPen.setColor(Qt::black);
     _currentPen.setWidth(2);
     _currentPen.setStyle(Qt::SolidLine);
@@ -112,7 +114,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 }
-
 
 MainWindow::~MainWindow() {
     delete ui;
@@ -321,7 +322,22 @@ void MainWindow::on_actionSave_triggered()
     QFile file(fileName);
 
     file.open(QIODevice::WriteOnly);
-    file.write("Le fond de l'air est frais");
+
+    QDataStream stream(&file);
+    stream << QString("PA");
+
+    Ellipse ellipse(QRect(10, 10, 20, 20));
+    ellipse.setProperties(_currentPen, _currentBrush);
+    ellipse.save(stream);
+
+    Rectangle rect(QRect(30, 40, 17, 34));
+    rect.setProperties(_currentPen, _currentBrush);
+    rect.save(stream);
+
+    Star star(QPoint(100, 110), 50);
+    star.setProperties(_currentPen, _currentBrush);
+    star.save(stream);
+
     file.close();
 }
 
@@ -332,7 +348,45 @@ void MainWindow::on_actionLoad_triggered()
 
     if ( fileName.isEmpty() ) return;
 
-    qDebug() << __PRETTY_FUNCTION__ << fileName;
+    QFile file(fileName);
+    file.open(QIODevice::ReadOnly);
 
+    QDataStream stream(&file);
+
+    QString magic;
+    stream >> magic;
+    while ( !stream.atEnd() ) {
+        QString shape;
+        stream >> shape;
+        qDebug() << shape;
+
+        if ( shape == "Ellipse" ) {
+            QRect rect;
+            QPen pen;
+            QBrush brush;
+            stream >> rect >> pen >> brush;
+
+            qDebug() << "Ellipse " << rect << pen << brush;
+        }
+        else if ( shape == "Rectangle" ) {
+            QRect rect;
+            QPen pen;
+            QBrush brush;
+            stream >> rect >> pen >> brush;
+
+            qDebug() << "Rectangle " << rect << pen << brush;
+        }
+        else if ( shape == "Star" ) {
+            QPoint center;
+            int radius;
+            QPen pen;
+            QBrush brush;
+            stream >> center >> radius >> pen >> brush;
+
+            qDebug() << "Star " << center << radius << pen << brush;
+        }
+    }
+
+    file.close();
 }
 

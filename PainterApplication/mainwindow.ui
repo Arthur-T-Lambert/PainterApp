@@ -388,7 +388,7 @@
          <x>0</x>
          <y>0</y>
          <width>598</width>
-         <height>648</height>
+         <height>640</height>
         </rect>
        </property>
       </widget>
@@ -499,7 +499,7 @@
   </widget>
   <action name="actionAdd_Image">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
    </property>
    <property name="text">
@@ -514,7 +514,7 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
    </property>
    <property name="text">
@@ -529,7 +529,7 @@
   </action>
   <action name="actionLoad">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
    </property>
    <property name="text">
@@ -544,7 +544,7 @@
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/close.png</normaloff>:/images/close.png</iconset>
    </property>
    <property name="text">
@@ -559,7 +559,7 @@
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/copyIcon.png</normaloff>:/images/copyIcon.png</iconset>
    </property>
    <property name="text">
@@ -574,7 +574,7 @@
   </action>
   <action name="actionCut">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/cutIcon.png</normaloff>:/images/cutIcon.png</iconset>
    </property>
    <property name="text">
@@ -589,7 +589,7 @@
   </action>
   <action name="actionPaste">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/pasteIcon.png</normaloff>:/images/pasteIcon.png</iconset>
    </property>
    <property name="text">
@@ -604,7 +604,7 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/undoIcon.png</normaloff>:/images/undoIcon.png</iconset>
    </property>
    <property name="text">
@@ -619,7 +619,7 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/redoIcon.png</normaloff>:/images/redoIcon.png</iconset>
    </property>
    <property name="text">
@@ -637,10 +637,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/cursor.png</normaloff>
-     <activeon>:/images/cursor_active.png</activeon>
-     <selectedon>:/images/cursor_active.png</selectedon>:/images/cursor.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/cursor.png</normaloff>:/images/cursor.png</iconset>
    </property>
    <property name="text">
     <string>Select</string>
@@ -657,9 +655,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/rectangle1.png</normaloff>
-     <selectedon>:/images/rectangle1_active.png</selectedon>:/images/rectangle1.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/rectangle1.png</normaloff>:/images/rectangle1.png</iconset>
    </property>
    <property name="text">
     <string>Rectangle</string>
@@ -676,9 +673,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/pen.png</normaloff>
-     <selectedon>:/images/pen_active.png</selectedon>:/images/pen.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/pen.png</normaloff>:/images/pen.png</iconset>
    </property>
    <property name="text">
     <string>Pen</string>
@@ -695,9 +691,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/eraser.png</normaloff>
-     <selectedon>:/images/eraser_active.png</selectedon>:/images/eraser.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/eraser.png</normaloff>:/images/eraser.png</iconset>
    </property>
    <property name="text">
     <string>Eraser</string>
@@ -714,9 +709,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/circle.png</normaloff>
-     <selectedon>:/images/circle_active.png</selectedon>:/images/circle.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/circle.png</normaloff>:/images/circle.png</iconset>
    </property>
    <property name="text">
     <string>Ellipse</string>
@@ -733,9 +727,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/star.png</normaloff>
-     <selectedon>:/images/star_active.png</selectedon>:/images/star.png</iconset>
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/star.png</normaloff>:/images/star.png</iconset>
    </property>
    <property name="text">
     <string>Star</string>
@@ -749,7 +742,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset>
+    <iconset resource="ressource.qrc">
      <normaloff>:/images/about.png</normaloff>:/images/about.png</iconset>
    </property>
    <property name="text">
@@ -782,6 +775,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="ressource.qrc"/>
+ </resources>
  <connections/>
 </ui>
