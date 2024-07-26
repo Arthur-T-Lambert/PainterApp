@@ -186,6 +186,10 @@ private slots:
      */
     void on_actionLoad_triggered();
 
+    void on_actionEnglish_triggered();
+
+    void on_actionFrancais_triggered();
+
 private:
     Ui::MainWindow *ui;
 

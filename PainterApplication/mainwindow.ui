@@ -365,28 +365,28 @@
          <item>
           <widget class="QLabel" name="Quick">
            <property name="text">
-            <string>Quick</string>
+            <string notr="true">Quick</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="Star">
            <property name="text">
-            <string>Star</string>
+            <string notr="true">Star</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="Rectangle">
            <property name="text">
-            <string>Rectangle</string>
+            <string notr="true">Rectangle</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="Ellipse">
            <property name="text">
-            <string>Ellipse</string>
+            <string notr="true">Ellipse</string>
            </property>
           </widget>
          </item>
@@ -405,7 +405,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>832</width>
+         <width>598</width>
          <height>640</height>
         </rect>
        </property>
@@ -479,8 +479,9 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
-    <addaction name="actionLanguage"/>
     <addaction name="actionUser_Manual"/>
+    <addaction name="actionEnglish"/>
+    <addaction name="actionFrancais"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -781,12 +782,28 @@
     <enum>QAction::NoRole</enum>
    </property>
   </action>
-  <action name="actionLanguage">
+  <action name="actionEnglish">
+   <property name="icon">
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/uk.png</normaloff>:/images/uk.png</iconset>
+   </property>
    <property name="text">
-    <string>Language Settings</string>
+    <string>English</string>
    </property>
    <property name="toolTip">
-    <string>Change Language of the Application</string>
+    <string>Set the language to English</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionFrancais">
+   <property name="icon">
+    <iconset resource="ressource.qrc">
+     <normaloff>:/images/fr.png</normaloff>:/images/fr.png</iconset>
+   </property>
+   <property name="text">
+    <string>Français</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

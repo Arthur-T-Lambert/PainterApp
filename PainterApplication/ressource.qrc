@@ -34,5 +34,9 @@
         <file>images/star_active.png</file>
         <file>images/star_cursor.png</file>
         <file>images/undoIcon.png</file>
+        <file>images/fr.png</file>
+        <file>images/uk.png</file>
+        <file>en_US.qm</file>
+        <file>fr_FR.qm</file>
     </qresource>
 </RCC>

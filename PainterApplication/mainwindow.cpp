@@ -14,6 +14,7 @@
 #include <QPixmap>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <Qtranslator>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -618,5 +619,24 @@ void MainWindow::on_actionLoad_triggered()
     }
 
     file.close();
+}
+
+void MainWindow::on_actionEnglish_triggered()
+{
+    QTranslator translator;
+    translator.load(":/en_US.qm");
+    qApp->installTranslator(&translator);
+
+    ui->retranslateUi(this);
+}
+
+
+void MainWindow::on_actionFrancais_triggered()
+{
+    QTranslator translator;
+    translator.load(":/fr_FR.qm");
+    qApp->installTranslator(&translator);
+
+    ui->retranslateUi(this);
 }
 
