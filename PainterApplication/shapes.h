@@ -17,7 +17,7 @@ public:
 };
 
 /**
- * @brief Abstract base class for shapes.
+ * @class Abstract base class for shapes.
  */
 
 class Shapes : public Dessin {
@@ -53,7 +53,7 @@ public:
 };
 
 /**
- * @brief Class representing an ellipse shape.
+ * @class Class representing an ellipse shape.
  */
 
 class Ellipse : public Shapes {
@@ -93,7 +93,7 @@ private:
 };
 
 /**
- * @brief Class representing a rectangle shape.
+ * @class Class representing a rectangle shape.
  */
 class Rectangle : public Shapes {
 public:
@@ -132,7 +132,7 @@ private:
 };
 
 /**
- * @brief Class representing a star shape.
+ * @class Class representing a star shape.
  */
 class Star : public Shapes {
 public:
@@ -179,7 +179,7 @@ private:
 };
 
 /**
- * @brief Class representing an image.
+ * @class Class representing an image.
  */
 class ImageQuick : public Shapes {
 public:

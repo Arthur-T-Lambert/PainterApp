@@ -14,8 +14,6 @@ class MainWindow;
 QT_END_NAMESPACE
 
 
-
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -57,9 +55,39 @@ private slots:
     void on_actionQuit_triggered();
 
 protected:
+    /**
+     * @brief Handles the drag enter event.
+     *
+     * This function is called when a drag operation enters the widget.
+     *
+     * @param event Pointer to the QDragEnterEvent object containing event details.
+     */
+
     void dragEnterEvent(QDragEnterEvent *event) override;
+    /**
+     * @brief Handles the drag move event.
+     *
+     * This function is called when a drag operation is moved within the widget.
+     *
+     * @param event Pointer to the QDragMoveEvent object containing event details.
+     */
+
     void dragMoveEvent(QDragMoveEvent *event) override;
+    /**
+     * @brief Handles the drop event.
+     *
+     * This function is called when a drag operation is dropped on the widget.
+     *
+     * @param event Pointer to the QDropEvent object containing event details.
+     */
     void dropEvent(QDropEvent *event) override;
+    /**
+     * @brief Handles the mouse press event.
+     *
+     * This function is called when a mouse button is pressed on the widget.
+     *
+     * @param event Pointer to the QMouseEvent object containing event details.
+     */
     void mousePressEvent(QMouseEvent *event) override;
 
 private:

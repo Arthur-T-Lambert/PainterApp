@@ -36,10 +36,25 @@ class Board : public QWidget
 public:
     explicit Board(QWidget *parent = nullptr);
     ~Board();
-
+    /**
+     * @brief Paint event handler for the Board class.
+     * @param event Pointer to the QPaintEvent object.
+     */
     void paintEvent(QPaintEvent *event) override;
+    /**
+     * @brief Handles the mouse press event.
+     * @param event Pointer to the QMouseEvent object.
+     */
     void mousePressEvent(QMouseEvent *event) override;
+    /**
+     * @brief Handles the mouse move event.
+     * @param event Pointer to the QMouseEvent object.
+     */
     void mouseMoveEvent(QMouseEvent *event) override;
+    /**
+     * @brief Handles the mouse release event.
+     * @param event Pointer to the QMouseEvent object.
+     */
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     void updateDimensionAndPosition(QPainter &painter);
@@ -54,21 +69,56 @@ public:
     void refresh();
     void zoomPlus();
     void zoomMoins();
-    Pen *pen;
-    QBrush brush;
 
+    /**
+     * @brief Draws a shape between the start and end points.
+     * @param start The starting point of the shape.
+     * @param end The ending point of the shape.
+     */
     void drawShape(const QPoint &start, const QPoint &end);
+    /**
+     * @brief Creates a shape between the start and end points.
+     * @param start The starting point of the shape.
+     * @param end The ending point of the shape.
+     * @return A pointer to the created shape.
+     */
     Shapes* createShape(const QPoint &start, const QPoint &end);
+    /**
+     * @brief Updates the cursor based on the current tool.
+     */
     void updateCursor();
 
-    enum Tool { None,Cursor, RectangleTool, EllipseTool, StarTool };
+
+    Pen *pen;
+    QBrush brush;
+    /**
+     * @brief Enum representing the available drawing tools.
+     */
+    enum Tool {
+        None, ///< No tool selected.
+        Cursor, ///< Cursor tool for selecting and moving shapes.
+        RectangleTool, ///< Tool for drawing rectangles.
+        EllipseTool, ///< Tool for drawing ellipses.
+        StarTool ///< Tool for drawing stars.
+    };
+    /**
+     * @brief The current tool being used.
+     */
     Tool currentTool= None;
 
 
 public slots:
+    /**
+     * @brief Sets the current tool.
+     * @param tool The tool to set as the current tool.
+     */
     void setCurrentTool(Tool tool);
 
 public:
+    /**
+     * @brief Adds a shape to the shapes list.
+     * @param shape A pointer to the shape to be added.
+     */
       void addShape(Shapes *shape);
 
 private:
@@ -84,6 +134,9 @@ private:
     MODE mode;
     FORME forme;
 
+    /**
+     * @brief The flag to indicate whether a drawing operation is in progress.
+     */
 
     bool isDrawing =false;
 };
