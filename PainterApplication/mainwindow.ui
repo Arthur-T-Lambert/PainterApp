@@ -508,8 +508,9 @@
    <addaction name="actionSelect"/>
    <addaction name="actionPen"/>
    <addaction name="actionEraser"/>
-   <addaction name="actionEllipse"/>
    <addaction name="actionRectangle"/>
+   <addaction name="actionEllipse"/>
+   <addaction name="actionStar"/>
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
@@ -650,11 +651,12 @@
    </property>
   </action>
   <action name="actionSelect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/cursor.png</normaloff>
-     <activeon>:/images/cursor_active.png</activeon>
-     <selectedon>:/images/cursor_active.png</selectedon>:/images/cursor.png</iconset>
+     <normaloff>:/images/cursor.png</normaloff>:/images/cursor.png</iconset>
    </property>
    <property name="text">
     <string>Select</string>
@@ -667,10 +669,12 @@
    </property>
   </action>
   <action name="actionRectangle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/rectangle1.png</normaloff>
-     <selectedon>:/images/rectangle1_active.png</selectedon>:/images/rectangle1.png</iconset>
+     <normaloff>:/images/rectangle1.png</normaloff>:/images/rectangle1.png</iconset>
    </property>
    <property name="text">
     <string>Rectangle</string>
@@ -683,10 +687,12 @@
    </property>
   </action>
   <action name="actionPen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/pen.png</normaloff>
-     <selectedon>:/images/pen_active.png</selectedon>:/images/pen.png</iconset>
+     <normaloff>:/images/pen.png</normaloff>:/images/pen.png</iconset>
    </property>
    <property name="text">
     <string>Pen</string>
@@ -699,10 +705,12 @@
    </property>
   </action>
   <action name="actionEraser">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/eraser.png</normaloff>
-     <selectedon>:/images/eraser_active.png</selectedon>:/images/eraser.png</iconset>
+     <normaloff>:/images/eraser.png</normaloff>:/images/eraser.png</iconset>
    </property>
    <property name="text">
     <string>Eraser</string>
@@ -715,10 +723,12 @@
    </property>
   </action>
   <action name="actionEllipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/circle.png</normaloff>
-     <selectedon>:/images/circle_active.png</selectedon>:/images/circle.png</iconset>
+     <normaloff>:/images/circle.png</normaloff>:/images/circle.png</iconset>
    </property>
    <property name="text">
     <string>Ellipse</string>
@@ -731,10 +741,12 @@
    </property>
   </action>
   <action name="actionStar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="ressource.qrc">
-     <normaloff>:/images/star.png</normaloff>
-     <selectedon>:/images/star_active.png</selectedon>:/images/star.png</iconset>
+     <normaloff>:/images/star.png</normaloff>:/images/star.png</iconset>
    </property>
    <property name="text">
     <string>Star</string>

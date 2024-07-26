@@ -12,7 +12,8 @@
 #include <QDebug>
 #include <QColorDialog>
 #include <QPixmap>
-
+#include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,18 +46,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Rectangle->show();
    // ui->Rectangle->setAttribute(Qt::WA_DeleteOnClose);
 
-    //QGraphicsScene * scene(new QGraphicsScene(this));// use smart pointer
-    //ui->libraryView->setScene(scene);
-
-    //_currentPen.setColor(Qt::black);
-    //_currentPen.setWidth(2);
-    //_currentPen.setStyle(Qt::SolidLine);
     ui->penColorPB->setStyleSheet(QString("background-color : %1").arg(board->pen->getColor().name()));
 
+    /*
+     * The six "drawing mode" buttons have a radio-button behavior : this is
+     * to ensure one of them is selected.
+     */
+    ui->actionSelect->setChecked(true);
+
+    /*
+     * Sets the default values for the brush attributes
+     */
     _currentBrush.setColor(Qt::black);
     _currentBrush.setStyle(Qt::SolidPattern);
     ui->fillColorPB->setStyleSheet(QString("background-color : %1").arg(_currentBrush.color().name()));
 
+    /*
+     * Redimension the direct pen coolor buttons to be square
+     * (impossible to do in QtDesigner)
+     */
     ui->penDirectColor1->setFixedSize(QSize(24, 24));
     ui->penDirectColor2->setFixedSize(QSize(24, 24));
     ui->penDirectColor3->setFixedSize(QSize(24, 24));
@@ -69,8 +77,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->penDirectColor10->setFixedSize(QSize(24, 24));
     ui->penDirectColor11->setFixedSize(QSize(24, 24));
     ui->penDirectColor12->setFixedSize(QSize(24, 24));
-    //ui->penDirectColor13->setFixedSize(QSize(24, 24));
-    //ui->penDirectColor14->setFixedSize(QSize(24, 24));
+    ui->penDirectColor13->setFixedSize(QSize(24, 24));
+    ui->penDirectColor14->setFixedSize(QSize(24, 24));
+
+    /*
+     * Setting of the colors and connections of all the direct color buttons
+     * (All the connections redirect to the same slot, only the color change).
+     */
     /* First row */
     ui->penDirectColor1->setStyleSheet(QString("background-color : %1").arg("#ffffff"));
     connect(ui->penDirectColor1, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#ffffff"));});
@@ -86,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->penDirectColor6, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#ff00ff"));});
     ui->penDirectColor7->setStyleSheet(QString("background-color : %1").arg("#ff0000"));
     connect(ui->penDirectColor7, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#ff0000"));});
-    /* Secoond row */
+    /* Second row */
     ui->penDirectColor8->setStyleSheet(QString("background-color : %1").arg("#000000"));
     connect(ui->penDirectColor8, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#000000"));});
     ui->penDirectColor9->setStyleSheet(QString("background-color : %1").arg("#c0c000"));
@@ -97,11 +110,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->penDirectColor11, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#00c0c0"));});
     ui->penDirectColor12->setStyleSheet(QString("background-color : %1").arg("#0000c0"));
     connect(ui->penDirectColor12, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#0000c0"));});
-    /*ui->penDirectColor13->setStyleSheet(QString("background-color : %1").arg("#c000c0"));
+    ui->penDirectColor13->setStyleSheet(QString("background-color : %1").arg("#c000c0"));
     connect(ui->penDirectColor13, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#c000c0"));});
     ui->penDirectColor14->setStyleSheet(QString("background-color : %1").arg("#c00000"));
     connect(ui->penDirectColor14, &QPushButton::clicked, this, [=](){ this->on_directColor_clicked(QColor("#c00000"));});
-    */
 
     // Load icons from resources and create QGraphicsPixmapItem for each icon
     // QPixmap pixmap1(":/images/ellipse.png");
@@ -386,63 +398,6 @@ void MainWindow::resetIconToolBar()
     ui->actionStar->setIcon(QIcon(":images/star_cursor.png"));
 }
 
-/** Brief Fonction slot, lié au bouton dessiner
-*/
-void MainWindow::on_actionPen_triggered()
-{
-    board->setMode(MODE::DESSIN_LIBRE);
-    resetIconToolBar();
-    ui->actionPen->setIcon(QIcon(":images/pen_active.png"));
-}
-
-/** Brief Fonction slot, lié au bouton sélection
-*/
-void MainWindow::on_actionSelect_triggered()
-{
-    board->setMode(MODE::SELECT);
-    resetIconToolBar();
-    ui->actionSelect->setIcon(QIcon(":images/cursor_active.png"));
-}
-
-/** Brief Fonction slot, lié au bouton effacer
-*/
-void MainWindow::on_actionEraser_triggered()
-{
-    board->setMode(MODE::GOMME);
-    resetIconToolBar();
-    ui->actionEraser->setIcon(QIcon(":images/eraser_active.png"));
-}
-
-/** Brief Fonction slot, lié au bouton Ellipse
-*/
-void MainWindow::on_actionEllipse_triggered()
-{
-    board->setMode(MODE::FORMES);
-    board->setForme(FORME::ELLIPSE);
-    resetIconToolBar();
-    ui->actionEllipse->setIcon(QIcon(":images/circle_active.png"));
-}
-
-/** Brief Fonction slot, lié au bouton Rectangle
-*/
-void MainWindow::on_actionRectangle_triggered()
-{
-    board->setMode(MODE::FORMES);
-    board->setForme(FORME::RECTANGLE);
-    resetIconToolBar();
-    ui->actionRectangle->setIcon(QIcon(":images/rectangle1_active.png"));
-}
-
-/** Brief Fonction slot, lié au bouton Etoile
-*/
-void MainWindow::on_actionStar_triggered()
-{
-    board->setMode(MODE::FORMES);
-    board->setForme(FORME::STAR);
-    resetIconToolBar();
-    ui->actionStar->setIcon(QIcon(":images/star_active.png"));
-}
-
 /** Brief Fonction slot, lié au spinBox d'affichage de la grille
 */
 void MainWindow::on_showGrid_SpinBox_stateChanged(int arg1)
@@ -450,21 +405,218 @@ void MainWindow::on_showGrid_SpinBox_stateChanged(int arg1)
     board->showGrid(ui->showGrid_SpinBox->isChecked());
 }
 
-
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::information(this, "À Propos", "Application Paint \n\n Dévelopé par : \n\n François Roudier \n Arthur Lambert \n Yasmine Fatnassi \n Nehari Mohamed");
 }
-
 
 void MainWindow::on_actionUndo_triggered()
 {
     board->undo();
 }
 
-
 void MainWindow::on_actionRedo_triggered()
 {
     board->redo();
+}
+
+void MainWindow::on_actionSelect_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::SELECT);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionSelect->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionPen_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::DESSIN_LIBRE);
+        ui->actionSelect->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionPen->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionEraser_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::GOMME);
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionEraser->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionRectangle_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::FORMES);
+        board->setForme(FORME::RECTANGLE);
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionRectangle->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionEllipse_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::FORMES);
+        board->setForme(FORME::ELLIPSE);
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionStar->setChecked(false);
+    }
+    else {
+        ui->actionEllipse->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionStar_triggered(bool checked)
+{
+    /*
+     * Radio button : if pressed, all the other buttons are unpressed
+     * if unpressed, press it again.
+     */
+    if ( checked ) {
+        board->setMode(MODE::FORMES);
+        board->setForme(FORME::STAR);
+        ui->actionSelect->setChecked(false);
+        ui->actionPen->setChecked(false);
+        ui->actionEraser->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionEllipse->setChecked(false);
+    }
+    else {
+        ui->actionStar->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save document"), QString(), "Paintings (*.pa)");
+
+    if ( fileName.isEmpty() ) return;
+
+    QFile file(fileName);
+
+    file.open(QIODevice::WriteOnly);
+
+    QDataStream stream(&file);
+    stream << QString("PA");
+
+    /*
+     * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
+     */
+    Ellipse ellipse(QRect(10, 10, 20, 20));
+    ellipse.setProperties(_currentPen, _currentBrush);
+    ellipse.save(stream);
+
+    Rectangle rect(QRect(30, 40, 17, 34));
+    rect.setProperties(_currentPen, _currentBrush);
+    rect.save(stream);
+
+    Star star(QPoint(100, 110), 50);
+    star.setProperties(_currentPen, _currentBrush);
+    star.save(stream);
+
+    file.close();
+}
+
+
+void MainWindow::on_actionLoad_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open document"), QString(), "Paintings (*.pa)");
+
+    if ( fileName.isEmpty() ) return;
+
+    QFile file(fileName);
+    file.open(QIODevice::ReadOnly);
+
+    QDataStream stream(&file);
+
+    QString magic;
+    stream >> magic;
+    while ( !stream.atEnd() ) {
+        /*
+         * THIS IS JUST FOR TESTING THE SAVE/LOAD FUNCTIONALITY
+         */
+        QString shape;
+        stream >> shape;
+        qDebug() << shape;
+
+        if ( shape == "Ellipse" ) {
+            QRect rect;
+            QPen pen;
+            QBrush brush;
+            stream >> rect >> pen >> brush;
+
+            qDebug() << "Ellipse " << rect << pen << brush;
+        }
+        else if ( shape == "Rectangle" ) {
+            QRect rect;
+            QPen pen;
+            QBrush brush;
+            stream >> rect >> pen >> brush;
+
+            qDebug() << "Rectangle " << rect << pen << brush;
+        }
+        else if ( shape == "Star" ) {
+            QPoint center;
+            int radius;
+            QPen pen;
+            QBrush brush;
+            stream >> center >> radius >> pen >> brush;
+
+            qDebug() << "Star " << center << radius << pen << brush;
+        }
+    }
+
+    file.close();
 }
 
