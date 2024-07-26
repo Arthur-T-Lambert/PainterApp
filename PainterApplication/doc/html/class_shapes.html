@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">PainterApplication<span id="projectnumber">&#160;0.1</span>
    </div>
-   <div id="projectbrief">A small &quot;paint&quot; application in the contex of a training</div>
+   <div id="projectbrief">A small &quot;paint&quot; application in the context of a training</div>
   </td>
  </tr>
  </tbody>
@@ -107,23 +107,95 @@ Inheritance diagram for Shapes:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0a8b5333747328b56bd73db7d395ebda" id="r_a0a8b5333747328b56bd73db7d395ebda"><td class="memItemLeft" align="right" valign="top"><a id="a0a8b5333747328b56bd73db7d395ebda" name="a0a8b5333747328b56bd73db7d395ebda"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (QPainter *painter)=0</td></tr>
+<tr class="memitem:a0a8b5333747328b56bd73db7d395ebda" id="r_a0a8b5333747328b56bd73db7d395ebda"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a8b5333747328b56bd73db7d395ebda">draw</a> (QPainter *painter)=0</td></tr>
+<tr class="memdesc:a0a8b5333747328b56bd73db7d395ebda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the shape.  <br /></td></tr>
 <tr class="separator:a0a8b5333747328b56bd73db7d395ebda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a8ac8c633c5bb63e0ac5c11ebb3ee45" id="r_a8a8ac8c633c5bb63e0ac5c11ebb3ee45"><td class="memItemLeft" align="right" valign="top"><a id="a8a8ac8c633c5bb63e0ac5c11ebb3ee45" name="a8a8ac8c633c5bb63e0ac5c11ebb3ee45"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setProperties</b> (const QPen &amp;pen, const QBrush &amp;brush)=0</td></tr>
+<tr class="memitem:a8a8ac8c633c5bb63e0ac5c11ebb3ee45" id="r_a8a8ac8c633c5bb63e0ac5c11ebb3ee45"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a8ac8c633c5bb63e0ac5c11ebb3ee45">setProperties</a> (const QPen &amp;pen, const QBrush &amp;brush)=0</td></tr>
+<tr class="memdesc:a8a8ac8c633c5bb63e0ac5c11ebb3ee45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the properties of the shape.  <br /></td></tr>
 <tr class="separator:a8a8ac8c633c5bb63e0ac5c11ebb3ee45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36bffe5bf2f352082bfa9d159ffde2a8" id="r_a36bffe5bf2f352082bfa9d159ffde2a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36bffe5bf2f352082bfa9d159ffde2a8">move</a> (const QPoint &amp;delta)=0</td></tr>
+<tr class="memdesc:a36bffe5bf2f352082bfa9d159ffde2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the shape.  <br /></td></tr>
 <tr class="separator:a36bffe5bf2f352082bfa9d159ffde2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2486d6e1fa43e7ac199ef3671ae7c50a" id="r_a2486d6e1fa43e7ac199ef3671ae7c50a"><td class="memItemLeft" align="right" valign="top"><a id="a2486d6e1fa43e7ac199ef3671ae7c50a" name="a2486d6e1fa43e7ac199ef3671ae7c50a"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>contains</b> (const QPoint &amp;point)=0</td></tr>
+<tr class="memitem:a037e5c859777ac3ea8a7c56f3ec5d31e" id="r_a037e5c859777ac3ea8a7c56f3ec5d31e"><td class="memItemLeft" align="right" valign="top"><a id="a037e5c859777ac3ea8a7c56f3ec5d31e" name="a037e5c859777ac3ea8a7c56f3ec5d31e"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Shapes</b> ()</td></tr>
+<tr class="memdesc:a037e5c859777ac3ea8a7c56f3ec5d31e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the shape. <br /></td></tr>
+<tr class="separator:a037e5c859777ac3ea8a7c56f3ec5d31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2486d6e1fa43e7ac199ef3671ae7c50a" id="r_a2486d6e1fa43e7ac199ef3671ae7c50a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2486d6e1fa43e7ac199ef3671ae7c50a">contains</a> (const QPoint &amp;point)=0</td></tr>
+<tr class="memdesc:a2486d6e1fa43e7ac199ef3671ae7c50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a point is contained within the shape.  <br /></td></tr>
 <tr class="separator:a2486d6e1fa43e7ac199ef3671ae7c50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_dessin"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_dessin')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_dessin.html">Dessin</a></td></tr>
-<tr class="memitem:ab647ad4c90eaf6dfdf24d4bd859f997e inherit pub_methods_class_dessin" id="r_ab647ad4c90eaf6dfdf24d4bd859f997e"><td class="memItemLeft" align="right" valign="top">
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> (QDataStream &amp;)=0</td></tr>
-<tr class="separator:ab647ad4c90eaf6dfdf24d4bd859f997e inherit pub_methods_class_dessin"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2486d6e1fa43e7ac199ef3671ae7c50a" name="a2486d6e1fa43e7ac199ef3671ae7c50a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2486d6e1fa43e7ac199ef3671ae7c50a">&#9670;&#160;</a></span>contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Shapes::contains </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>point</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if a point is contained within the shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>The point to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the point is contained, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_ellipse.html#a874b99bf56c37a40ff6b82f48da46ba8">Ellipse</a>, <a class="el" href="class_image_quick.html#a630e364d9223fc390cc30bbe7a334e2b">ImageQuick</a>, <a class="el" href="class_rectangle.html#a59510a97eff9d4a9d073f8f0e9e1cf7b">Rectangle</a>, and <a class="el" href="class_star.html#a319fca9681d1d0f6c73cdbfe5a59547b">Star</a>.</p>
+
+</div>
+</div>
+<a id="a0a8b5333747328b56bd73db7d395ebda" name="a0a8b5333747328b56bd73db7d395ebda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8b5333747328b56bd73db7d395ebda">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Shapes::draw </td>
+          <td>(</td>
+          <td class="paramtype">QPainter *</td>          <td class="paramname"><span class="paramname"><em>painter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws the shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">painter</td><td>The QPainter used to draw the shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_ellipse.html#adf45b0ca2fcd9900156b4c6004b55377">Ellipse</a>, <a class="el" href="class_image_quick.html#a4978634bee9fbc002f9a5fd7dab6ca3c">ImageQuick</a>, <a class="el" href="class_rectangle.html#aadeb9f1ff8398bead1c997904a80edca">Rectangle</a>, and <a class="el" href="class_star.html#ada1f93d5bdedd051735da2afacbf0c64">Star</a>.</p>
+
+</div>
+</div>
 <a id="a36bffe5bf2f352082bfa9d159ffde2a8" name="a36bffe5bf2f352082bfa9d159ffde2a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36bffe5bf2f352082bfa9d159ffde2a8">&#9670;&#160;</a></span>move()</h2>
 
@@ -147,7 +219,57 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> (QDa
 </table>
 </div><div class="memdoc">
 
+<p>Moves the shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delta</td><td>The translation to apply to the shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_dessin.html">Dessin</a>.</p>
+
+<p>Implemented in <a class="el" href="class_ellipse.html#a02fe6d68c9c8eb3444aa71c2f7a8b7f8">Ellipse</a>, <a class="el" href="class_image_quick.html#a0740c2eab1bb177415a506de3819a8e7">ImageQuick</a>, <a class="el" href="class_rectangle.html#a8cc34fc6a48c28bb3b2fecacab81ab71">Rectangle</a>, and <a class="el" href="class_star.html#af0e9a097cca1b9603a1829b150145120">Star</a>.</p>
+
+</div>
+</div>
+<a id="a8a8ac8c633c5bb63e0ac5c11ebb3ee45" name="a8a8ac8c633c5bb63e0ac5c11ebb3ee45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a8ac8c633c5bb63e0ac5c11ebb3ee45">&#9670;&#160;</a></span>setProperties()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Shapes::setProperties </td>
+          <td>(</td>
+          <td class="paramtype">const QPen &amp;</td>          <td class="paramname"><span class="paramname"><em>pen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QBrush &amp;</td>          <td class="paramname"><span class="paramname"><em>brush</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the properties of the shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pen</td><td>The QPen used to draw the shape's outline. </td></tr>
+    <tr><td class="paramname">brush</td><td>The QBrush used to fill the shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_ellipse.html#a476e9f606b7ab1653f3db6d95dbe5600">Ellipse</a>, <a class="el" href="class_image_quick.html#a1d223f621c26706f19208a670e9cf6e0">ImageQuick</a>, <a class="el" href="class_rectangle.html#a89ee164b0e00095c0298dae5028db42b">Rectangle</a>, and <a class="el" href="class_star.html#ad15031a359c58c4cccde3c292fe1ccc2">Star</a>.</p>
 
 </div>
 </div>

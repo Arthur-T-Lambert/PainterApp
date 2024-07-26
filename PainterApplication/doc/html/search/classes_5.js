@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rectangle_0',['Rectangle',['../class_rectangle.html',1,'']]]
+  ['imagequick_0',['ImageQuick',['../class_image_quick.html',1,'']]]
 ];

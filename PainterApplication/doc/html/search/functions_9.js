@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7eboard_0',['~Board',['../class_board.html#af73f45730119a1fd8f6670f53f959e68',1,'Board']]]
+  ['rectangle_0',['Rectangle',['../class_rectangle.html#ad6f1dd13b271051263c239a0e890674b',1,'Rectangle']]],
+  ['refresh_1',['refresh',['../class_board.html#ae114504b2f855269b21bc5022724318d',1,'Board']]]
 ];

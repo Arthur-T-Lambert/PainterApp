@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow::MainWindow()']]],
-  ['mousemoveevent_1',['mouseMoveEvent',['../class_board.html#add33daf9317adb99bddba714830f611c',1,'Board']]],
-  ['mousepressevent_2',['mousePressEvent',['../class_board.html#af1cfa5bf582ef95012094646906c4331',1,'Board']]],
-  ['mousereleaseevent_3',['mouseReleaseEvent',['../class_board.html#a6567eebf78442c49892656d59584ced5',1,'Board']]]
+  ['getcolor_0',['getColor',['../class_pen.html#a77339e613c26ffa32eeeb97edf3ab170',1,'Pen']]],
+  ['getcurrentbrush_1',['getcurrentBrush',['../class_main_window.html#a1acbd66ccf4caa960a4966cca56aa871',1,'MainWindow']]],
+  ['getcurrentpen_2',['getcurrentPen',['../class_main_window.html#aa3bb8769e293a9db5b994c17e832ce4d',1,'MainWindow']]],
+  ['getmode_3',['getMode',['../class_board.html#ad61c84def1c2a6286cbc98648c857f00',1,'Board']]]
 ];

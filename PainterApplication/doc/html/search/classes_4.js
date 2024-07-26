@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../class_main_window.html',1,'']]]
+  ['ellipse_0',['Ellipse',['../class_ellipse.html',1,'']]]
 ];

@@ -27,7 +27,7 @@
   <td id="projectalign">
    <div id="projectname">PainterApplication<span id="projectnumber">&#160;0.1</span>
    </div>
-   <div id="projectbrief">A small &quot;paint&quot; application in the contex of a training</div>
+   <div id="projectbrief">A small &quot;paint&quot; application in the context of a training</div>
   </td>
  </tr>
  </tbody>
@@ -86,7 +86,10 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_board-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Board Class Reference</div></div>
 </div><!--header-->
@@ -98,6 +101,26 @@ Inheritance diagram for Board:</div>
   <img src="class_board.png" alt=""/>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae402024e0b3466f8d9017e4c5658787e" id="r_ae402024e0b3466f8d9017e4c5658787e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae402024e0b3466f8d9017e4c5658787e">Tool</a> { <br />
+&#160;&#160;<a class="el" href="#ae402024e0b3466f8d9017e4c5658787ead20e9a6c29601fd9820a584a8c1f006d">None</a>
+, <a class="el" href="#ae402024e0b3466f8d9017e4c5658787eabf42374a8d524d92190d945022c456e6">Cursor</a>
+, <a class="el" href="#ae402024e0b3466f8d9017e4c5658787eac8218b3624e6641e9598d4bca8ac8737">RectangleTool</a>
+, <a class="el" href="#ae402024e0b3466f8d9017e4c5658787ea58c92067e026e42b6775da63ed737f6f">EllipseTool</a>
+, <br />
+&#160;&#160;<a class="el" href="#ae402024e0b3466f8d9017e4c5658787eab83f6b8227792f9f0fde488ffe02bbe7">StarTool</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ae402024e0b3466f8d9017e4c5658787e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum representing the available drawing tools.  <a href="#ae402024e0b3466f8d9017e4c5658787e">More...</a><br /></td></tr>
+<tr class="separator:ae402024e0b3466f8d9017e4c5658787e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:a2af701357ec46e250191b5c2fc382b8a" id="r_a2af701357ec46e250191b5c2fc382b8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af701357ec46e250191b5c2fc382b8a">setCurrentTool</a> (<a class="el" href="#ae402024e0b3466f8d9017e4c5658787e">Tool</a> tool)</td></tr>
+<tr class="memdesc:a2af701357ec46e250191b5c2fc382b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current tool.  <br /></td></tr>
+<tr class="separator:a2af701357ec46e250191b5c2fc382b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad94f044a14025dc1c3fede4e3828898b" id="r_ad94f044a14025dc1c3fede4e3828898b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad94f044a14025dc1c3fede4e3828898b">Board</a> (QWidget *parent=nullptr)</td></tr>
@@ -105,12 +128,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af73f45730119a1fd8f6670f53f959e68" id="r_af73f45730119a1fd8f6670f53f959e68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af73f45730119a1fd8f6670f53f959e68">~Board</a> ()</td></tr>
 <tr class="separator:af73f45730119a1fd8f6670f53f959e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2957913242c313e9de7eeb5fb0d012f9" id="r_a2957913242c313e9de7eeb5fb0d012f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2957913242c313e9de7eeb5fb0d012f9">paintEvent</a> (QPaintEvent *event) override</td></tr>
+<tr class="memdesc:a2957913242c313e9de7eeb5fb0d012f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paint event handler for the <a class="el" href="class_board.html">Board</a> class.  <br /></td></tr>
 <tr class="separator:a2957913242c313e9de7eeb5fb0d012f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1cfa5bf582ef95012094646906c4331" id="r_af1cfa5bf582ef95012094646906c4331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1cfa5bf582ef95012094646906c4331">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="memdesc:af1cfa5bf582ef95012094646906c4331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the mouse press event.  <br /></td></tr>
 <tr class="separator:af1cfa5bf582ef95012094646906c4331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add33daf9317adb99bddba714830f611c" id="r_add33daf9317adb99bddba714830f611c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add33daf9317adb99bddba714830f611c">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="memdesc:add33daf9317adb99bddba714830f611c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the mouse move event.  <br /></td></tr>
 <tr class="separator:add33daf9317adb99bddba714830f611c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6567eebf78442c49892656d59584ced5" id="r_a6567eebf78442c49892656d59584ced5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6567eebf78442c49892656d59584ced5">mouseReleaseEvent</a> (QMouseEvent *event) override</td></tr>
+<tr class="memdesc:a6567eebf78442c49892656d59584ced5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the mouse release event.  <br /></td></tr>
 <tr class="separator:a6567eebf78442c49892656d59584ced5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af10aa2fc16d45619495fbaec43dae6d1" id="r_af10aa2fc16d45619495fbaec43dae6d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af10aa2fc16d45619495fbaec43dae6d1">wheelEvent</a> (QWheelEvent *event) override</td></tr>
 <tr class="separator:af10aa2fc16d45619495fbaec43dae6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,13 +147,80 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a854da8919bfd22ca47a5c9e8f8cec27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fa5f6d2a5b43276a50d82cddcbddf19" id="r_a7fa5f6d2a5b43276a50d82cddcbddf19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fa5f6d2a5b43276a50d82cddcbddf19">drawBackground</a> (QPainter &amp;painter, const Qt::BrushStyle brushStyle, const Qt::GlobalColor &amp;brushColor)</td></tr>
 <tr class="separator:a7fa5f6d2a5b43276a50d82cddcbddf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f6c92ee3f54c7851d0070f2331a709f" id="r_a6f6c92ee3f54c7851d0070f2331a709f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f6c92ee3f54c7851d0070f2331a709f">setMode</a> (MODE m)</td></tr>
+<tr class="separator:a6f6c92ee3f54c7851d0070f2331a709f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c758ca06c7c4152741d0b3a5f0fa80" id="r_a12c758ca06c7c4152741d0b3a5f0fa80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12c758ca06c7c4152741d0b3a5f0fa80">setForme</a> (FORME m)</td></tr>
+<tr class="separator:a12c758ca06c7c4152741d0b3a5f0fa80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68d5cec0a69495923657c8b550c699af" id="r_a68d5cec0a69495923657c8b550c699af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68d5cec0a69495923657c8b550c699af">showGrid</a> (bool print)</td></tr>
+<tr class="separator:a68d5cec0a69495923657c8b550c699af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c455ea9872f8fb116b53846d7e5937f" id="r_a4c455ea9872f8fb116b53846d7e5937f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c455ea9872f8fb116b53846d7e5937f">setBrushStyle</a> (const Qt::BrushStyle &amp;brush)</td></tr>
+<tr class="separator:a4c455ea9872f8fb116b53846d7e5937f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dcffa0f080575abdc2781f7a6979f9d" id="r_a6dcffa0f080575abdc2781f7a6979f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dcffa0f080575abdc2781f7a6979f9d">setBrushColor</a> (const QColor &amp;color)</td></tr>
+<tr class="separator:a6dcffa0f080575abdc2781f7a6979f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61c84def1c2a6286cbc98648c857f00" id="r_ad61c84def1c2a6286cbc98648c857f00"><td class="memItemLeft" align="right" valign="top">MODE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad61c84def1c2a6286cbc98648c857f00">getMode</a> ()</td></tr>
+<tr class="separator:ad61c84def1c2a6286cbc98648c857f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae114504b2f855269b21bc5022724318d" id="r_ae114504b2f855269b21bc5022724318d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae114504b2f855269b21bc5022724318d">refresh</a> ()</td></tr>
 <tr class="separator:ae114504b2f855269b21bc5022724318d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36d454352b19adf960d85e49fba46952" id="r_a36d454352b19adf960d85e49fba46952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36d454352b19adf960d85e49fba46952">zoomPlus</a> ()</td></tr>
 <tr class="separator:a36d454352b19adf960d85e49fba46952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27696acee445ac307a15267c18397811" id="r_a27696acee445ac307a15267c18397811"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27696acee445ac307a15267c18397811">zoomMoins</a> ()</td></tr>
 <tr class="separator:a27696acee445ac307a15267c18397811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91962cac68a9208ce71d79a33d4af9a3" id="r_a91962cac68a9208ce71d79a33d4af9a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91962cac68a9208ce71d79a33d4af9a3">drawShape</a> (const QPoint &amp;start, const QPoint &amp;end)</td></tr>
+<tr class="memdesc:a91962cac68a9208ce71d79a33d4af9a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a shape between the start and end points.  <br /></td></tr>
+<tr class="separator:a91962cac68a9208ce71d79a33d4af9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1444c4a6a66cf45b716ee879a731ee1c" id="r_a1444c4a6a66cf45b716ee879a731ee1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_shapes.html">Shapes</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1444c4a6a66cf45b716ee879a731ee1c">createShape</a> (const QPoint &amp;start, const QPoint &amp;end)</td></tr>
+<tr class="memdesc:a1444c4a6a66cf45b716ee879a731ee1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a shape between the start and end points.  <br /></td></tr>
+<tr class="separator:a1444c4a6a66cf45b716ee879a731ee1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2f6c3884791ac00a333b9f961dbfe1" id="r_a8a2f6c3884791ac00a333b9f961dbfe1"><td class="memItemLeft" align="right" valign="top"><a id="a8a2f6c3884791ac00a333b9f961dbfe1" name="a8a2f6c3884791ac00a333b9f961dbfe1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCursor</b> ()</td></tr>
+<tr class="memdesc:a8a2f6c3884791ac00a333b9f961dbfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the cursor based on the current tool. <br /></td></tr>
+<tr class="separator:a8a2f6c3884791ac00a333b9f961dbfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952a69966d32106eda0ff154a0577869" id="r_a952a69966d32106eda0ff154a0577869"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a952a69966d32106eda0ff154a0577869">addShape</a> (<a class="el" href="class_shapes.html">Shapes</a> *shape)</td></tr>
+<tr class="memdesc:a952a69966d32106eda0ff154a0577869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a shape to the shapes list.  <br /></td></tr>
+<tr class="separator:a952a69966d32106eda0ff154a0577869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af8e88584253fc4be9db4f22b98aedebd" id="r_af8e88584253fc4be9db4f22b98aedebd"><td class="memItemLeft" align="right" valign="top"><a id="af8e88584253fc4be9db4f22b98aedebd" name="af8e88584253fc4be9db4f22b98aedebd"></a>
+<a class="el" href="class_pen.html">Pen</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pen</b></td></tr>
+<tr class="separator:af8e88584253fc4be9db4f22b98aedebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a682889e6adec7c5212c85af0459a6d" id="r_a3a682889e6adec7c5212c85af0459a6d"><td class="memItemLeft" align="right" valign="top"><a id="a3a682889e6adec7c5212c85af0459a6d" name="a3a682889e6adec7c5212c85af0459a6d"></a>
+QBrush&#160;</td><td class="memItemRight" valign="bottom"><b>brush</b></td></tr>
+<tr class="separator:a3a682889e6adec7c5212c85af0459a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603bc6aa4ced1fee16930c0bcb46f07a" id="r_a603bc6aa4ced1fee16930c0bcb46f07a"><td class="memItemLeft" align="right" valign="top"><a id="a603bc6aa4ced1fee16930c0bcb46f07a" name="a603bc6aa4ced1fee16930c0bcb46f07a"></a>
+<a class="el" href="#ae402024e0b3466f8d9017e4c5658787e">Tool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentTool</b> = <a class="el" href="#ae402024e0b3466f8d9017e4c5658787ead20e9a6c29601fd9820a584a8c1f006d">None</a></td></tr>
+<tr class="memdesc:a603bc6aa4ced1fee16930c0bcb46f07a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current tool being used. <br /></td></tr>
+<tr class="separator:a603bc6aa4ced1fee16930c0bcb46f07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ae402024e0b3466f8d9017e4c5658787e" name="ae402024e0b3466f8d9017e4c5658787e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae402024e0b3466f8d9017e4c5658787e">&#9670;&#160;</a></span>Tool</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae402024e0b3466f8d9017e4c5658787e">Board::Tool</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enum representing the available drawing tools. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae402024e0b3466f8d9017e4c5658787ead20e9a6c29601fd9820a584a8c1f006d" name="ae402024e0b3466f8d9017e4c5658787ead20e9a6c29601fd9820a584a8c1f006d"></a>None&#160;</td><td class="fielddoc"><p>No tool selected. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae402024e0b3466f8d9017e4c5658787eabf42374a8d524d92190d945022c456e6" name="ae402024e0b3466f8d9017e4c5658787eabf42374a8d524d92190d945022c456e6"></a>Cursor&#160;</td><td class="fielddoc"><p>Cursor tool for selecting and moving shapes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae402024e0b3466f8d9017e4c5658787eac8218b3624e6641e9598d4bca8ac8737" name="ae402024e0b3466f8d9017e4c5658787eac8218b3624e6641e9598d4bca8ac8737"></a>RectangleTool&#160;</td><td class="fielddoc"><p>Tool for drawing rectangles. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae402024e0b3466f8d9017e4c5658787ea58c92067e026e42b6775da63ed737f6f" name="ae402024e0b3466f8d9017e4c5658787ea58c92067e026e42b6775da63ed737f6f"></a>EllipseTool&#160;</td><td class="fielddoc"><p>Tool for drawing ellipses. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae402024e0b3466f8d9017e4c5658787eab83f6b8227792f9f0fde488ffe02bbe7" name="ae402024e0b3466f8d9017e4c5658787eab83f6b8227792f9f0fde488ffe02bbe7"></a>StarTool&#160;</td><td class="fielddoc"><p>Tool for drawing stars. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad94f044a14025dc1c3fede4e3828898b" name="ad94f044a14025dc1c3fede4e3828898b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad94f044a14025dc1c3fede4e3828898b">&#9670;&#160;</a></span>Board()</h2>
@@ -179,6 +273,62 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a952a69966d32106eda0ff154a0577869" name="a952a69966d32106eda0ff154a0577869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a952a69966d32106eda0ff154a0577869">&#9670;&#160;</a></span>addShape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::addShape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_shapes.html">Shapes</a> *</td>          <td class="paramname"><span class="paramname"><em>shape</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a shape to the shapes list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shape</td><td>A pointer to the shape to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1444c4a6a66cf45b716ee879a731ee1c" name="a1444c4a6a66cf45b716ee879a731ee1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1444c4a6a66cf45b716ee879a731ee1c">&#9670;&#160;</a></span>createShape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_shapes.html">Shapes</a> * Board::createShape </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>end</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a shape between the start and end points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>The starting point of the shape. </td></tr>
+    <tr><td class="paramname">end</td><td>The ending point of the shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the created shape. </dd></dl>
+
+</div>
+</div>
 <a id="a7fa5f6d2a5b43276a50d82cddcbddf19" name="a7fa5f6d2a5b43276a50d82cddcbddf19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7fa5f6d2a5b43276a50d82cddcbddf19">&#9670;&#160;</a></span>drawBackground()</h2>
 
@@ -236,6 +386,54 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a91962cac68a9208ce71d79a33d4af9a3" name="a91962cac68a9208ce71d79a33d4af9a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91962cac68a9208ce71d79a33d4af9a3">&#9670;&#160;</a></span>drawShape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::drawShape </td>
+          <td>(</td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>end</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draws a shape between the start and end points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>The starting point of the shape. </td></tr>
+    <tr><td class="paramname">end</td><td>The ending point of the shape. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad61c84def1c2a6286cbc98648c857f00" name="ad61c84def1c2a6286cbc98648c857f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61c84def1c2a6286cbc98648c857f00">&#9670;&#160;</a></span>getMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODE Board::getMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction getter du mode courant </p><dl class="section return"><dt>Returns</dt><dd>Retourne le mode courant </dd></dl>
+
+</div>
+</div>
 <a id="add33daf9317adb99bddba714830f611c" name="add33daf9317adb99bddba714830f611c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#add33daf9317adb99bddba714830f611c">&#9670;&#160;</a></span>mouseMoveEvent()</h2>
 
@@ -258,6 +456,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Handles the mouse move event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Pointer to the QMouseEvent object.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Brief Gestion des mouvements de la souris </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>Pointeur sur les évènements souris récupérés </td></tr>
@@ -289,6 +495,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Handles the mouse press event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Pointer to the QMouseEvent object.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Brief Gestion des cliques de la souris </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>Pointeur sur les évènements souris récupérés </td></tr>
@@ -320,6 +534,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Handles the mouse release event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Pointer to the QMouseEvent object.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Gestion des relâchements de clic de souris </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>Pointeur sur les évènements souris récupérés </td></tr>
@@ -351,6 +573,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Paint event handler for the <a class="el" href="class_board.html">Board</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Pointer to the QPaintEvent object.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Brief Fonction de gestion du rendu graphique </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">event</td><td>Pointeur sur les évènements récupérés </td></tr>
@@ -375,6 +605,154 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Brief Fonction de rafraichissement du widget </p>
+
+</div>
+</div>
+<a id="a6dcffa0f080575abdc2781f7a6979f9d" name="a6dcffa0f080575abdc2781f7a6979f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dcffa0f080575abdc2781f7a6979f9d">&#9670;&#160;</a></span>setBrushColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setBrushColor </td>
+          <td>(</td>
+          <td class="paramtype">const QColor &amp;</td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction setter de la couleur du brush </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Couleur du brush </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4c455ea9872f8fb116b53846d7e5937f" name="a4c455ea9872f8fb116b53846d7e5937f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c455ea9872f8fb116b53846d7e5937f">&#9670;&#160;</a></span>setBrushStyle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setBrushStyle </td>
+          <td>(</td>
+          <td class="paramtype">const Qt::BrushStyle &amp;</td>          <td class="paramname"><span class="paramname"><em>brush</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction setter du brush </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">brush</td><td>Type de brush </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2af701357ec46e250191b5c2fc382b8a" name="a2af701357ec46e250191b5c2fc382b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af701357ec46e250191b5c2fc382b8a">&#9670;&#160;</a></span>setCurrentTool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setCurrentTool </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae402024e0b3466f8d9017e4c5658787e">Tool</a></td>          <td class="paramname"><span class="paramname"><em>tool</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the current tool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tool</td><td>The tool to set as the current tool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a12c758ca06c7c4152741d0b3a5f0fa80" name="a12c758ca06c7c4152741d0b3a5f0fa80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c758ca06c7c4152741d0b3a5f0fa80">&#9670;&#160;</a></span>setForme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setForme </td>
+          <td>(</td>
+          <td class="paramtype">FORME</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction setter de la forme à dessiner </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Forme choisie </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f6c92ee3f54c7851d0070f2331a709f" name="a6f6c92ee3f54c7851d0070f2331a709f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f6c92ee3f54c7851d0070f2331a709f">&#9670;&#160;</a></span>setMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setMode </td>
+          <td>(</td>
+          <td class="paramtype">MODE</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction setter du mode courant </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Mode choisi </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a68d5cec0a69495923657c8b550c699af" name="a68d5cec0a69495923657c8b550c699af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68d5cec0a69495923657c8b550c699af">&#9670;&#160;</a></span>showGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::showGrid </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>print</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Brief Fonction setter de l'affichage de la grille </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bool</td><td>true pour l'afficher, et false pour la désactiver </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
